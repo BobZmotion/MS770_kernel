@@ -1,0 +1,13 @@
+Kernel Build
+  - Unzip using following command at the android folder
+  - When you compile the kernel source code, you have to add google original prebuilt source(toolchain) 
+    into the android folder.
+  - cd kernel
+  - export ARCH=arm
+  - export TARGET_PRODUCT=l0_MPCS_US
+  - export CROSS_COMPILE=$android/prebuilt/linux-x86/toolchain/arm-eabi-4.4.3/bin/arm-eabi-
+    ex)export CROSS_COMPILE=../prebuilt/linux-x86/toolchain/arm-eabi-4.4.3/bin/arm-eabi-
+  - make l0-perf_defconfig
+  - make -j4
+
+After Build, You Can find the build image at arch/arm/boot
