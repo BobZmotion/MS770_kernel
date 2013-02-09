@@ -21,11 +21,11 @@
 #include <linux/mfd/pm8xxx/rtc.h>
 
 #if defined(CONFIG_RTC_INTF_DRM_DEV)
-	/* LGE_CHANGE
-	 * secureclock returns offset between rtc and changed time.
-	 * this feature ported by brad.han@lge.com. I got the source code from P2
-	 * 2012-01-12, james.jang@lge.com
-	 */
+	/*           
+                                                            
+                                                                          
+                                  
+  */
 #include <linux/semaphore.h>
 #include <linux/sched.h>
 #include <drm/drm.h>
@@ -64,11 +64,11 @@ struct pm8xxx_rtc {
 };
 
 #if defined(CONFIG_RTC_INTF_DRM_DEV)
-	/* LGE_CHANGE
-	 * secureclock returns offset between rtc and changed time.
-	 * this feature ported by brad.han@lge.com. I got the source code from P2
-	 * 2012-01-12, james.jang@lge.com
-	 */
+	/*           
+                                                            
+                                                                          
+                                  
+  */
 extern wait_queue_head_t drm_wait_queue;
 extern unsigned long drm_diff_time;
 extern int drm_sign;
@@ -132,11 +132,11 @@ pm8xxx_rtc_set_time(struct device *dev, struct rtc_time *tm)
 	struct pm8xxx_rtc *rtc_dd = dev_get_drvdata(dev);
 
 	#if defined(CONFIG_RTC_INTF_DRM_DEV)
-	/* LGE_CHANGE
-	 * secureclock returns offset between rtc and changed time.
-	 * this feature ported by brad.han@lge.com. I got the source code from P2
-	 * 2012-01-12, james.jang@lge.com
-	 */
+	/*           
+                                                            
+                                                                          
+                                  
+  */
 	int ret;
 	struct rtc_time tm_temp;
 	unsigned long prev_time, now;
@@ -542,11 +542,11 @@ static int __devinit pm8xxx_rtc_probe(struct platform_device *pdev)
 	platform_set_drvdata(pdev, rtc_dd);
 
 #ifdef CONFIG_MACH_LGE
-	/* LGE_CHANGE
-	 * device wakeup initialization should be done before calling
-	 * rtc_device_register(). This is QCT's mistake.
-	 * 2012-01-08, cleaneye.kim@lge.com
-	 */
+	/*           
+                                                              
+                                                 
+                                    
+  */
 	device_init_wakeup(&pdev->dev, 1);
 #endif
 	/* Register the RTC device */
@@ -569,11 +569,11 @@ static int __devinit pm8xxx_rtc_probe(struct platform_device *pdev)
 	}
 
 #ifndef CONFIG_MACH_LGE
-	/* LGE_CHANGE
-	 * device wakeup initialization should be done before calling
-	 * rtc_device_register(). This is QCT's mistake.
-	 * 2012-01-08, cleaneye.kim@lge.com
-	 */
+	/*           
+                                                              
+                                                 
+                                    
+  */
 	device_init_wakeup(&pdev->dev, 1);
 #endif
 

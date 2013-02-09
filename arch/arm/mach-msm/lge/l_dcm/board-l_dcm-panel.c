@@ -117,9 +117,9 @@ unsigned char hdmi_is_primary;
 
 #if defined (CONFIG_LGE_BACKLIGHT_CABC_DEBUG)
 static int lgit_cabc_index = CABC_DEFAULT;
-#endif /* CONFIG_LGE_BACKLIGHT_CABC_DEBUG */
+#endif /*                                 */
 
-#endif /* CONFIG_LGE_BACKLIGHT_CABC */
+#endif /*                           */
 
 static struct resource msm_fb_resources[] = {
 	{
@@ -199,9 +199,9 @@ static void mipi_dsi_panel_pwm_cfg(void)
 
 static bool dsi_power_on;
 
-/* LGE_CHANGE
-  * LG Display 4.0' WVGA for l_dcm
-  * kyunghoo.ryu@lge.com
+/*           
+                                  
+                        
   */
 static int mipi_dsi_panel_power(int on)
 {
@@ -246,7 +246,7 @@ static int mipi_dsi_panel_power(int on)
 			return -EINVAL;
 		}
 
-		/* VREG_2P8_LCD_VCI enable - kyunghoo.ryu@lge.com */
+		/*                                                */
 		rc = gpio_request(LCD_VCI_EN_GPIO, "LCD_VCI_EN_GPIO");
 		if (rc) {
 			pr_err("'%s'(%d) gpio_request failed, rc=%d\n",
@@ -630,10 +630,10 @@ void __init msm8960_mdp_writeback(struct memtype_reserve* reserve_table)
 #endif
 }
 
-/*  LGE_CHANGE
- *
- *	LM3533TMX BL driver for l_dcm
- *	2011-11-23 kyunghoo.ryu@lge.com
+/*            
+  
+                                
+                                  
 */
 
 #ifdef CONFIG_LGE_BACKLIGHT_LM3533
@@ -648,9 +648,9 @@ static int mipi_lgit_backlight_level(int level, int max, int min)
 #if defined(CONFIG_FB_MSM_MIPI_LGIT_CMD_WVGA_INVERSE_PT_PANEL) ||\
 	defined(CONFIG_FB_MSM_MIPI_LGIT_VIDEO_WVGA_INVERSE_PT_PANEL)
 
-/* LG Display 4.0" WVGA for l_dcm (CMD Mode)
-  * Rotate Display output by l_dcm h/w implementation
-  * 2011-11-24 Kyunghoo.ryu@lge.com
+/*                                          
+                                                     
+                                   
   */
 #if defined(CONFIG_FB_MSM_MIPI_LGIT_VIDEO_WVGA_INVERSE_PT_PANEL)
 static char video_switch[] = {0x01, 0x47};
@@ -660,7 +660,7 @@ static char video_switch[] = {0x01, 0x47};
 static char hrx_to_old					[ 2] = {0x03, 0x00};
 static char inversion_off_old			[ 2] = {0x20, 0x00};
 static char tear_on_old					[ 2] = {0x35, 0x00};
-static char set_address_mode_old		[ 2] = {0x36, 0x02};			/* Flip Horizontal Only (cause Tearing problem) - Kyunghoo.ryu@lge.com */
+static char set_address_mode_old		[ 2] = {0x36, 0x02};			/*                                                                     */
 static char if_pixel_format_old			[ 2] = {0x3A, 0x77};
 #if defined(CONFIG_FB_MSM_MIPI_LGIT_VIDEO_WVGA_INVERSE_PT_PANEL)
 static char rgb_interface_setting_old	[  ] = {0xB1, 0x06, 0x43, 0x0A};
@@ -688,12 +688,12 @@ static char enter_sleep_old				[ 2] = {0x10, 0x00};
 static char display_off_old				[ 2] = {0x28, 0x00};
 static char deep_standby_old			[ 2] = {0xC1, 0x01};
 
-/* LGE_CHANGE_S LG-4573B H/W Rev.C or upper revision, jamin.koo@lge.com, 2011.02.27 */
+/*                                                                                  */
 static char hrx_to						[ 2] = {0x03, 0x00};
 static char inversion_off				[ 1] = {0x20};
-static char set_address_mode			[ 2] = {0x36, 0x02};         /* Flip Horizontal Only (cause Tearing problem) - Kyunghoo.ryu@lge.com */
+static char set_address_mode			[ 2] = {0x36, 0x02};         /*                                                                     */
 static char if_pixel_format				[ 2] = {0x3A, 0x70};
-/* LGE_CHANGE_S, Add CABC Code, jamin.koo@lge.com, 2012.03.30 */
+/*                                                            */
 
 #ifdef CONFIG_LGE_BACKLIGHT_CABC
 static char cabc_51				[ 2] = {0x51,0xE6};	 /* LCD CABC CODE, Write Display Brightness */
@@ -733,9 +733,9 @@ static char config_cabc_5e[6][2] = {
 	{0x5E, 0x33},	/* 40% */
 	{0x5E, 0x33}	/* 50% */
 };
-#endif /* CONFIG_LGE_BACKLIGHT_CABC_DEBUG */
-#endif /* CONFIG_LGE_BACKLIGHT_CABC */
-/* LGE_CHANGE_E, Add CABC Code, jamin.koo@lge.com, 2012.03.30 */
+#endif /*                                 */
+#endif /*                           */
+/*                                                            */
 
 static char rgb_interface_setting		[ 4] = {0xB1, 0x06, 0x43, 0x0A};
 static char panel_char_setting			[ 3] = {0xB2, 0x00, 0xC8};
@@ -762,7 +762,7 @@ static char exit_sleep					[ 1] = {0x11};
 static char display_on					[ 1] = {0x29};
 static char enter_sleep					[ 1] = {0x10};
 static char display_off					[ 1] = {0x28};
-/* LGE_CHANGE_E LG-4573B H/W Rev.C or upper revision, jamin.koo@lge.com, 2011.02.27 */
+/*                                                                                  */
 
 
 /* LG-4572B only for Rev.A and Rev.B */
@@ -812,7 +812,7 @@ static struct dsi_cmd_desc lgit_power_off_set_old[] = {
 	{DTYPE_DCS_WRITE, 1, 0, 0, 0,   sizeof(deep_standby_old), deep_standby_old},
 };
 
-/* LGE_CHANGE_S LG-4573B H/W Rev.C or upper revision, jamin.koo@lge.com, 2011.02.27 */
+/*                                                                                  */
 /* initialize device */
 static struct dsi_cmd_desc lgit_power_on_set[] = {
 
@@ -821,14 +821,14 @@ static struct dsi_cmd_desc lgit_power_on_set[] = {
    {DTYPE_DCS_WRITE1, 1, 0, 0, 0, sizeof(set_address_mode), set_address_mode},
    {DTYPE_DCS_WRITE1, 1, 0, 0, 0, sizeof(if_pixel_format),   if_pixel_format},
 
-	/* LGE_CHANGE_S, Add CABC Code, jamin.koo@lge.com, 2012.03.30 */
+	/*                                                            */
 #if defined(CONFIG_LGE_BACKLIGHT_CABC)
    {DTYPE_DCS_WRITE1, 1, 0, 0, 0, sizeof(cabc_51), cabc_51},
    {DTYPE_DCS_WRITE1, 1, 0, 0, 0, sizeof(cabc_53), cabc_53},
    {DTYPE_DCS_WRITE1, 1, 0, 0, 0, sizeof(cabc_55), cabc_55},
    {DTYPE_DCS_WRITE1, 1, 0, 0, 0, sizeof(cabc_5e), cabc_5e},
-#endif /* CONFIG_LGE_BACKLIGHT_CABC */
-	/* LGE_CHANGE_E, Add CABC Code, jamin.koo@lge.com, 2012.03.30 */
+#endif /*                           */
+	/*                                                            */
 
    {DTYPE_DCS_LWRITE, 1, 0, 0, 0, sizeof(rgb_interface_setting), rgb_interface_setting},
    {DTYPE_DCS_LWRITE, 1, 0, 0, 0, sizeof(panel_char_setting), panel_char_setting},
@@ -856,7 +856,7 @@ static struct dsi_cmd_desc lgit_power_on_set[] = {
 
 };
 
-/* LGE_CHANGE_E LG-4573B H/W Rev.C or upper revision, jamin.koo@lge.com, 2011.02.27 */
+/*                                                                                  */
 static struct dsi_cmd_desc lgit_power_off_set[] = {
    {DTYPE_DCS_WRITE, 1, 0, 0, 40, sizeof(display_off), display_off},
    {DTYPE_DCS_WRITE, 1, 0, 0, 10, sizeof(enter_sleep), enter_sleep},
@@ -900,7 +900,7 @@ int get_lgit_cabc(void)
 }
 EXPORT_SYMBOL(get_lgit_cabc);
 
-#endif /* CONFIG_LGE_BACKLIGHT_CABC && CONFIG_LGE_BACKLIGHT_CABC_DEBUG */
+#endif /*                                                              */
 
 /* LG-4572B only for Rev.A and Rev.B */
 static struct msm_panel_common_pdata mipi_lgit_pdata_old = {
@@ -921,7 +921,7 @@ static struct msm_panel_common_pdata mipi_lgit_pdata_old = {
 #endif
 };
 
-/* LGE_CHANGE_S LG-4573B H/W Rev.C or upper revision, jamin.koo@lge.com, 2011.02.27 */
+/*                                                                                  */
 static struct msm_panel_common_pdata mipi_lgit_pdata = {
 	.backlight_level = mipi_lgit_backlight_level,
 #if defined(CONFIG_FB_MSM_MIPI_LGIT_CMD_WVGA_INVERSE_PT_PANEL) ||\
@@ -932,7 +932,7 @@ static struct msm_panel_common_pdata mipi_lgit_pdata = {
 	.power_off_set_size = ARRAY_SIZE(lgit_power_off_set),
 	.max_backlight_level = 0xFF,
 #endif
-/* LGE_CHANGE_E LG-4573B H/W Rev.C or upper revision, jamin.koo@lge.com, 2011.02.27 */
+/*                                                                                  */
 #if defined (CONFIG_LGE_BACKLIGHT_LM3530)
 	.max_backlight_level = 0x71,
 #elif defined (CONFIG_LGE_BACKLIGHT_LM3533)
@@ -1161,7 +1161,7 @@ static struct i2c_registry l_dcm_i2c_backlight_device __initdata = {
 		msm_i2c_backlight_info,
 		ARRAY_SIZE(msm_i2c_backlight_info),
 };
-#endif /* CONFIG_LGE_BACKLIGHT_LM3533 */
+#endif /*                             */
 #endif /* CONFIG_I2C */
 
 static int __init panel_gpiomux_init(void)
@@ -1201,10 +1201,10 @@ void __init lge_add_lcd_devices(void)
 
 	fb_register_client(&msm_fb_event_notifier);
 
-	/* LGE_CHANGE_S, Assign command set to panel info as H/W revision, jamin.koo@lge.com, 2011.02.27 */
+	/*                                                                                               */
 	if(lge_get_board_revno() < HW_REV_C)
 		mipi_dsi_lgit_panel_device.dev.platform_data = &mipi_lgit_pdata_old;
-	/* LGE_CHANGE_E, Assign command set to panel info as H/W revision, jamin.koo@lge.com, 2011.02.27 */
+	/*                                                                                               */
 	platform_add_devices(l_dcm_panel_devices,
 		ARRAY_SIZE(l_dcm_panel_devices));
 

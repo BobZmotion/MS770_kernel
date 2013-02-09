@@ -45,11 +45,11 @@
 #define APPS_PROC		1
 #define QDSP_PROC		2
 #define WCNSS_PROC		3
-#if 1	// defined(LGE_DIAG_PATCHES_FROM_QCT_CASE_00823742)	// 2012.05.01 james.park@lge.com: applying diag patches from QCT Case#00823742.
+#if 1	//                                                                                                                                 
 #define MSG_MASK_SIZE 9500
 #else
 #define MSG_MASK_SIZE 8000
-#endif /* LGE_DIAG_PATCHES_FROM_QCT_CASE_00823742 */
+#endif /*                                         */
 #define LOG_MASK_SIZE 8000
 #define EVENT_MASK_SIZE 1000
 #define USER_SPACE_DATA 8000
@@ -206,11 +206,11 @@ struct diagchar_dev {
 	struct work_struct diag_read_smd_wcnss_work;
 	struct work_struct diag_read_smd_wcnss_cntl_work;
 	struct workqueue_struct *diag_cntl_wq;
-#if 0	// !defined(LGE_DIAG_PATCHES_FROM_QCT_CASE_00823742)	// 2012.05.01 james.park@lge.com: applying diag patches from QCT Case#00823742.
+#if 0	//                                                                                                                                  
 	struct work_struct diag_msg_mask_update_work;
 	struct work_struct diag_log_mask_update_work;
 	struct work_struct diag_event_mask_update_work;
-#endif /* LGE_DIAG_PATCHES_FROM_QCT_CASE_00823742 */
+#endif /*                                         */
 	struct work_struct diag_modem_mask_update_work;
 	struct work_struct diag_qdsp_mask_update_work;
 	struct work_struct diag_wcnss_mask_update_work;

@@ -8,7 +8,7 @@
 #include CONFIG_BOARD_HEADER_FILE
 
 #ifdef CONFIG_SWITCH_FSA8008
-#include "../../../../sound/soc/codecs/wcd9310.h" // 2012-02-06, mint.choi@lge.com. for fsa8008 tabla_codec_micbias2_ctl API
+#include "../../../../sound/soc/codecs/wcd9310.h" //                                                                        
 #endif
 
 #ifdef CONFIG_LGE_AUDIO_TPA2028D
@@ -119,7 +119,7 @@ static struct fsa8008_platform_data lge_hs_pdata = {
 	.gpio_jpole  = GPIO_EARPOL_DETECT,
 	.gpio_key    = GPIO_EAR_KEY_INT,
 	.latency_for_detection = 10, /* 75 -> 10, 2012.03.23 donggyun.kim - spec : 4.5 ms */
-	.set_headset_mic_bias = tabla_codec_micbias2_ctl, // 2012-02-06, mint.choi@lge.com. for fsa8008 tabla_codec_micbias2_ctl API
+	.set_headset_mic_bias = tabla_codec_micbias2_ctl, //                                                                        
 };
 
 static struct platform_device lge_hsd_device = {

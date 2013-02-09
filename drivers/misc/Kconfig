@@ -689,6 +689,12 @@ config BU52031NVX_POUCHDETECT
 	help
 	  This option enables pouch.
 
+config BU52031NVX_CARKITDETECT
+	tristate "Cradle BU52031NVX_CARKITDETECT support"
+	depends on BU52031NVX
+	help
+	  This option enables pouch.
+
 source "drivers/misc/c2port/Kconfig"
 source "drivers/misc/eeprom/Kconfig"
 source "drivers/misc/cb710/Kconfig"

@@ -12,7 +12,7 @@
  */
 
 /*
- * include LGE board specific header file
+                                         
  */
 #include CONFIG_BOARD_HEADER_FILE
 #include <mach/board_lge.h>
@@ -104,8 +104,8 @@ static struct gpiomux_setting nc_pin_cfg = {
 };
 #endif
 
-/* 20111112, chaeuk.lee@lge.com, Add FeliCa UART [START]
- * GPIOMUX_FUNC_1 must be set. (for GSBI use)
+/*                                                      
+                                             
  */
 #ifdef CONFIG_LGE_FELICA
 static struct gpiomux_setting gsbi8 = {
@@ -120,10 +120,10 @@ static struct gpiomux_setting uart8dm_active = {
 	.pull = GPIOMUX_PULL_UP,
 };
 #endif
-/* 20111112, chaeuk.lee@lge.com, Add FeliCa UART [END] */
+/*                                                     */
 
-/* 20111205, chaeuk.lee@lge.com, Add IrDA UART [START]
- * GPIOMUX_FUNC_2 must be set. (for GSBI use)
+/*                                                    
+                                             
  */
 #ifdef CONFIG_LGE_IRDA
 static struct gpiomux_setting gsbi9_irda = {
@@ -152,7 +152,7 @@ static struct gpiomux_setting irda_pwdn_suspended = {
 	.dir = GPIOMUX_OUT_HIGH,
 };
 #endif
-/* 20111205, chaeuk.lee@lge.com, Add IrDA UART [END] */
+/*                                                   */
 
 #ifdef CONFIG_LGE_AUDIO_TPA2028D
 /* Add the I2C driver for Audio Amp, ehgrace.kim@lge.cim, 06/13/2011 */
@@ -206,9 +206,9 @@ static struct gpiomux_setting cdc_mclk = {
 	.pull = GPIOMUX_PULL_NONE,
 };
 
-/* 20111216, chaeuk.lee@lge.com, Not used [START]
- * In order to remove warning message when IRDA_PWDN pin (gpio 63) is controlled,
- * audio PCM configs which is unused need to be disabled
+/*                                               
+                                                                                 
+                                                        
  */
 #ifndef CONFIG_LGE_IRDA
 static struct gpiomux_setting audio_auxpcm[] = {
@@ -226,7 +226,7 @@ static struct gpiomux_setting audio_auxpcm[] = {
 	},
 };
 #endif
- /* 20111216, chaeuk.lee@lge.com, Not used [END] */
+ /*                                              */
 
 #if defined(CONFIG_KS8851) || defined(CONFIG_KS8851_MODULE)
 static struct gpiomux_setting gpio_eth_config = {
@@ -414,10 +414,10 @@ static struct gpiomux_setting hdmi_active_2_cfg = {
 	.pull = GPIOMUX_PULL_DOWN,
 };
 #ifndef CONFIG_MACH_LGE
-/* LGE_CHANGE
- * QCT Original Code
- * But Unused configurations by LGE.
- * 2012-03-12, jongyeol.yang@lge.com
+/*           
+                    
+                                    
+                                    
  */
 static struct gpiomux_setting hdmi_active_3_cfg = {
 	.func = GPIOMUX_FUNC_GPIO,
@@ -432,7 +432,7 @@ static struct gpiomux_setting hdmi_active_4_cfg = {
 	.pull = GPIOMUX_PULL_UP,
 	.dir = GPIOMUX_OUT_HIGH,
 };
-#endif /* CONFIG_MACH_LGE */
+#endif /*                 */
 #endif
 
 
@@ -604,7 +604,7 @@ static struct msm_gpiomux_config msm8960_gsbi_configs[] __initdata = {
 			[GPIOMUX_SUSPENDED] = &gsbi12,
 		},
 	},
-// 2011-11-15 taew00k.kang@lge.com 1Seg GSBI10 SPI porting [Start]
+//                                                                
 #ifdef CONFIG_LGE_BROADCAST_1SEG
 	{
 		.gpio      = 55,	/* 1SEG_EN */
@@ -666,7 +666,7 @@ static struct msm_gpiomux_config msm8960_gsbi_configs[] __initdata = {
 		},
 	},
 #endif
-// 2011-11-15 taew00k.kang@lge.com 1Seg GSBI10 SPI porting [End]
+//                                                              
 #ifdef CONFIG_LGE_AUDIO_TPA2028D
 	/* Add the I2C driver for Audio Amp, ehgrace.kim@lge.cim, 06/13/2011 */
 	{
@@ -718,7 +718,7 @@ static struct msm_gpiomux_config msm8960_gsbi_configs[] __initdata = {
 
 };
 
-/* 20111112, chaeuk.lee@lge.com, Add FeliCa UART [START] */
+/*                                                       */
 #ifdef CONFIG_LGE_FELICA
 static struct msm_gpiomux_config msm8960_felica_uart_configs[] __initdata = {
     { /* UART8DM  TX */
@@ -737,9 +737,9 @@ static struct msm_gpiomux_config msm8960_felica_uart_configs[] __initdata = {
     },
 };
 #endif
-/* 20111112, chaeuk.lee@lge.com, Add FeliCa UART [END] */
+/*                                                     */
 
-/* 20111205, chaeuk.lee@lge.com, Add IrDA UART [START] */
+/*                                                     */
 #ifdef CONFIG_LGE_IRDA
 static struct msm_gpiomux_config msm8960_irda_configs[] __initdata = {
 	{
@@ -770,7 +770,7 @@ static struct msm_gpiomux_config msm8960_irda_configs[] __initdata = {
 	},
 };
 #endif
-/* 20111205, chaeuk.lee@lge.com, Add IrDA UART [END] */
+/*                                                   */
 
 static struct msm_gpiomux_config msm8960_slimbus_config[] __initdata = {
 	{
@@ -796,9 +796,9 @@ static struct msm_gpiomux_config msm8960_audio_codec_configs[] __initdata = {
 	},
 };
 
-/* 20111216, chaeuk.lee@lge.com, Not used [START]
- * In order to remove warning message when IRDA_PWDN pin (gpio 63) is controlled,
- * audio PCM configs which is unused need to be disabled
+/*                                               
+                                                                                 
+                                                        
  */
 #ifndef CONFIG_LGE_IRDA
 static struct msm_gpiomux_config msm8960_audio_auxpcm_configs[] __initdata = {
@@ -832,7 +832,7 @@ static struct msm_gpiomux_config msm8960_audio_auxpcm_configs[] __initdata = {
 	},
 };
 #endif
-/* 20111216, chaeuk.lee@lge.com, Not used [END] */
+/*                                              */
 
 static struct msm_gpiomux_config wcnss_5wire_interface[] = {
 	{
@@ -1028,11 +1028,11 @@ static struct msm_gpiomux_config msm8960_hdmi_configs[] __initdata = {
 		},
 	},
 #ifndef CONFIG_MACH_LGE
-	/* LGE_CHANGE
-	 * QCT Original Code
-	 * But Unused configurations by LGE.
-	 * 2012-03-12, jongyeol.yang@lge.com
-	 */
+	/*           
+                     
+                                     
+                                     
+  */
 	{
 		.gpio = 15,
 		.settings = {
@@ -1047,7 +1047,7 @@ static struct msm_gpiomux_config msm8960_hdmi_configs[] __initdata = {
 			[GPIOMUX_SUSPENDED] = &hdmi_suspend_cfg,
 		},
 	},
-#endif /* CONFIG_MACH_LGE */
+#endif /*                 */
 };
 #endif
 
@@ -1109,19 +1109,19 @@ int __init msm8960_init_gpiomux(void)
 	msm_gpiomux_install(msm8960_gsbi_configs,
 			ARRAY_SIZE(msm8960_gsbi_configs));
 
-/* 20111112, chaeuk.lee@lge.com, Add FeliCa UART [START] */
+/*                                                       */
 #ifdef CONFIG_LGE_FELICA
 	msm_gpiomux_install(msm8960_felica_uart_configs,
 			ARRAY_SIZE(msm8960_felica_uart_configs));
 #endif
-/* 20111112, chaeuk.lee@lge.com, Add FeliCa UART [END] */
+/*                                                     */
 
-/* 20111205, chaeuk.lee@lge.com, Add IrDA UART [START] */
+/*                                                     */
 #ifdef CONFIG_LGE_IRDA
 	msm_gpiomux_install(msm8960_irda_configs,
 			ARRAY_SIZE(msm8960_irda_configs));
 #endif
-/* 20111205, chaeuk.lee@lge.com, Add IrDA UART [END] */
+/*                                                   */
 	
 	msm_gpiomux_install(msm8960_cyts_configs,
 			ARRAY_SIZE(msm8960_cyts_configs));
@@ -1132,21 +1132,21 @@ int __init msm8960_init_gpiomux(void)
 	msm_gpiomux_install(msm8960_audio_codec_configs,
 			ARRAY_SIZE(msm8960_audio_codec_configs));
 
-/* 20111216, chaeuk.lee@lge.com, Not used [START]
- * In order to remove warning message when IRDA_PWDN pin (gpio 63) is controlled,
- * audio PCM configs which is unused need to be disabled
+/*                                               
+                                                                                 
+                                                        
  */
 #ifndef CONFIG_LGE_IRDA
 	msm_gpiomux_install(msm8960_audio_auxpcm_configs,
 			ARRAY_SIZE(msm8960_audio_auxpcm_configs));
 #endif
 
-//20110725, seunghyup.ryoo@lge.com, NFC GPIO Setting [START]
+//                                                          
 #if defined(CONFIG_LGE_NFC_NXP_PN544PN65N)
 	msm_gpiomux_install(msm8960_nfc_configs,
 			ARRAY_SIZE(msm8960_nfc_configs));
 #endif
-//20110725, seunghyup.ryoo@lge.com, NFC GPIO Setting [END]
+//                                                        
 //
 	msm_gpiomux_install(wcnss_5wire_interface,
 			ARRAY_SIZE(wcnss_5wire_interface));

@@ -336,7 +336,7 @@ bool SiiMhlTxChipInitialize (void)
 	fwPowerState = POWER_STATE_D0_MHL;
 
     g_chipRevId = SiiRegRead(TX_PAGE_L0 | 0x04);
-	/*LGE block msleep*/
+	/*                */
 	/*msleep(TX_HW_RESET_PERIOD + TX_HW_RESET_DELAY);*/
 
 
@@ -617,13 +617,13 @@ static void WriteInitialRegisterValues (void)
 	SiiRegWrite(REG_MHLTX_CTL6, 0xBC); // Enable 1X MHL clock output
 	SiiRegWrite(REG_MHLTX_CTL2, 0x3C); // TX Differential Driver Config
 
-	/* LGE : For MHL Certification*/
+	/*                            */
 #if defined(CONFIG_MACH_MSM8960_D1LSK) || defined(CONFIG_MACH_MSM8960_D1LKT)
 	SiiRegWrite(REG_MHLTX_CTL4, 0xD9);
 #elif defined(CONFIG_MACH_MSM8960_D1LV)
 	SiiRegWrite(REG_MHLTX_CTL4, 0xEA);
 #else
-// LGE_CHANG_S [soodong.kim@lge.com] 2012-04-30
+//                                             
 // fix USB connection error at full speed after MHL cable connection-disconnection
 	if(lge_get_boot_mode()==LGE_BOOT_MODE_FACTORY  ||
 	   lge_get_boot_mode()==LGE_BOOT_MODE_FACTORY2 ||
@@ -634,7 +634,7 @@ static void WriteInitialRegisterValues (void)
 		SiiRegWrite(REG_MHLTX_CTL4, 0xD9);
 	}
 	//printk(KERN_INFO "[MHL]REG_MHLTX_CTL4 value : %2X\n",SiiRegRead(REG_MHLTX_CTL4));
-// LGE_CHANG_E [soodong.kim@lge.com] 2012-04-30
+//                                             
 // fix USB connection error at full speed after MHL cable connection-disconnection
 #endif
 
@@ -818,8 +818,8 @@ void ProcessRgnd (void)
 	}
 }
 
-/*LGE Add code for MHL charging
- * Return value : 1 (MHL),    0,2,3 (UBS)
+/*                             
+                                         
  */
 int GetMHLConnectedStatus(void)
 {
@@ -897,15 +897,15 @@ void SwitchToD3 (void)
 		// low power mode, thereby allowing SiIMon to read/write register contents.
 		// Otherwise SiIMon reads all registers as 0xFF
 		//
-/*	LGE_CHANGE :
-	remove always operate false condition
-	2011-10-25, jongyeol.yang@lge.com
-		if(PlatformGPIOGet(pinAllowD3))
-		{
-			//
-			// Change state to D3 by clearing bit 0 of 3D (SW_TPI, Page 1) register
-			// ReadModifyWriteIndexedRegister(INDEXED_PAGE_1, 0x3D, BIT0, 0x00);
-			//
+/*             
+                                      
+                                  
+                                 
+   
+     
+                                                                          
+                                                                       
+     
 */
 			CLR_BIT(TX_PAGE_L1 | 0x003D, 0);
 

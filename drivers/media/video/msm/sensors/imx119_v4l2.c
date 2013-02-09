@@ -36,10 +36,10 @@ static struct msm_camera_i2c_reg_conf imx119_groupoff_settings[] = {
 };
 
 #if defined(CONFIG_MACH_MSM8960_L1A)
-	/* LGE_CHANGE
-	Seperate l1a_ATT_US from others.
-	2012.02.24 yousung.kang@lge.com
-	*/
+	/*           
+                                 
+                                
+ */
 
 static struct msm_camera_i2c_reg_conf imx119_prev_settings[] = {
 	{0x0101, 0x03},
@@ -243,9 +243,9 @@ static struct msm_sensor_fn_t imx119_func_tbl = {
 #endif
 	.sensor_set_fps = msm_sensor_set_fps,
 	.sensor_write_exp_gain = msm_sensor_write_exp_gain1,
-/* LGE_CHANGE_S, add snapshot exp gain, 2012-03-14, chaehee.lim@lge.com */
+/*                                                                      */
 	.sensor_write_snapshot_exp_gain = msm_sensor_write_exp_gain1,
-/* LGE_CHANGE_E, add snapshot exp gain, 2012-03-14, chaehee.lim@lge.com */
+/*                                                                      */
 	.sensor_setting = msm_sensor_setting,
 	.sensor_set_sensor_mode = msm_sensor_set_sensor_mode,
 	.sensor_mode_init = msm_sensor_mode_init,

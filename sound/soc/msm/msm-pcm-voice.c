@@ -328,7 +328,7 @@ static int msm_voice_fens_get(struct snd_kcontrol *kcontrol,
 }
 
 
-//[AUDIO_BSP]_START, 20120130, changsoon2.park@lge.com, modified voice volume level for domestic models
+//                                                                                                     
 #if defined(CONFIG_MACH_MSM8960_D1LSK) || defined(CONFIG_MACH_MSM8960_D1LKT) || defined(CONFIG_MACH_MSM8960_D1LU)
 static struct snd_kcontrol_new msm_voice_controls[] = {
 	/*--- Added by QCT 1043 ---*/
@@ -349,7 +349,7 @@ static struct snd_kcontrol_new msm_voice_controls[] = {
 	SOC_SINGLE_EXT("FENS Enable", SND_SOC_NOPM, 0, 1, 0,
 				msm_voice_fens_get, msm_voice_fens_put),
 };
-//[AUDIO_BSP]_END, 20120130, changsoon2.park@lge.com, modified voice volume level for domestic models
+//                                                                                                   
 #elif defined(CONFIG_MACH_MSM8960_L0) || defined(CONFIG_MACH_MSM8960_D1LA) || defined(CONFIG_MACH_MSM8960_L_DCM) || defined(CONFIG_MACH_MSM8960_L1A)
 //[AUDIO_BSP]_START, 20120213, junday.lee, modified voice volume level(6->7) for Metro-PCS, D1LA, D1LV, L_DCM
 static struct snd_kcontrol_new msm_voice_controls[] = {

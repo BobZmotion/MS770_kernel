@@ -43,9 +43,9 @@
 #endif
 #include "mipi_dsi.h"
 
-/* LGE_CHANGE
- * for inital qct lcdc lut set-up
- * 2012-01-10, jh.chun@lge.com
+/*           
+                                 
+                              
  */
 #if defined (CONFIG_LGE_QC_LCDC_LUT)
 #include "lge_qlut.h"
@@ -474,16 +474,16 @@ static int mdp_lut_i;
 extern int g_qlut_change_by_kernel;
 extern uint32 p_lg_qc_lcdc_lut[];
 
-/* LGE_CHANGE
- * for lcd temperature calibration
- * 2012-01-10, jh.chun@lge.com
+/*           
+                                  
+                              
  */
 #ifdef CONFIG_LGE_KCAL_QLUT
 extern int g_kcal_r;
 extern int g_kcal_g;
 extern int g_kcal_b;
-#endif /* CONFIG_LGE_KCAL_QLUT */
-#endif /* CONFIG_LGE_QC_LCDC_LUT */
+#endif /*                      */
+#endif /*                        */
 
 
 static int mdp_lut_hw_update(struct fb_cmap *cmap)

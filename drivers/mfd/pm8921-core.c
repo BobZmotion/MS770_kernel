@@ -856,9 +856,9 @@ static int __devinit pm8921_probe(struct platform_device *pdev)
 	pr_info("PMIC Restart Reason: %s\n", pm8921_restart_reason[val]);
 
 	/* Set power-on-reset to 3 seconds */
-/* LGE_CHANGE
- * TODO : it should be enabled after investigating with QCT
- * 2011-12-29, kidong0420.kim@lge.com
+/*           
+                                                           
+                                     
  */
  /*
 	val = 0xBB;

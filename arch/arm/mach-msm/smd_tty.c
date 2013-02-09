@@ -231,17 +231,17 @@ static void smd_tty_notify(void *priv, unsigned event)
 					msecs_to_jiffies(1000));
 		break;
 #ifdef CONFIG_LGE_USES_SMD_DS_TTY
-		/* LGE_CHANGE
-		 * At current qct smd_tty framework, if smd_tty_open()
-		 * is invoked by process before smd_tty_close() is
-		 * completely finished, smd_tty_open() may fail
-		 * because smd_tty_close() does not wait to close smd
-		 * channel from modem. To fix this situation, new SMD
-		 * notify status, SMD_EVENT_REOPEN_READY is used.
-		 * Until smd_tty receive this status, smd_tty_close()
-		 * will be wait(in fact, process will be wait).
-		 * 2011-10-12, hyunhui.park@lge.com
-		 */
+		/*           
+                                                        
+                                                    
+                                                 
+                                                       
+                                                       
+                                                   
+                                                       
+                                                 
+                                     
+   */
 	case SMD_EVENT_REOPEN_READY:
 		/* smd channel is closed completely */
 		spin_lock_irqsave(&info->reset_lock, flags);
@@ -331,10 +331,10 @@ static int smd_tty_open(struct tty_struct *tty, struct file *f)
 			}
 
 #ifdef CONFIG_LGE_USES_SMD_DS_TTY
-			/* LGE_CHANGE
-			 * on boot, process tried to open smd0 sleeps until
-			 * modem is ready or timeout.
-			 */
+			/*           
+                                                      
+                                
+    */
 			if (n == DS_IDX) {
 				/* wait for open ready status in seconds */
 				pr_info("%s: checking DS modem status\n", __func__);
@@ -427,17 +427,17 @@ static void smd_tty_close(struct tty_struct *tty, struct file *f)
 		if (info->ch) {
 			smd_close(info->ch);
 #ifdef CONFIG_LGE_USES_SMD_DS_TTY
-			/* LGE_CHANGE
-			 * At current qct smd_tty framework, if smd_tty_open()
-			 * is invoked by process before smd_tty_close() is
-			 * completely finished, smd_tty_open() may fail
-			 * because smd_tty_close() does not wait to close smd
-			 * channel from modem. To fix this situation, new SMD
-			 * notify status, SMD_EVENT_REOPEN_READY is used.
-			 * Until smd_tty receive this status, smd_tty_close()
-			 * will be wait(in fact, process will be wait).
-			 * 2011-10-12, hyunhui.park@lge.com
-			 */
+			/*           
+                                                         
+                                                     
+                                                  
+                                                        
+                                                        
+                                                    
+                                                        
+                                                  
+                                      
+    */
 			pr_info("%s: waiting to close smd %s completely\n",
 					__func__, smd_tty[n].smd->port_name);
 			/* wait for reopen ready status in seconds */

@@ -179,10 +179,10 @@ EXPORT_SYMBOL(clkdev_drop);
 
 
 #ifdef CONFIG_DEBUG_FS
-/* LGE_CHANGE
- * create a file in /sys/kernel/debug/clkdev
- * with the list of lookup with the con_id, dev_id and the clock rate
- *2011-10-21, youngchul.park
+/*           
+                                            
+                                                                     
+                            
  */
 static int clkdev_clk_show(struct seq_file *s, void *unused)
 {

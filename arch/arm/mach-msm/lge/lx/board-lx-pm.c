@@ -113,19 +113,19 @@ static struct pm8xxx_gpio_init pm8921_gpios[] __initdata = {
 	PM8XXX_GPIO_INPUT(MAX17043_FUELGAUGE_GPIO_IRQ, PM_GPIO_PULL_UP_30),    /* FUEL_GAUGE_INT_N */
 #endif
 #ifdef CONFIG_LGE_AUDIO
-/* add by ehgrace.kim@lge.com for headset */
+/*                                        */
 	PM8XXX_GPIO_OUTPUT(31, 0),                    /* EAR_MIC_EN_35D */
 	PM8XXX_GPIO_INPUT(32, PM_GPIO_PULL_NO),       /* EARPOL_DETECT_35D */
 #endif
 };
 
-/* 120511 mansu.lee@lge.com N/C GPIOs setting for sleep current */
+/*                                                              */
 #if defined(CONFIG_LGE_PM)
 static int pm8921_nc_gpios[] __initdata = {
 	LGE_PM8921_NC_GPIO_INITDATA,
 };
 #endif
-/* 120511 mansu.lee@lge.com */
+/*                          */
 
 /* Initial PM8921 MPP configurations */
 static struct pm8xxx_mpp_init pm8921_mpps[] __initdata = {
@@ -134,7 +134,7 @@ static struct pm8xxx_mpp_init pm8921_mpps[] __initdata = {
 	PM8XXX_MPP_INIT(PM8XXX_AMUX_MPP_8, A_INPUT, PM8XXX_MPP_AIN_AMUX_CH8,
 								DOUT_CTRL_LOW),
 #ifdef CONFIG_LGE_AUDIO
-/* add by ehgrace.kim@lge.com for headset */
+/*                                        */
 	PM8XXX_MPP_INIT(4, D_INPUT, PM8921_MPP_DIG_LEVEL_S4, DIN_TO_INT),
 	PM8XXX_MPP_INIT(9, D_INPUT, PM8921_MPP_DIG_LEVEL_S4, DIN_TO_INT),
 #endif
@@ -145,10 +145,10 @@ void __init msm8960_pm8921_gpio_mpp_init(void)
 	int i, rc;
 
 	for (i = 0; i < ARRAY_SIZE(pm8921_gpios); i++) {
-		/* LGE_CHANGE
-		 * 2011-12-03, hyuncheol0.kim@lge.com
-		 * Work-around code to support old H/W revision.
-		 */
+		/*           
+                                       
+                                                  
+   */
 #ifdef CONFIG_LGE_PM
 #ifdef CONFIG_BATTERY_MAX17043
 		if (pm8921_gpios[i].gpio ==
@@ -183,14 +183,14 @@ void __init msm8960_pm8921_gpio_mpp_init(void)
 			break;
 		}
 	}
-/* 120511 mansu.lee@lge.com N/C GPIOs setting for sleep current */
+/*                                                              */
 #if defined(CONFIG_LGE_PM)
 	for (i = 0; i < ARRAY_SIZE(pm8921_nc_gpios); i++) {
 		gpio_tlmm_config(GPIO_CFG(pm8921_nc_gpios[i], 0,
 			GPIO_CFG_INPUT, GPIO_CFG_PULL_DOWN, GPIO_CFG_2MA), GPIO_CFG_ENABLE);
 	}
 #endif
-/* 120511 mansu.lee@lge.com */
+/*                          */
 }
 
 static struct pm8xxx_adc_amux pm8xxx_adc_channels_data[] = {
@@ -226,14 +226,14 @@ static struct pm8xxx_adc_amux pm8xxx_adc_channels_data[] = {
 		ADC_DECIMATION_TYPE2, ADC_SCALE_XOTHERM},
 	{"pa_therm0", ADC_MPP_1_AMUX3, CHAN_PATH_SCALING1, AMUX_RSV1,
 		ADC_DECIMATION_TYPE2, ADC_SCALE_PA_THERM},
-/* BEGIN: kidong0420.kim@lge.com 2011-11-09 Implement cable detection */
+/*                                                                    */
 	{"pcb_rev", ADC_MPP_1_AMUX6, CHAN_PATH_SCALING1, AMUX_RSV1,
 		ADC_DECIMATION_TYPE2, ADC_SCALE_DEFAULT},
 	{"cdma_therm", ADC_MPP_1_AMUX8, CHAN_PATH_SCALING1, AMUX_RSV1,
 		ADC_DECIMATION_TYPE2, ADC_SCALE_XOTHERM},
 	{"usb_id", ADC_MPP_1_AMUX6, CHAN_PATH_SCALING1, AMUX_RSV1,
 		ADC_DECIMATION_TYPE2, ADC_SCALE_DEFAULT},
-/* END: kidong0420.kim@lge.com 2011-11-09 */
+/*                                        */
 };
 
 static struct pm8xxx_adc_properties pm8xxx_adc_data = {
@@ -302,7 +302,7 @@ static int pm8921_therm_mitigation[] = {
 	325,
 };
 
-/* LGE_UPDATE_S, 4.35 High Cell Voltage, roy.park@lge.com, 2011/08/17 -->[ */
+/*                                                                         */
 #if defined(CONFIG_LGE_PM_435V_BATT)
 #define MAX_VOLTAGE_MV		4350
 static struct pm8921_charger_platform_data pm8921_chg_pdata __devinitdata = {
@@ -319,19 +319,19 @@ static struct pm8921_charger_platform_data pm8921_chg_pdata __devinitdata = {
 #ifdef CONFIG_LGE_CHARGER_TEMP_SCENARIO
 	.cool_temp			= 0,	/* from 10, */
 	.warm_temp			= 0,	/* from 40, */
-/* BEGIN : jooyeong.lee@lge.com 2012-02-27 Change the charger_temp_scenario */
+/*                                                                          */
 	.temp_level_1		= 55,
 	.temp_level_2		= 45,
 	.temp_level_3		= 42,
 	.temp_level_4		= -5,
 	.temp_level_5		= -10,
-/* END : jooyeong.lee@lge.com 2012-02-27 */
-	/* LGE_CHANGE
- 	* add the xo_thermal mitigation way 
-	* 2012-04-10, hiro.kwon@lge.com
-	*/
+/*                                       */
+	/*           
+                                      
+                                
+ */
 	.thermal_mitigation_method = IUSB_REDUCE_METHOD,
-	/* 2012-04-10, hiro.kwon@lge.com */	
+	/*                               */	
 #else
 	.cool_temp			= 0,	/* from 10, */
 	.warm_temp			= 45,	/* from 40, */
@@ -367,19 +367,19 @@ static struct pm8921_charger_platform_data pm8921_chg_pdata __devinitdata = {
 #ifdef CONFIG_LGE_CHARGER_TEMP_SCENARIO
 	.cool_temp			= 0,
 	.warm_temp			= 0,
-/* BEGIN : jooyeong.lee@lge.com 2012-02-27 Change the charger_temp_scenario */
+/*                                                                          */
 	.temp_level_1		= 55,
 	.temp_level_2		= 45,
 	.temp_level_3		= 42,
 	.temp_level_4		= -5,
 	.temp_level_5		= -10,
-/* END : jooyeong.lee@lge.com 2012-02-27 */
-	/* LGE_CHANGE
- 	* add the xo_thermal mitigation way 
-	* 2012-04-10, hiro.kwon@lge.com
-	*/
+/*                                       */
+	/*           
+                                      
+                                
+ */
 	.thermal_mitigation_method = IUSB_REDUCE_METHOD,
-	/* 2012-04-10, hiro.kwon@lge.com */	
+	/*                               */	
 #else
 	.cool_temp		= 10,	/* from 10 */
 	.warm_temp		= 40,	/* from 40 */
@@ -402,7 +402,7 @@ static struct pm8921_charger_platform_data pm8921_chg_pdata __devinitdata = {
 	.batt_id_pu_gpio	= BATT_ID_PULLUP_GPIO,	/* No. of msm gpio for battery id pull up */
 #endif
 };
-#endif/* LGE_UPDATE_E, 4.35 High Cell Voltage,  <--] */
+#endif/*                                             */
 
 
 static struct pm8xxx_misc_platform_data pm8xxx_misc_pdata = {
@@ -413,7 +413,7 @@ static struct pm8921_bms_platform_data pm8921_bms_pdata __devinitdata = {
 	.battery_type	= BATT_UNKNOWN,
 	.r_sense		= 10,
 #if defined(CONFIG_MACH_MSM8960_L1A)
-	.i_test			= 195,/*242->195 L1A for cut-off setting 2012-07-17 junsin.park@lge.com*/
+	.i_test			= 195,/*                                                               */
 #elif defined(CONFIG_MACH_MSM8960_L0)
 	.i_test			= 172,
 #else /* QCT ORG */
@@ -421,7 +421,7 @@ static struct pm8921_bms_platform_data pm8921_bms_pdata __devinitdata = {
 #endif
 
 #if defined(CONFIG_MACH_MSM8960_L1A)
-	.v_failure		= 3400,/*3300->3400 L1A for cut-off setting 2012-07-17 junsin.park@lge.com*/
+	.v_failure		= 3400,/*                                                                 */
 #elif defined(CONFIG_MACH_MSM8960_L0)
 	.v_failure		= 3400,
 #else /* QCT ORG */
@@ -581,9 +581,9 @@ static struct pm8xxx_pwm_platform_data pm8xxx_pwm_pdata = {
 #ifdef CONFIG_PMIC8XXX_VIBRATOR
 static struct pm8xxx_vibrator_platform_data pm8xxx_vibrator_pdata = {
 	.initial_vibrate_ms = 500,
-/*change max timeout from 15 sec to 30 sec.
- * Max vib time is 25 sec on the All Auto Test. (5 sec is just buffer)
- * 2012-03-07, donggyun.kim@lge.com,
+/*                                         
+                                                                      
+                                    
  */
 	.max_timeout_ms = 30000,
 	.min_timeout_ms = MIN_TIMEOUT_MS,
@@ -629,7 +629,7 @@ static struct direct_qcoin_platform_data pm8xxx_qcoin_pdata = {
 	.low_max = VIB_LOW_MAX,
 	.low_min = VIB_LOW_MIN,
 };
-#endif /* CONFIG_LGE_DIRECT_QCOIN_VIBRATOR */
+#endif /*                                  */
 
 static struct pm8921_platform_data pm8921_platform_data __devinitdata = {
 	.irq_pdata		= &pm8xxx_irq_pdata,
@@ -668,7 +668,7 @@ static struct msm_ssbi_platform_data msm8960_ssbi_pm8921_pdata __devinitdata = {
 
 #ifdef CONFIG_BATTERY_MAX17043
 
-/* BEGIN: hiro.kwon@lge.com 2011-12-22 RCOMP update when the temperature of the cell changes */
+/*                                                                                           */
 #if defined (CONFIG_MACH_MSM8960_D1LA)||(CONFIG_MACH_MSM8960_L1A)
 static struct max17043_platform_data max17043_pdata = {
 	.starting_rcomp	=	0x60,
@@ -682,15 +682,15 @@ static struct max17043_platform_data max17043_pdata = {
 	.temp_co_cold	=	-535,
 };
 #endif
-/* END: hiro.kwon@lge.com 2011-12-22 */
+/*                                   */
 
 static struct i2c_board_info max17043_i2c_info[] = {
 	{
 		I2C_BOARD_INFO("max17043", MAX17043_FUELGAUGE_I2C_ADDR),
 		.irq = PM8921_GPIO_PM_TO_SYS(MAX17043_FUELGAUGE_GPIO_IRQ),
-		/* BEGIN: hiro.kwon@lge.com 2011-12-22 RCOMP update when the temperature of the cell changes */
+		/*                                                                                           */
 		.platform_data = (void *)&max17043_pdata,
-		/* END: hiro.kwon@lge.com 2011-12-22 */
+		/*                                   */
 	}
 };
 
@@ -703,10 +703,10 @@ static struct i2c_registry d1l_i2c_pm_subsystem __initdata = {
 
 static void __init lge_add_i2c_pm_subsystem_devices(void)
 {
-	/* LGE_CHANGE
-	 * 2011-12-03, hyuncheol0.kim@lge.com
-	 * Work-around code to support old H/W revision.
-	 */
+	/*           
+                                      
+                                                 
+  */
 #if defined (CONFIG_MACH_MSM8960_D1LA)
 	if (lge_get_board_revno() >= HW_REV_A &&
 		lge_get_board_revno() <= HW_REV_B)
@@ -727,7 +727,7 @@ static void __init lge_add_i2c_pm_subsystem_devices(void)
 
 #endif // CONFIG_BATTERY_MAX17043
 
-#endif // CONFIG_LGE_PM
+#endif //              
 
 /* common function */
 void __init lge_add_pm_devices(void)

@@ -247,11 +247,11 @@ void mdp4_hw_init(void)
 	uint32 clk_rate;
 
 #ifdef CONFIG_MACH_LGE
-	/* LGE_CHANGE
-	 * To fix disable booting logo in kernel booting in D1LV
-	 * MDP off before on
-	 * 2011-11-08, baryun.hwang@lge.com
-	 */
+	/*           
+                                                         
+                     
+                                    
+  */
 	MDP_OUTP(MDP_BASE + 0xE0000, 0);
 #endif
 	/* MDP cmd block enable */
@@ -565,7 +565,7 @@ irqreturn_t mdp4_isr(int irq, void *ptr)
 		mdp_intr_mask &= ~INTR_DMA_E_DONE;
 		outp32(MDP_INTR_ENABLE, mdp_intr_mask);
 		dma->busy = FALSE;
-#if defined(CONFIG_FB_MSM_DTV) /* LGE - added QCT 1041 Release */
+#if defined(CONFIG_FB_MSM_DTV) /*                              */
 		mdp4_dma_e_done_dtv();
 #endif
 		if (dma->waiting) {

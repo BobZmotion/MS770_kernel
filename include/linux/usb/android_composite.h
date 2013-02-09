@@ -91,9 +91,9 @@ struct usb_ether_platform_data {
 
 
 #ifdef CONFIG_USB_SUPPORT_LGE_ANDROID_AUTORUN
-/* LGE_CHANGE
- * Platform data for "usb_cdrom_storage" driver.
- * 2011-03-02, hyunhui.park@lge.com
+/*           
+                                                
+                                   
  */
 struct usb_cdrom_storage_platform_data {
 	/* Contains values for the SC_INQUIRY SCSI command. */

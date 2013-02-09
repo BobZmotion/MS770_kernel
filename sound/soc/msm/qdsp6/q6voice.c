@@ -852,7 +852,7 @@ static int voice_config_cvs_vocoder(struct voice_data *v)
 		cvs_set_dtx.hdr.dest_port = cvs_handle;
 		cvs_set_dtx.hdr.token = 0;
 		cvs_set_dtx.hdr.opcode = VSS_ISTREAM_CMD_SET_ENC_DTX_MODE;
-		cvs_set_dtx.dtx_mode.enable = 1; // mint.choi@lge.com temp enable dtx mode for AMR VT
+		cvs_set_dtx.dtx_mode.enable = 1; //                                                  
 
 		v->cvs_state = CMD_STATUS_FAIL;
 
@@ -919,7 +919,7 @@ static int voice_config_cvs_vocoder(struct voice_data *v)
 		cvs_set_dtx.hdr.dest_port = cvs_handle;
 		cvs_set_dtx.hdr.token = 0;
 		cvs_set_dtx.hdr.opcode = VSS_ISTREAM_CMD_SET_ENC_DTX_MODE;
-		cvs_set_dtx.dtx_mode.enable = 1; // mint.choi@lge.com temp enable dtx mode for AMR VT
+		cvs_set_dtx.dtx_mode.enable = 1; //                                                  
 
 		v->cvs_state = CMD_STATUS_FAIL;
 

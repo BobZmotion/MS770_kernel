@@ -468,13 +468,13 @@ int subsystem_restart(const char *subsys_name)
 	struct task_struct *tsk;
 	struct restart_thread_data *data = NULL;
 
-	//LGE_UPDATE_S : jaewonn.lee@lge.com 2012-4-12
+	//                                            
 	//[Modem] Subsystem crash handler to kernel message
 	unsigned char* modem_crash_log;
 	int i;
 	int smem_size;
 	int size = 200;
-	//LGE_UPDATE_E : jaewonn.lee@lge.com 2012-4-12
+	//                                            
 
 #if defined(CONFIG_LGE_HANDLE_PANIC)
 	u32 subsys_magic_key;;
@@ -496,7 +496,7 @@ int subsystem_restart(const char *subsys_name)
 	}
 #endif
 
-	//LGE_UPDATE_S : jaewonn.lee@lge.com 2012-4-12
+	//                                            
 	//[Modem] Subsystem crash handler to kernel message
 	printk("-------Modem Crash Dump Message------------\n");
 	modem_crash_log = smem_get_entry(SMEM_ERR_CRASH_LOG, &smem_size);
@@ -515,7 +515,7 @@ int subsystem_restart(const char *subsys_name)
 		}
 	}
 	printk("-------Modem Crash Dump Message------------\n");
-	//LGE_UPDATE_E : jaewonn.lee@lge.com 2012-4-12
+	//                                            
 
 
 	/* List of subsystems is protected by a lock. New subsystems can

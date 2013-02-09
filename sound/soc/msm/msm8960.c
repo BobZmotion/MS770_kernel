@@ -36,7 +36,7 @@
 /* 8960 machine driver */
 
 #if defined(CONFIG_SWITCH_FSA8008)
-/* For D1La/D1Lv RevA, RevB using fas8008 headset driver, junday.lee@lge.com */
+/*                                                                           */
 #include "../../../arch/arm/mach-msm/include/mach/board_lge.h"
 #endif
 
@@ -76,7 +76,7 @@ static u32 top_spk_pamp_gpio  = PM8921_GPIO_PM_TO_SYS(18);
 static u32 bottom_spk_pamp_gpio = PM8921_GPIO_PM_TO_SYS(19);
 static int msm8960_spk_control;
 #ifdef CONFIG_LGE_AUDIO_TPA2028D
-/*20111005 tarzan.park@lge.com   not using code block  */
+/*                                                     */
 #else
 static int msm8960_ext_bottom_spk_pamp;
 static int msm8960_ext_top_spk_pamp;
@@ -114,7 +114,7 @@ static struct tabla_mbhc_config mbhc_cfg = {
 };
 
 #ifdef CONFIG_LGE_AUDIO_TPA2028D
-/*20111007 tarzan.park@lge.com not using code block   */
+/*                                                    */
 #else
 
 static void msm8960_enable_ext_spk_amp_gpio(u32 spk_amp_gpio)
@@ -313,7 +313,7 @@ static int msm8960_spkramp_event(struct snd_soc_dapm_widget *w,
 	pr_debug("%s() %x\n", __func__, SND_SOC_DAPM_EVENT_ON(event));
 
 #ifdef CONFIG_LGE_AUDIO_TPA2028D
-	/*201101007 tarzan.park@lge.com add amp power function */
+	/*                                                     */
 	printk(KERN_DEBUG "spk amp event");
 	if (SND_SOC_DAPM_EVENT_ON(event))
 		set_amp_gain(MSM8960_SPK_ON);
@@ -356,7 +356,7 @@ static int msm8960_spkramp_event(struct snd_soc_dapm_widget *w,
 }
 
 
-//QCT patch by SR 00861319  taeho.youn@lge.com 
+//                                             
 static int msm8960_enable_codec_ext_clk(struct snd_soc_codec *codec, int enable,
 					bool dapm)
 {
@@ -527,7 +527,7 @@ static const struct snd_soc_dapm_route common_audio_map[] = {
 	 * on FLUID.
 	 */
 	{"HEADPHONE", NULL, "LDO_H"},
-//by ehgrace.kim@lge.com
+//                      
 #ifndef CONFIG_LGE_AUDIO
 	{"AMIC3", NULL, "MIC BIAS3 Internal1"},
 	{"MIC BIAS3 Internal1", NULL, "ANCRight Headset Mic"},
@@ -969,7 +969,7 @@ static int msm8960_be_hw_params_fixup(struct snd_soc_pcm_runtime *rtd,
 	return 0;
 }
 
-/* LGE_UPDATE 20120219 add feature for non-hdmi device */
+/*                                                     */
 #ifdef CONFIG_SND_SOC_MSM_QDSP6_HDMI_AUDIO
 static int msm8960_hdmi_be_hw_params_fixup(struct snd_soc_pcm_runtime *rtd,
 					struct snd_pcm_hw_params *params)
@@ -1285,7 +1285,7 @@ static struct snd_soc_dai_link msm8960_dai_common[] = {
 		.be_hw_params_fixup = msm8960_be_hw_params_fixup,
 	},
 
-/* LGE_UPDATE 20120219 add feature for non-hdmi device */
+/*                                                     */
 #ifdef CONFIG_SND_SOC_MSM_QDSP6_HDMI_AUDIO
 	/* HDMI BACK END DAI Link */
 	{

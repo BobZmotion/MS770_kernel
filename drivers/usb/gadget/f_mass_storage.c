@@ -319,9 +319,9 @@ static const char fsg_string_interface[] = "Mass Storage";
 
 #define FUNCTION_NAME "cdrom_storage"
 
-/* Belows are LGE-customized SCSI cmd and
- * sub-cmd for autorun processing.
- * 2011-03-09, hyunhui.park@lge.com
+/*                                       
+                                  
+                                   
  */
 #define SC_LGE_SPE              0xF1
 #define SUB_CODE_MODE_CHANGE    0x01
@@ -356,7 +356,7 @@ static const char fsg_string_interface[] = "Mass Storage";
 #define SUB_ACK_STATUS_CGO      0x04
 #define SUB_ACK_STATUS_TET      0x05
 #define SUB_ACK_STATUS_PTP      0x06
-#endif /* CONFIG_USB_G_LGE_ANDROID_AUTORUN */
+#endif /*                                  */
 
 #include "storage_common.c"
 
@@ -370,9 +370,9 @@ struct fsg_dev;
 struct fsg_common;
 
 #ifdef CONFIG_USB_G_LGE_ANDROID_AUTORUN
-/* Belows are uevent string to communicate with
- * android framework and application.
- * 2011-03-09, hyunhui.park@lge.com
+/*                                             
+                                     
+                                   
  */
 static char *envp_ack[2] = {"AUTORUN=ACK", NULL};
 
@@ -525,7 +525,7 @@ struct fsg_common {
 	char inquiry_string[8 + 16 + 4 + 1];
 
 #ifdef CONFIG_USB_G_LGE_ANDROID_AUTORUN
-	/* LGE-customized USB mode */
+	/*                         */
 	enum chg_mode_state mode_state;
 #endif
 
@@ -1411,8 +1411,8 @@ static int do_inquiry(struct fsg_common *common, struct fsg_buffhd *bh)
 }
 
 #ifdef CONFIG_USB_G_LGE_ANDROID_AUTORUN
-/* Add function which handles LGE-customized command from PC.
- * 2011-03-09, hyunhui.park@lge.com
+/*                                                           
+                                   
  */
 static int do_ack_status(struct fsg_common *common, struct fsg_buffhd *bh, u8 ack)
 {
@@ -1620,6 +1620,10 @@ static int do_read_toc(struct fsg_common *common, struct fsg_buffhd *bh)
 	int		msf = common->cmnd[1] & 0x02;
 	int		start_track = common->cmnd[6];
 	u8		*buf = (u8 *)bh->buf;
+#ifdef CONFIG_USB_G_LGE_ANDROID_CDROM_MAC_SUPPORT
+	u8		format;
+	int		ret;
+#endif
 
 	if ((common->cmnd[1] & ~0x02) != 0 ||	/* Mask away MSF */
 			start_track > 1) {
@@ -1627,6 +1631,23 @@ static int do_read_toc(struct fsg_common *common, struct fsg_buffhd *bh)
 		return -EINVAL;
 	}
 
+#ifdef CONFIG_USB_G_LGE_ANDROID_CDROM_MAC_SUPPORT
+	format = common->cmnd[2] & 0xf;
+	/*
+	 * Check if CDB is old style SFF-8020i
+	 * i.e. format is in 2 MSBs of byte 9
+	 * Mac OS-X host sends us this.
+	 */
+	if (format == 0)
+		format = (common->cmnd[9] >> 6) & 0x3;
+
+	ret = fsg_get_toc(curlun, msf, format, buf);
+	if (ret < 0) {
+		curlun->sense_data = SS_INVALID_FIELD_IN_CDB;
+		return -EINVAL;
+	}
+	return ret;
+#else /* original */
 	memset(buf, 0, 20);
 	buf[1] = (20-2);		/* TOC data length */
 	buf[2] = 1;			/* First track number */
@@ -1639,6 +1660,8 @@ static int do_read_toc(struct fsg_common *common, struct fsg_buffhd *bh)
 	buf[14] = 0xAA;			/* Lead-out track number */
 	store_cdrom_address(&buf[16], msf, curlun->num_sectors);
 	return 20;
+#endif
+
 }
 
 static int do_mode_sense(struct fsg_common *common, struct fsg_buffhd *bh)
@@ -2413,7 +2436,7 @@ static int do_scsi_command(struct fsg_common *common)
 			break;
 		} /* switch (common->cmnd[1]) */
 		break;
-#endif /* CONFIG_USB_G_LGE_ANDROID_AUTORUN */
+#endif /*                                  */
 
 	case MODE_SELECT:
 		common->data_size_from_cmnd = common->cmnd[4];
@@ -2518,9 +2541,15 @@ static int do_scsi_command(struct fsg_common *common)
 			goto unknown_cmnd;
 		common->data_size_from_cmnd =
 			get_unaligned_be16(&common->cmnd[7]);
+#ifdef CONFIG_USB_G_LGE_ANDROID_CDROM_MAC_SUPPORT
+		reply = check_command(common, 10, DATA_DIR_TO_HOST,
+				      (0xf<<6) | (1<<1), 1,
+				      "READ TOC");
+#else /* original */
 		reply = check_command(common, 10, DATA_DIR_TO_HOST,
 				      (7<<6) | (1<<1), 1,
 				      "READ TOC");
+#endif
 		if (reply == 0)
 			reply = do_read_toc(common, bh);
 		break;

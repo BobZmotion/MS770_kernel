@@ -26,10 +26,10 @@
    their framework which is 0.1DegC. True resolution of 0.1DegC
    will result in the below table size to increase by 10 times */
 
-/* L0, Adjust battery therm adc table
- * L0 battery thermal characteristic is different with other G1 model.
- * So based on real measurement, adjust adc table.
- * 2012-06-07, junsin.park@lge.com
+/*                                   
+                                                                      
+                                                  
+                                  
  */
 #ifdef CONFIG_MACH_MSM8960_L0
 static const struct pm8xxx_adc_map_pt adcmap_btm_threshold[] = {

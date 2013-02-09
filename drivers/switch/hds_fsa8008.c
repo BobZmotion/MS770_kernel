@@ -57,12 +57,12 @@
 #undef  LGE_HSD_ERROR_PRINT
 #define LGE_HSD_ERROR_PRINT
 
-/* CONFIG_LGE_AUDIO start
- * modifiy the case of exception
- * 2012-03-22, donggyun.kim@lge.com,
+/*                       
+                                
+                                    
  */
 #define CONFIG_LGE_AUDIO_FSA8008_MODIFY
-/* CONFIG_LGE_AUDIO end */
+/*                      */
 
 #ifdef CONFIG_LGE_AUDIO_FSA8008_MODIFY
 #define FSA8008_KEY_EN_DELAY_MS	(600 /* milli */ * HZ / 1000) /* convert milli to jiffies */
@@ -298,11 +298,11 @@ static void insert_headset(struct work_struct *work)
 
 	earjack_type = gpio_get_value_cansleep(hi->gpio_jpole);
 
-	/* CONFIG_LGE_AUDIO start
-	 * Loopback does not support 3 pole earjack.
-	 * Force change 3 pole to 4 pole earjack in case of Factory Mode.
-	 * 2012-07-01, donggyun.kim@lge.com
-	 */
+	/*                       
+                                             
+                                                                  
+                                    
+  */
 	if(boot_mode == LGE_BOOT_MODE_FACTORY2 && earjack_type == EARJACK_TYPE_3_POLE) {
 		HSD_ERR("3pole earjack inserted!! fatory mode change 3pole to 4pole earjack!!\n");
 		earjack_type = EARJACK_TYPE_4_POLE;
@@ -331,7 +331,7 @@ static void insert_headset(struct work_struct *work)
 		queue_delayed_work(local_fsa8008_workqueue, &(hi->work_for_key_det_enable), FSA8008_KEY_EN_DELAY_MS );
 
 		input_report_switch(hi->input, SW_HEADPHONE_INSERT, 1);
-		input_sync(hi->input); // 2012-07-01, donggyun.kim@lge.com - to prevent a lost uevent of earjack inserted
+		input_sync(hi->input); //                                                                                
 		input_report_switch(hi->input, SW_MICROPHONE_INSERT, 1);
 		input_sync(hi->input);
 	}
@@ -442,7 +442,7 @@ static irqreturn_t button_irq_handler(int irq, void *dev_id)
 	return IRQ_HANDLED;
 }
 
-#else /* CONFIG_LGE_AUDIO_FSA8008_MODIFY */
+#else /*                                 */
 
 static void button_pressed(struct work_struct *work)
 {
@@ -648,7 +648,7 @@ static irqreturn_t gpio_irq_handler(int irq, void *dev_id)
 
 #ifdef CONFIG_FSA8008_USE_LOCAL_WORK_QUEUE
 
-#if 1 //def CONFIG_MACH_LGE_I_BOARD_DCM
+#if 1 //                               
 	queue_delayed_work(local_fsa8008_workqueue, &(hi->work), HZ/2 /* 500ms */);
 #else
 	queue_delayed_work(local_fsa8008_workqueue, &(hi->work), 0);
@@ -656,7 +656,7 @@ static irqreturn_t gpio_irq_handler(int irq, void *dev_id)
 
 #else
 
-#if 1 //def CONFIG_MACH_LGE_I_BOARD_DCM
+#if 1 //                               
 	schedule_delayed_work(&(hi->work), HZ/2 /* 500ms */);
 #else
 	schedule_delayed_work(&(hi->work), 0);
@@ -697,7 +697,7 @@ static irqreturn_t button_irq_handler(int irq, void *dev_id)
 
 	return IRQ_HANDLED;
 }
-#endif /* CONFIG_LGE_AUDIO_FSA8008_MODIFY */
+#endif /*                                 */
 
 static int lge_hsd_probe(struct platform_device *pdev)
 {

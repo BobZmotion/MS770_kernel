@@ -116,10 +116,10 @@ int mdp4_atv_on(struct platform_device *pdev)
 	mdp4_mixer_stage_up(pipe);
 
 	mdp4_overlayproc_cfg(pipe);
-	/* LGE_CHANGE
-	 * Add QCT patches for blue screen issue after 1041 patches
-	 * 2012-03-15, baryun.hwang@lge.com
-	 */
+	/*           
+                                                            
+                                    
+  */
 #ifdef QCT_PATCH
 	mdp4_overlay_reg_flush(pipe, 1);
 #endif

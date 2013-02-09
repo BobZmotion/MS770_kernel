@@ -37,16 +37,16 @@
 #define MSM8960_SPK_ON	1
 #define MSM8960_SPK_OFF	0
 
-/* END:0010882        ehgrace.kim@lge.com     2010.11.15*/
+/*                                                      */
 #define	DEBUG_AMP_CTL	1
 #define AMP_IOCTL_MAGIC 't'
-/* BEGIN:0010385        ehgrace.kim@lge.com     2010.11.08*/
+/*                                                        */
 /* MOD: add the get value for hiddenmenu */
 #define AMP_SET_DATA	_IOW(AMP_IOCTL_MAGIC, 0, struct amp_cal *)
 #define AMP_GET_DATA	_IOW(AMP_IOCTL_MAGIC, 1, struct amp_cal *)
-/* END:0010385        ehgrace.kim@lge.com     2010.11.08*/
+/*                                                      */
 
-/* BEGIN:0010882        ehgrace.kim@lge.com     2010.11.15*/
+/*                                                        */
 /* MOD: add the call mode */
 #define IN1_GAIN 0
 #define IN2_GAIN 1
@@ -83,9 +83,9 @@ struct amp_cal_type {
 };
 
 
-/*BEGIN:0011017	ehgrace.kim@lge.com	2010.11.16, 2010.12.06, 2010.12.13, 2011.02.07, 2011.02.17*/
+/*                                                                                            */
 /*MOD:apply the audio calibration */
-/*BEGIN:0010363	ehgrace.kim@lge.com	2010.11.01*/
+/*                                            */
 /*MOD:apply the audio calibration for spkand spk&headset */
 #if 0
 struct amp_cal_type amp_cal_data = { IN1GAIN_0DB, IN2GAIN_0DB, SPK_VOL_M10DB, HPL_VOL_0DB, HPR_VOL_M60DB, IN1GAIN_0DB, IN2GAIN_0DB, SPK_VOL_M1DB, HPL_VOL_0DB, HPR_VOL_M60DB };
@@ -102,14 +102,14 @@ struct amp_cal_type amp_cal_data = {
 	IN1GAIN_6DB, IN2GAIN_12DB, SPK_VOL_M2DB, HPL_VOL_M6DB, HPR_VOL_M6DB,
 	SLIMLVL_4P90V, HLIMLVL_1P15V, SLIMLVL_4P90V, HLIMLVL_1P15V};
 #endif
-/*END:0010363	ehgrace.kim@lge.com	2010.11.01*/
-/*END:0011017	ehgrace.kim@lge.com	2010.11.16, 2010.12.06, 2010.12.13, 2011.02.07, 2011.02.17*/
+/*                                          */
+/*                                                                                          */
 
-/* BEGIN:0009753        ehgrace.kim@lge.com     2010.10.22*/
+/*                                                        */
 /* MOD: modifiy to delete the first boot noise */
 bool first_boot = 1;
-/* END:0009753        ehgrace.kim@lge.com     2010.10.22*/
-/* END:0009748        ehgrace.kim@lge.com     2010.10.07*/
+/*                                                      */
+/*                                                      */
 #endif
 
 static uint32_t msm_snd_debug = 1;
@@ -192,7 +192,7 @@ int tpa2028d_poweron(void)
 int tpa2028d_powerdown(void)
 {
 	int fail = 0;
-//	fail |= WriteI2C(IC_CONTROL, (~EN | SWS) & 0xE2); /*[AUDIO_BSP] 20120215, changsoon2.park@lge.com, Masking IC_CONTROL Register for Fault, Thermal bit set '0'*/
+//                                                                                                                                                                
 	return fail;
 }
 
@@ -225,11 +225,11 @@ inline void set_amp_gain(int amp_state)
 }
 EXPORT_SYMBOL(set_amp_gain);
 
-/* BEGIN:0010882        ehgrace.kim@lge.com     2010.11.15*/
+/*                                                        */
 /* MOD: add the call mode */
-/* BEGIN:0009748        ehgrace.kim@lge.com     2010.10.07*/
+/*                                                        */
 /* ADD: modifiy the amp for sonification mode for subsystem audio calibration */
-/* BEGIN:0010385        ehgrace.kim@lge.com     2010.11.08*/
+/*                                                        */
 /* MOD: add the get value for hiddenmenu */
 static long amp_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
 {
@@ -422,8 +422,8 @@ static long amp_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
 #endif
 	return rc;
 }
-/* END:0010385        ehgrace.kim@lge.com     2010.11.08*/
-/* END:0010882        ehgrace.kim@lge.com     2010.11.15*/
+/*                                                      */
+/*                                                      */
 
 static int amp_open(struct inode *inode, struct file *file)
 {
@@ -449,7 +449,7 @@ struct miscdevice amp_misc = {
 	.name = "tpa_amp",
 	.fops = &tpa_fops,
 };
-/* END:0009748        ehgrace.kim@lge.com     2010.10.07*/
+/*                                                      */
 
 static ssize_t
 tpa2028d_comp_rate_store(struct device *dev, struct device_attribute *attr, const char *buf, size_t count)
@@ -533,10 +533,10 @@ static int tpa2028d_amp_probe(struct i2c_client *client,
 
 	set_amp_gain(MSM8960_SPK_OFF);
 
-/* BEGIN:0009748        ehgrace.kim@lge.com     2010.10.07*/
+/*                                                        */
 /* ADD: modifiy the amp for sonification mode for subsystem audio calibration */
 	err = misc_register(&amp_misc);
-/* END:0009748        ehgrace.kim@lge.com     2010.10.07*/
+/*                                                      */
 
 	for (i = 0; i < ARRAY_SIZE(tpa2028d_device_attrs); i++) {
 		err = device_create_file(&client->dev, &tpa2028d_device_attrs[i]);

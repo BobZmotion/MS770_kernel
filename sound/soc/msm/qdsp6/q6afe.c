@@ -1544,9 +1544,9 @@ static int __init afe_init(void)
 #ifdef CONFIG_DEBUG_FS
 #ifdef CONFIG_LGE_AUDIO
 	/*
-	 * permission is changed S_IWUGO => S_IWUSR | S_IWGRP
-	 * bob.cho@lge.com, 02/07/2012
-	 */
+                                                      
+                               
+  */
 	debugfs_afelb = debugfs_create_file("afe_loopback",
 	S_IFREG | S_IWUSR | S_IWGRP, NULL, (void *) "afe_loopback",
 	&afe_debug_fops);

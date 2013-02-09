@@ -292,7 +292,7 @@ static int msm_csic_init(struct v4l2_subdev *sd, uint32_t *csic_version)
 		if (rc < 0) {
 			csic_dev->hw_version = 0;
 			iounmap(csic_dev->base);
-			csic_dev->base = NULL; /* LGE_CHANGE, Assign Null to unmapped addresses, 2012-05-14, sunkyoo.hwang@lge.com */
+			csic_dev->base = NULL; /*                                                                                  */
 			return rc;
 		}
 	}
@@ -435,7 +435,7 @@ static int __devinit csic_probe(struct platform_device *pdev)
 	}
 	disable_irq(new_csic_dev->irq->start);
 	iounmap(new_csic_dev->base);
-	new_csic_dev->base = NULL; /* LGE_CHANGE, Assign Null to unmapped addresses, 2012-05-14, sunkyoo.hwang@lge.com */
+	new_csic_dev->base = NULL; /*                                                                                  */
 
 	new_csic_dev->pdev = pdev;
 	return 0;

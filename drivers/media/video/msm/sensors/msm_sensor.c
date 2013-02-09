@@ -323,7 +323,7 @@ int32_t msm_sensor_release(struct msm_sensor_ctrl_t *s_ctrl)
 {
 	long fps = 0;
 	uint32_t delay = 0;
-	printk("%s called\n", __func__); /* LGE_CHANGE, Show log always, 2012-05-24, sunkyoo.hwang@lge.com */
+	printk("%s called\n", __func__); /*                                                                */
 	s_ctrl->func_tbl->sensor_stop_stream(s_ctrl);
 	if (s_ctrl->curr_res != MSM_SENSOR_INVALID_RES) {
 		fps = s_ctrl->msm_sensor_reg->
@@ -364,7 +364,7 @@ int32_t msm_sensor_config(struct msm_sensor_ctrl_t *s_ctrl, void __user *argp)
 		sizeof(struct sensor_cfg_data)))
 		return -EFAULT;
 	mutex_lock(s_ctrl->msm_sensor_mutex);
-	printk("msm_sensor_config: cfgtype = %d\n", /* LGE_CHANGE, Show log always, 2012-05-24, sunkyoo.hwang@lge.com */
+	printk("msm_sensor_config: cfgtype = %d\n", /*                                                                */
 	cdata.cfgtype);
 		switch (cdata.cfgtype) {
 		case CFG_SET_FPS:
@@ -421,7 +421,7 @@ int32_t msm_sensor_config(struct msm_sensor_ctrl_t *s_ctrl, void __user *argp)
 					cdata.rs);
 			break;
 
-/* LGE_CHANGE_S, Implementation of SoC Sensor features for v4l2 system, 2012.02.02, yongjin1.kim@lge.com */
+/*                                                                                                       */
 #ifdef CONFIG_MACH_LGE
 		case CFG_SET_WB:
 			rc = s_ctrl->func_tbl->
@@ -443,7 +443,7 @@ int32_t msm_sensor_config(struct msm_sensor_ctrl_t *s_ctrl, void __user *argp)
 					s_ctrl,
 					cdata.cfg.brightness);
 			break;
-/* LGE_CHANGE_S, Adds FPS capabilities for SoC Sensors, 2012-05-16, yongjin1.kim@lge.com */
+/*                                                                                       */
 		case CFG_SET_SOC_FPS:
 			rc = s_ctrl->func_tbl->
 				sensor_set_soc_minmax_fps(
@@ -451,12 +451,12 @@ int32_t msm_sensor_config(struct msm_sensor_ctrl_t *s_ctrl, void __user *argp)
 					cdata.cfg.fps_range.minfps,
 					cdata.cfg.fps_range.maxfps);
 			break;
-/* LGE_CHANGE_E, Adds FPS capabilities for SoC Sensors, 2012-05-16, yongjin1.kim@lge.com */
+/*                                                                                       */
 #else
 		case CFG_SET_EFFECT:
 			break;
 #endif
-/* LGE_CHANGE_E, Implementation of SoC Sensor features for v4l2 system, 2012.02.02, yongjin1.kim@lge.com */
+/*                                                                                                       */
 
 		case CFG_SENSOR_INIT:
 			if (s_ctrl->func_tbl->
@@ -542,7 +542,7 @@ int32_t msm_sensor_power_up(struct msm_sensor_ctrl_t *s_ctrl)
 {
 	int32_t rc = 0;
 	struct msm_camera_sensor_info *data = s_ctrl->sensordata;
-	printk("%s: E, %d\n", __func__, __LINE__); /* LGE_CHANGE, Show log always, 2012-05-24, sunkyoo.hwang@lge.com */
+	printk("%s: E, %d\n", __func__, __LINE__); /*                                                                */
 	s_ctrl->reg_ptr = kzalloc(sizeof(struct regulator *)
 			* data->sensor_platform_info->num_vreg, GFP_KERNEL);
 	if (!s_ctrl->reg_ptr) {
@@ -595,7 +595,7 @@ int32_t msm_sensor_power_up(struct msm_sensor_ctrl_t *s_ctrl)
 	if (data->sensor_platform_info->ext_power_ctrl != NULL)
 		data->sensor_platform_info->ext_power_ctrl(1);
 
-	printk("%s: X, %d\n", __func__, __LINE__); /* LGE_CHANGE, Show log always, 2012-05-24, sunkyoo.hwang@lge.com */
+	printk("%s: X, %d\n", __func__, __LINE__); /*                                                                */
 	return rc;
 enable_clk_failed:
 		msm_camera_config_gpio_table(data, 0);
@@ -620,7 +620,7 @@ request_gpio_failed:
 int32_t msm_sensor_power_down(struct msm_sensor_ctrl_t *s_ctrl)
 {
 	struct msm_camera_sensor_info *data = s_ctrl->sensordata;
-	printk("%s: E, %d\n", __func__, __LINE__); /* LGE_CHANGE, Show log always, 2012-05-24, sunkyoo.hwang@lge.com */
+	printk("%s: E, %d\n", __func__, __LINE__); /*                                                                */
 
 	s_ctrl->func_tbl->sensor_stop_stream(s_ctrl);
 	msleep(20);
@@ -639,7 +639,7 @@ int32_t msm_sensor_power_down(struct msm_sensor_ctrl_t *s_ctrl)
 		s_ctrl->reg_ptr, 0);
 	msm_camera_request_gpio_table(data, 0);
 	kfree(s_ctrl->reg_ptr);
-	printk("%s: X, %d\n", __func__, __LINE__); /* LGE_CHANGE, Show log always, 2012-05-24, sunkyoo.hwang@lge.com */
+	printk("%s: X, %d\n", __func__, __LINE__); /*                                                                */
 	return 0;
 }
 
@@ -674,7 +674,7 @@ int32_t msm_sensor_i2c_probe(struct i2c_client *client,
 {
 	int rc = 0;
 	struct msm_sensor_ctrl_t *s_ctrl;
-	printk("%s_i2c_probe called\n", client->name); /* LGE_CHANGE, Show log always, 2012-05-24, sunkyoo.hwang@lge.com */
+	printk("%s_i2c_probe called\n", client->name); /*                                                                */
 	if (!i2c_check_functionality(client->adapter, I2C_FUNC_I2C)) {
 		CDBG("i2c_check_functionality failed\n");
 		rc = -EFAULT;

@@ -96,20 +96,20 @@ static struct i2c_registry* msm_i2c_devices[MSM8960_I2C_DEV_NUM_MAX] __initdata;
 static int gpio_i2c_dev_num __initdata;
 static gpio_i2c_init_func_t *i2c_init_func[MAX_GPIO_I2C_DEV_NUM] __initdata;
 
-/* BEGIN: kidong0420.kim@lge.com 2011-11-09 Implement cable detection */
+/*                                                                    */
 #ifdef CONFIG_LGE_PM
-/* LGE_CHANGE
- * Implement cable detection
- * 2011-11-09, kidong0420.kim@lge.com
+/*           
+                            
+                                     
  */
 #include CONFIG_BOARD_HEADER_FILE
 #endif
 
-/* BEGIN: kidong0420.kim@lge.com 2011-11-09 Implement cable detection */
+/*                                                                    */
 #ifdef CONFIG_LGE_PM
-/* LGE_CHANGE
- * Implement cable detection
- * 2011-11-09, kidong0420.kim@lge.com
+/*           
+                            
+                                     
  */
 struct chg_cable_info_table {
 	int threshhold;
@@ -157,12 +157,12 @@ static struct chg_cable_info_table pm8921_acc_cable_type_data2[]={
 
 #endif
 
-/* 2011-11-15 taew00k.kang@lge.com 1Seg GSBI10 SPI porting [Start] */
+/*                                                                 */
 #if defined(CONFIG_LGE_BROADCAST_1SEG) || defined(CONFIG_LGE_BROADCAST_TDMB)
 #define MSM_GSBI10_PHYS		0x1A200000
 #define MSM_GSBI10_QUP_PHYS	(MSM_GSBI10_PHYS + 0x80000)
 #endif
-/* 2011-11-15 taew00k.kang@lge.com 1Seg GSBI10 SPI porting [End] */ 
+/*                                                               */ 
 
 /* for board revision */
 static hw_rev_type lge_bd_rev = HW_REV_B;
@@ -196,11 +196,11 @@ static int usefsa8008 = -1;
 bool lge_get_board_usembhc(void)
 {
 	/*
-	* 2011-12-02, junday.lee@lge.com
-	* Distinguish between fsa8008 and MBHC
-	* using fsa8008 gpio GPIO_EAR_SENSE_N &GPIO_EARPOL_DETECT.
-	* Read only once.
-	*/
+                                 
+                                       
+                                                           
+                  
+ */
 	if(usefsa8008 < 0 )
 		usefsa8008 = gpio_get_value_cansleep(GPIO_EAR_SENSE_N) | gpio_get_value_cansleep(GPIO_EARPOL_DETECT);
 
@@ -247,14 +247,14 @@ bool lge_get_board_usembhc(void)
 		return true;  //MBHC rev.A
 #endif
 
-//[AUDIO_BSP]_START, 20120305, jeremy.pi@lge.com, Headset detection depends on H/W Revision.
+//                                                                                          
 #if defined(CONFIG_MACH_MSM8960_L1A)
 	if (lge_get_board_revno() < HW_REV_B)
 		return true;  //MBHC
 	else
 		return false; //FSA8008
 #endif
-//[AUDIO_BSP]_END, 20120305, jeremy.pi@lge.com
+//                                            
 
 #if defined(CONFIG_MACH_MSM8960_L0)
 	if (lge_get_board_revno() >= HW_REV_D) //from Rev.D
@@ -274,9 +274,9 @@ bool lge_get_board_usembhc(void)
 }
 
 #ifdef CONFIG_LGE_PM
-/* LGE_CHANGE
- * Implement cable detection
- * 2011-11-09, kidong0420.kim@lge.com
+/*           
+                            
+                                     
  */
 int lge_pm_get_cable_info(struct chg_cable_info *cable_info)
 {
@@ -379,8 +379,8 @@ void lge_pm_read_cable_info(void)
 
 	lge_pm_get_cable_info(&lge_cable_info);
 }
-#endif /* CONFIG_LGE_PM */
-/* END: kidong0420.kim@lge.com 2011-11-09 */
+#endif /*               */
+/*                                        */
 
 #ifdef CONFIG_LGE_PM_BATTERY_ID_CHECKER
 int lge_battery_info = BATT_UNKNOWN;
@@ -395,9 +395,9 @@ static int __init battery_information_setup(char *batt_info)
 		lge_battery_info = BATT_ISL6296_N;
 	else if(!strcmp(batt_info, "isl6296_l"))
 		lge_battery_info = BATT_ISL6296_L;
-/* L0, Apply Battery ID Checker after Rev.D
-*  Force to return valide value before Rev.D
-*  2012-03-19, junsin.park@lge.com
+/*                                         
+                                            
+                                  
 */
 #ifdef CONFIG_MACH_MSM8960_L0
 	else if(lge_get_board_revno() < HW_REV_D) {
@@ -509,7 +509,7 @@ enum lge_boot_mode_type lge_get_boot_mode(void)
 	return lge_boot_mode;
 }
 
-/* 2011-11-15 taew00k.kang@lge.com 1Seg GSBI10 SPI porting [Start] */
+/*                                                                 */
 #if defined(CONFIG_LGE_BROADCAST_1SEG) || defined(CONFIG_LGE_BROADCAST_TDMB)
 static struct resource resources_qup_spi_gsbi10[] = {
 	{
@@ -562,8 +562,8 @@ struct platform_device msm8960_device_qup_spi_gsbi10 = {
 	.num_resources	= ARRAY_SIZE(resources_qup_spi_gsbi10),
 	.resource	= resources_qup_spi_gsbi10,
 };
-#endif /* CONFIG_LGE_BROADCAST */
-/* 2011-11-15 taew00k.kang@lge.com 1Seg GSBI10 SPI porting [End] */
+#endif /*                      */
+/*                                                               */
 
 
 #ifdef CONFIG_ANDROID_RAM_CONSOLE

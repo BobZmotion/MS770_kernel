@@ -76,9 +76,9 @@
 #include "f_accessory.c"
 
 #ifdef CONFIG_USB_G_LGE_ANDROID
-/* LGE_CHANGE
- * we must use ecm and rndis exclusively.
- * 2011-10-24, hyunhui.park@lge.com
+/*           
+                                         
+                                   
  */
 #include "f_ecm.c"
 #else /* google original */
@@ -1014,7 +1014,7 @@ static struct android_usb_function rndis_function = {
 	.unbind_config	= rndis_function_unbind_config,
 	.attributes	= rndis_function_attributes,
 };
-#endif /* CONFIG_USB_G_LGE_ANDROID */
+#endif /*                          */
 
 #ifdef CONFIG_USB_G_LGE_ANDROID
 static const char lge_vendor_name[] = "LGE";
@@ -1245,7 +1245,7 @@ static struct android_usb_function charge_only_function = {
 	.cleanup	= charge_only_function_cleanup,
 	.bind_config	= charge_only_function_bind_config,
 };
-#endif /* CONFIG_USB_G_LGE_ANDROID_AUTORUN */
+#endif /*                                  */
 
 static int accessory_function_init(struct android_usb_function *f,
 					struct usb_composite_dev *cdev)
@@ -1692,7 +1692,7 @@ field ## _store(struct device *dev, struct device_attribute *attr,	\
 	return -1;							\
 }									\
 static DEVICE_ATTR(field, S_IRUGO | S_IWUSR, field ## _show, field ## _store);
-#endif /* CONFIG_USB_G_LGE_ANDROID */
+#endif /*                          */
 
 DESCRIPTOR_ATTR(idVendor, "%04x\n")
 DESCRIPTOR_ATTR(idProduct, "%04x\n")
@@ -1804,7 +1804,7 @@ static void android_lge_factory_bind(struct usb_composite_dev *cdev)
 	usb_gadget_connect(cdev->gadget);
 	dev->enabled = true;
 }
-#endif /* CONFIG_USB_G_LGE_ANDROID && CONFIG_LGE_PM */
+#endif /*                                           */
 
 static int android_bind_config(struct usb_configuration *c)
 {
@@ -1857,7 +1857,7 @@ static int android_bind(struct usb_composite_dev *cdev)
 	device_desc.iProduct = id;
 
 #ifdef CONFIG_USB_G_LGE_ANDROID
-	/* Default string as LGE products */
+	/*                                */
 	ret = lgeusb_get_manufacturer_name(lge_manufacturer);
 	if (!ret)
 		strlcpy(manufacturer_string, lge_manufacturer,

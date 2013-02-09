@@ -69,25 +69,25 @@
 #define MSM_UART2DM_PHYS	(MSM_GSBI2_PHYS + 0x40000)
 #define MSM_UART5DM_PHYS	(MSM_GSBI5_PHYS + 0x40000)
 #define MSM_UART6DM_PHYS	(MSM_GSBI6_PHYS + 0x40000)
-/* 20111112, chaeuk.lee@lge.com, Add FeliCa UART [START]
- * MSM_GSBI8_PHYS + 0x0 : GSBI Control register base
- * MSM_GSBI8_PHYS + 0x40000 : UART_DM register base
- * MSM_GSBI8_PHYS + 0x80000 : QUP register base
+/*                                                      
+                                                    
+                                                   
+                                               
  */
 #ifdef CONFIG_LGE_FELICA
 #define MSM_UART8DM_PHYS	(MSM_GSBI8_PHYS + 0x40000)
 #endif
-/* 20111112, chaeuk.lee@lge.com, Add FeliCa UART [END] */
+/*                                                     */
 
-/* 20111205, chaeuk.lee@lge.com, Add IrDA UART [START]
- * MSM_GSBI9_PHYS + 0x0 : GSBI Control register base
- * MSM_GSBI9_PHYS + 0x40000 : UART_DM register base
- * MSM_GSBI9_PHYS + 0x80000 : QUP register base
+/*                                                    
+                                                    
+                                                   
+                                               
  */
 #ifdef CONFIG_LGE_IRDA
 #define MSM_UART9DM_PHYS	(MSM_GSBI9_PHYS + 0x40000)
 #endif
-/* 20111205, chaeuk.lee@lge.com, Add IrDA UART [END] */
+/*                                                   */
 
 /* GSBI QUP devices */
 #define MSM_GSBI1_QUP_PHYS	(MSM_GSBI1_PHYS + 0x80000)
@@ -255,7 +255,7 @@ struct platform_device msm8960_device_uart_gsbi2 = {
 	.num_resources	= ARRAY_SIZE(resources_uart_gsbi2),
 	.resource	= resources_uart_gsbi2,
 };
-#endif //CONFIG_MACH_LGE
+#endif //               
 /* GSBI 6 used into UARTDM Mode */
 static struct resource msm_uart_dm6_resources[] = {
 	{
@@ -327,7 +327,7 @@ struct platform_device msm8960_device_uart_gsbi5 = {
 	.resource	= resources_uart_gsbi5,
 };
 
-/* 20111112, chaeuk.lee@lge.com, Add FeliCa UART [START] */
+/*                                                       */
 #ifdef CONFIG_LGE_FELICA
 static struct resource resources_uart_gsbi8[] = {
 	{
@@ -356,9 +356,9 @@ struct platform_device msm8960_device_uart_gsbi8 = {
 	.resource	= resources_uart_gsbi8,
 };
 #endif
-/* 20111112, chaeuk.lee@lge.com, Add FeliCa UART [END] */
+/*                                                     */
 
-/* 20111205, chaeuk.lee@lge.com, Add IrDA UART [START] */
+/*                                                     */
 #ifdef CONFIG_LGE_IRDA
 static struct resource resources_irda_gsbi9[] = {
 	{
@@ -387,7 +387,7 @@ struct platform_device msm8960_device_irda_gsbi9 = {
 	.resource	= resources_irda_gsbi9,
 };
 #endif
-/* 20111205, chaeuk.lee@lge.com, Add IrDA UART [END] */
+/*                                                   */
 /* MSM Video core device */
 #ifdef CONFIG_MSM_BUS_SCALING
 static struct msm_bus_vectors vidc_init_vectors[] = {
@@ -1173,7 +1173,7 @@ struct platform_device msm8960_device_qup_i2c_gsbi3 = {
 	.resource	= resources_qup_i2c_gsbi3,
 };
 
-/* 2011-11-15 taew00k.kang@lge.com 1Seg GSBI10 SPI porting [Start] */
+/*                                                                 */
 #ifndef CONFIG_LGE_BROADCAST_1SEG
 /* GSBI10 is blocked for 1SEG */
 static struct resource resources_qup_i2c_gsbi10[] = {
@@ -1204,7 +1204,7 @@ struct platform_device msm8960_device_qup_i2c_gsbi10 = {
 	.resource	= resources_qup_i2c_gsbi10,
 };
 #endif
-/* 2011-11-15 taew00k.kang@lge.com 1Seg GSBI10 SPI porting [End] */
+/*                                                               */
 
 static struct resource resources_qup_i2c_gsbi12[] = {
 	{
@@ -1402,7 +1402,7 @@ struct platform_device msm8960_device_qup_i2c_gsbi9 = {
 	.num_resources	= ARRAY_SIZE(resources_qup_i2c_gsbi9),
 	.resource	= resources_qup_i2c_gsbi9,
 };
-#endif /* CONFIG_MACH_LGE */
+#endif /*                 */
 
 #ifdef CONFIG_MSM_CAMERA
 struct resource msm_camera_resources[] = {
@@ -2316,7 +2316,7 @@ static struct clk_lookup msm_clocks_8960_dummy[] = {
 	CLK_DUMMY("tv_dac_clk",		TV_DAC_CLK,		NULL, OFF),
 	CLK_DUMMY("core_clk",		VCODEC_CLK,		NULL, OFF),
 	CLK_DUMMY("mdp_tv_clk",		MDP_TV_CLK,		NULL, OFF),
-/* jeehwan.hwang@lge.com 20120206 defeaturing hdmi & dtv feature for non hdmi device */
+/*                                                                                   */
 #ifdef CONFIG_FB_MSM_HDMI_MSM_PANEL
 	CLK_DUMMY("hdmi_clk",		HDMI_TV_CLK,		NULL, OFF),
 	CLK_DUMMY("hdmi_app_clk",	HDMI_APP_CLK,		NULL, OFF),
@@ -2341,7 +2341,7 @@ static struct clk_lookup msm_clocks_8960_dummy[] = {
 	CLK_DUMMY("iface_clk",		GFX2D0_P_CLK,		NULL, OFF),
 	CLK_DUMMY("iface_clk",		GFX2D1_P_CLK,		NULL, OFF),
 	CLK_DUMMY("iface_clk",		GFX3D_P_CLK,		NULL, OFF),
-/* jeehwan.hwang@lge.com 20120206 defeaturing hdmi & dtv feature for non hdmi device */
+/*                                                                                   */
 #ifdef CONFIG_FB_MSM_HDMI_MSM_PANEL
 	CLK_DUMMY("hdmi_m_pclk",	HDMI_M_P_CLK,		NULL, OFF),
 	CLK_DUMMY("hdmi_s_pclk",	HDMI_S_P_CLK,		NULL, OFF),

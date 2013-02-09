@@ -95,6 +95,7 @@ int cradle_get_deskdock(void)
 	return cradle->state;
 }
 
+#if defined(CONFIG_BU52031NVX_CARKITDETECT)
 static irqreturn_t pm8xxx_carkit_irq_handler(int irq, void *handle)
 {
 	struct pm8xxx_cradle *cradle_handle = handle;
@@ -109,7 +110,9 @@ static irqreturn_t pm8xxx_carkit_irq_handler(int irq, void *handle)
 	}
 	return IRQ_HANDLED;
 }
+#endif
 
+#if defined(CONFIG_BU52031NVX_POUCHDETECT)
 static irqreturn_t pm8xxx_pouch_irq_handler(int irq, void *handle)
 {
 	struct pm8xxx_cradle *cradle_handle = handle;
@@ -124,7 +127,9 @@ static irqreturn_t pm8xxx_pouch_irq_handler(int irq, void *handle)
 	}
 	return IRQ_HANDLED;
 }
+#endif
 
+#if defined(CONFIG_BU52031NVX_CARKITDETECT)
 static ssize_t
 cradle_carkit_show(struct device *dev, struct device_attribute *attr, char *buf)
 {
@@ -133,7 +138,9 @@ cradle_carkit_show(struct device *dev, struct device_attribute *attr, char *buf)
 	len = snprintf(buf, PAGE_SIZE, "%d\n", !cradle->carkit);
 	return len;
 }
+#endif
 
+#if defined(CONFIG_BU52031NVX_POUCHDETECT)
 static ssize_t
 cradle_pouch_show(struct device *dev, struct device_attribute *attr, char *buf)
 {
@@ -143,6 +150,7 @@ cradle_pouch_show(struct device *dev, struct device_attribute *attr, char *buf)
 	return len;
 
 }
+#endif
 
 static ssize_t
 cradle_sensing_show(struct device *dev, struct device_attribute *attr, char *buf)
@@ -193,8 +201,12 @@ cradle_send_event_store(struct device *dev, struct device_attribute *attr, const
 
 
 static struct device_attribute cradle_device_attrs[] = {
+#if defined(CONFIG_BU52031NVX_CARKITDETECT)
 	__ATTR(carkit,  S_IRUGO | S_IWUSR, cradle_carkit_show, NULL),
+#endif
+#if defined(CONFIG_BU52031NVX_POUCHDETECT)
 	__ATTR(pouch, S_IRUGO | S_IWUSR, cradle_pouch_show, NULL),
+#endif
 	__ATTR(sensing,  S_IRUGO | S_IWUSR, cradle_sensing_show, NULL),
 	__ATTR(send_event ,  S_IRUGO | S_IWUSR, cradle_send_event_show, cradle_send_event_store),
 
@@ -244,6 +256,7 @@ static int __devinit pm8xxx_cradle_probe(struct platform_device *pdev)
 
 	printk("%s : init cradle\n", __func__);
 
+#if defined(CONFIG_BU52031NVX_CARKITDETECT)
 	if (pdata->carkit_irq) {
 		ret = request_irq(pdata->carkit_irq, pm8xxx_carkit_irq_handler, pdata->irq_flags, PM8XXX_CRADLE_DEV_NAME, cradle);
 		if (ret > 0) {
@@ -258,6 +271,16 @@ static int __devinit pm8xxx_cradle_probe(struct platform_device *pdev)
 
 	}
 
+	if (cradle->pdata->carkit_detect_pin) {
+		cradle->carkit = !gpio_get_value_cansleep(cradle->pdata->carkit_detect_pin);
+		if (cradle->carkit_pre != cradle->carkit) {
+			cradle->carkit_pre = cradle->carkit;
+			queue_delayed_work(cradle_wq, &cradle->work, 0);
+		}
+	}
+#endif
+
+#if defined(CONFIG_BU52031NVX_POUCHDETECT)
 	if (pdata->pouch_irq) {
 		ret = request_irq(pdata->pouch_irq, pm8xxx_pouch_irq_handler, pdata->irq_flags, PM8XXX_CRADLE_DEV_NAME, cradle);
 		if (ret > 0) {
@@ -271,13 +294,6 @@ static int __devinit pm8xxx_cradle_probe(struct platform_device *pdev)
 		}
 	}
 
-	if (cradle->pdata->carkit_detect_pin) {
-		cradle->carkit = !gpio_get_value_cansleep(cradle->pdata->carkit_detect_pin);
-		if (cradle->carkit_pre != cradle->carkit) {
-			cradle->carkit_pre = cradle->carkit;
-			queue_delayed_work(cradle_wq, &cradle->work, 0);
-		}
-	}
 
 	if (cradle->pdata->pouch_detect_pin) {
 		cradle->pouch = !gpio_get_value_cansleep(cradle->pdata->pouch_detect_pin);
@@ -286,6 +302,7 @@ static int __devinit pm8xxx_cradle_probe(struct platform_device *pdev)
 			queue_delayed_work(cradle_wq, &cradle->work, 0);
 		}
 	}
+#endif
 
 	for (i = 0; i < ARRAY_SIZE(cradle_device_attrs); i++) {
 		ret = device_create_file(&pdev->dev, &cradle_device_attrs[i]);
@@ -297,11 +314,14 @@ static int __devinit pm8xxx_cradle_probe(struct platform_device *pdev)
 	return 0;
 
 err_request_irq:
+#if defined(CONFIG_BU52031NVX_CARKITDETECT)
 	if (pdata->carkit_irq)
 		free_irq(pdata->carkit_irq, 0);
+#endif
+#if defined(CONFIG_BU52031NVX_POUCHDETECT)
 	if (pdata->pouch_irq)
 		free_irq(pdata->pouch_irq, 0);
-
+#endif
 err_switch_dev_register:
 	switch_dev_unregister(&cradle->sdev);
 	kfree(cradle);

@@ -534,8 +534,10 @@ static struct pm8xxx_cradle_platform_data cradle_data = {
 	.pouch_detect_pin = GPIO_POUCH_DETECT,
 	.pouch_irq = PM8921_GPIO_IRQ(PM8921_IRQ_BASE, 17),
 #endif
+#if defined(CONFIG_BU52031NVX_CARKITDETECT)
 	.carkit_detect_pin = GPIO_CARKIT_DETECT,
 	.carkit_irq = PM8921_GPIO_IRQ(PM8921_IRQ_BASE, 18),
+#endif
 	.irq_flags = IRQF_TRIGGER_RISING | IRQF_TRIGGER_FALLING,
 };
 
@@ -555,8 +557,8 @@ static struct platform_device *misc_devices[] __initdata = {
 #endif
 
 #ifndef CONFIG_MACH_MSM8960_L1A
-/* Temporary solution to enable 1.8V XO
-*  2012-01-07, junsin.park@lge.com
+/*                                     
+                                  
 */
 static int vreg_set_ldo29(int on)
 {
@@ -627,8 +629,8 @@ void __init lge_add_misc_devices(void)
 	lge_add_i2c_mhl_device();
 #endif
 
-/* Temporary solution to enable 1.8V XO
-*  2012-01-07, junsin.park@lge.com
+/*                                     
+                                  
 */
 #ifndef CONFIG_MACH_MSM8960_L1A
 	if (lge_get_board_revno() == HW_REV_A)

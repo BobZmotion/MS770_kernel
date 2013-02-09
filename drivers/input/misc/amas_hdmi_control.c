@@ -1,5 +1,5 @@
 /***************************/
-/* Made by dongwook.lee@lge.com */
+/*                              */
 /* Register control driver for MSM8960 */
 /***************************/
 
@@ -40,7 +40,7 @@
 
 
 /* for POLL function */
-//extern unsigned short play_flag_poll; /* dongwook.lee@lge.com, 2011-09-28 */
+//                                                                            
 static ssize_t hdmi_dev_write (struct file *filp, const char __user *buffer, size_t count, loff_t *ppos)
 {
 	char buf[6] = {0};
@@ -57,9 +57,9 @@ static ssize_t hdmi_dev_write (struct file *filp, const char __user *buffer, siz
 
 #if 1
 
-/* ++ glen.lee (dongwook.lee@lge.com) start [2011/12/26] */
+/*                                                       */
 unsigned char ext_edid[0x80 * 4];
-/* ++ glen.lee (dongwook.lee@lge.com) stop [2011/12/26] */
+/*                                                      */
 
 extern int msm_compressed_open_select_flag;
 extern unsigned int compressed_open_format;	// dongwook.lee ++

@@ -229,12 +229,12 @@ int TPA2055D3_PowerUpHP_IN2(void);
 int TPA2055D3_PowerUpHP_IN1IN2(void);
 int TPA2055D3_PowerDown_HP(void);
 
-/* BEGIN:0010385        ehgrace.kim@lge.com     2010.11.08*/
+/*                                                        */
 /* ADD: add the get value for hiddenmenu */
 struct amp_cal {
 	u8 dev_type;
 	u8 gain_type;
 	u8 data;
 };
-/* END:0010385        ehgrace.kim@lge.com     2010.11.08*/
+/*                                                      */
 

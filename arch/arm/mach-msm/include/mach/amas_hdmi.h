@@ -1,5 +1,5 @@
 /***************************/
-/* Made by dongwook.lee@lge.com */
+/*                              */
 /***************************/
 
 int hdmi_msm_read_ext_edid_block(int block, unsigned char *edid_buf);

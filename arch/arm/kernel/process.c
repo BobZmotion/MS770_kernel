@@ -128,9 +128,9 @@ void arm_machine_flush_console(void)
 }
 #endif
 
-/* 2012-03-07 jinkyu.choi@lge.com
- * call pet_watchdog
- * for avoiding apps watchdog bark while rebooting sequence
+/*                               
+                    
+                                                           
  */
 #ifdef CONFIG_MACH_LGE
 extern void pet_watchdog(void);
@@ -390,9 +390,9 @@ void __show_regs(struct pt_regs *regs)
 	char buf[64];
 #ifdef CONFIG_LGE_HANDLE_PANIC
 #ifdef CONFIG_CPU_CP15_MMU
-/* LGE_CHANGE 
- * save cpu and mmu registers to support simulation when debugging
- * taehung.kim@lge.com 2011-10-13
+/*            
+                                                                  
+                                 
  */
 	unsigned int c1,c2;
 #endif
@@ -452,10 +452,10 @@ void __show_regs(struct pt_regs *regs)
 			snprintf(buf, sizeof(buf), "  Table: %08x  DAC: %08x",
 			  	transbase, dac);
 #ifdef CONFIG_LGE_HANDLE_PANIC
-			/* LGE_CHANGE 
- 			* save cpu and mmu registers to support simulation when debugging
- 			* taehung.kim@lge.com 2011-10-13
-			*/
+			/*            
+                                                                     
+                                    
+   */
 			c1=transbase;
 			c2=dac;
 #endif
@@ -464,10 +464,10 @@ void __show_regs(struct pt_regs *regs)
 		asm("mrc p15, 0, %0, c1, c0\n" : "=r" (ctrl));
 		printk("Control: %08x%s\n", ctrl, buf);
 #if defined(CONFIG_CPU_CP15_MMU) && defined(CONFIG_LGE_HANDLE_PANIC)
-		/* LGE_CHANGE 
- 		 * save cpu and mmu registers to support simulation when debugging
- 		 * taehung.kim@lge.com 2011-10-13
- 		 */
+		/*            
+                                                                     
+                                    
+    */
 		lge_save_ctx(regs,ctrl,c1,c2);
 #endif
 	}

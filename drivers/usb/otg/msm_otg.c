@@ -945,7 +945,7 @@ static void msm_otg_notify_charger(struct msm_otg *motg, unsigned mA)
 			mA > IDEV_ACA_CHG_LIMIT)
 		mA = IDEV_ACA_CHG_LIMIT;
 
-/* BEGIN : janghyun.baek@lge.com 2012-05-06 for TA/USB recognition */
+/*                                                                 */
 #ifdef CONFIG_LGE_PM
 	if(mA == 0){
 		dev_info(motg->otg.dev, "Avail curr from USB = %u\n", mA);
@@ -957,12 +957,12 @@ static void msm_otg_notify_charger(struct msm_otg *motg, unsigned mA)
 		return;
 	}
 #endif
-/* END : janghyun.baek@lge.com 2012-05-06 */
+/*                                        */
 #ifdef CONFIG_LGE_PM
-	/* We replace original current limit into LGE
-	 * customized current limit only if cable is DCP or SDP.
-	 * XXX: In case of SDP(USB), android gadget will set current again.
-	 */
+	/*                                           
+                                                         
+                                                                    
+  */
 	if (lge_pm_get_cable_type() != NO_INIT_CABLE) {
 		if (motg->chg_type == USB_SDP_CHARGER)
 			mA = lge_pm_get_usb_current();
@@ -976,8 +976,8 @@ static void msm_otg_notify_charger(struct msm_otg *motg, unsigned mA)
 
 	dev_info(motg->otg.dev, "Avail curr from USB = %u\n", mA);
 
-/* Update battery status after setting charger online state
- * 2012-06-12, junsin.park@lge.com
+/*                                                         
+                                  
  */
 #ifdef CONFIG_LGE_PM
 	if (msm_otg_notify_power_supply(motg, mA)) {
@@ -1858,7 +1858,7 @@ static void msm_chg_detect_work(struct work_struct *w)
 		if (lge_pm_get_cable_type() == CABLE_270K)
 			cradle_set_deskdock(CRADLE_DESKDOCK);
 #endif /* CONFIG_BU52031NVX */
-#endif /* CONFIG_LGE_PM */
+#endif /*               */
 		break;
 	case USB_CHG_STATE_PRIMARY_DONE:
 		dev_info(otg->dev, "check secondary charger detection\n");

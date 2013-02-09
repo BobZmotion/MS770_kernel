@@ -1378,9 +1378,9 @@ static boolean check_edid_header(const uint8 *edid_buf)
 }
 
 #ifdef CONFIG_LGE_COMPRESSED_PATH
-/* ++ glen.lee (dongwook.lee@lge.com) start [2011/12/26] */
+/*                                                       */
 extern unsigned char ext_edid[0x80 * 4];
-/* ++ glen.lee (dongwook.lee@lge.com) stop [2011/12/26] */
+/*                                                      */
 #endif
 int hdmi_common_read_edid(void)
 {
@@ -1485,9 +1485,9 @@ int hdmi_common_read_edid(void)
 		cea_extension_ver = edid_buf[0x81];
 
 #ifdef CONFIG_LGE_COMPRESSED_PATH
-		/* ++ glen.lee (dongwook.lee@lge.com) start [2011/12/26] */
+		/*                                                       */
 		memcpy(&ext_edid, &edid_buf[0x81], 0x80 * 3);
-		/* ++ glen.lee (dongwook.lee@lge.com) stop [2011/12/26] */
+		/*                                                      */
 #endif
 	}
 
@@ -1655,7 +1655,7 @@ void hdmi_common_send_uevent(char *buf)
 }
 EXPORT_SYMBOL(hdmi_common_send_uevent);
 
-/* LGE MHL: Using for MHL Charging When USB or TA cable is connected*/
+/*                                                                  */
 #ifdef CONFIG_SII8334_MHL_TX
 int hdmi_common_cable_connected(void) {
 	if(external_common_state == NULL)

@@ -37,14 +37,14 @@ static struct msm_panel_common_pdata *mipi_lgit_pdata;
 static struct dsi_buf lgit_tx_buf;
 static struct dsi_buf lgit_rx_buf;
 
-/* LGE_CHANGE
-* Add code to use several LCD panel.
-* 2011-06-30, minjong.gong@lge.com
+/*           
+                                    
+                                  
 */
 #ifdef CONFIG_FB_MSM_MIPI_LGIT_VIDEO_HD_PT /*LG display 4.5" HD for D1L */
 #define LGIT_IEF
 
-/* minjong.gong@lge.com 2011.03.22,  Modify code to apply IEF function */
+/*                                                                     */
 static char dsi_config[6] = {0xE0, 0x43, 0x00, 0x80, 0x00, 0x00};
 static char display_mode1[6] = {0xB5, 0x14, 0x20, 0x40, 0x00, 0x00};
 static char display_mode2[6] = {0xB6, 0x01, 0x16, 0x0F, 0x16, 0x13};
@@ -73,7 +73,7 @@ static char ief_set6[4] = {0x76, 0x07, 0x00, 0x05};
 #endif
 
 static char osc_setting[3] =     {0xC0, 0x00, 0x00};
-/*shoogi.lee@lge.com 2011.03.31, Modify code to apply final vlaue*/
+/*                                                               */
 static char power_setting3[10] = {0xC3, 0x01, 0x08, 0x00, 0x00, 0x00,
 	0x67, 0x88, 0x32, 0x02};
 static char power_setting4[6] =  {0xC4, 0x22, 0x24, 0x19, 0x19, 0x41};
@@ -333,13 +333,13 @@ static int mipi_lgit_lcd_on(struct platform_device *pdev)
 
 	printk(KERN_INFO "%s: mipi lgit lcd on started \n", __func__);
 
-	/* LGE_CHANGE_S, jamin.koo@lge.com, Change the Power On Sequence of LCD, 2012.03.28*/
+	/*                                                                                 */
 #if defined(CONFIG_FB_MSM_MIPI_LGIT_VIDEO_WVGA_INVERSE_PT_PANEL)
 	gpio_direction_output(gpio43, 0);
 	mdelay(12);
 	gpio_direction_output(gpio43, 1);
 #endif /* CONFIG_FB_MSM_MIPI_LGIT_VIDEO_WVGA_INVERSE_PT_PANEL */
-	/* LGE_CHANGE_E, jamin.koo@lge.com, Change the Power On Sequence of LCD, 2012.03.28*/
+	/*                                                                                 */
 
 	mipi_dsi_cmds_tx(mfd, &lgit_tx_buf, mipi_lgit_pdata->power_on_set,
 			mipi_lgit_pdata->power_on_set_size);

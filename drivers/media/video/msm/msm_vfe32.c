@@ -1178,7 +1178,7 @@ static int vfe32_configure_pingpong_buffers(int id, int path)
 	outch = vfe32_get_ch(path);
 	if (outch->ping.ch_paddr[0] && outch->pong.ch_paddr[0]) {
 		/* Configure Preview Ping Pong */
-		pr_info("%s Configure ping/pong address for %d\n", /* LGE_CHANGE, Show log always, 2012-05-24, sunkyoo.hwang@lge.com */
+		pr_info("%s Configure ping/pong address for %d\n", /*                                                                */
 						__func__, path);
 		vfe32_put_ch_ping_addr(outch->ch0,
 			outch->ping.ch_paddr[0]);
@@ -3941,7 +3941,7 @@ vfe_clk_enable_failed:
 	vfe32_ctrl->fs_vfe = NULL;
 vfe_fs_failed:
 	iounmap(vfe32_ctrl->vfebase);
-	vfe32_ctrl->vfebase = NULL; /* LGE_CHANGE, Assign Null to unmapped addresses, 2012-05-14, sunkyoo.hwang@lge.com */
+	vfe32_ctrl->vfebase = NULL; /*                                                                                  */
 vfe_remap_failed:
 	disable_irq(vfe32_ctrl->vfeirq->start);
 	return rc;
@@ -3961,7 +3961,7 @@ void msm_vfe_subdev_release(struct platform_device *pdev)
 		vfe32_ctrl->fs_vfe = NULL;
 	}
 	iounmap(vfe32_ctrl->vfebase);
-	vfe32_ctrl->vfebase = NULL; /* LGE_CHANGE, Assign Null to unmapped addresses, 2012-05-14, sunkyoo.hwang@lge.com */
+	vfe32_ctrl->vfebase = NULL; /*                                                                                  */
 
 	if (atomic_read(&irq_cnt))
 		pr_warning("%s, Warning IRQ Count not ZERO\n", __func__);

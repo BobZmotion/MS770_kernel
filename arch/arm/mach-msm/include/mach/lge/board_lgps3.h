@@ -40,9 +40,9 @@
 #define MSM_FB_WIDTH_MM							56
 #define MSM_FB_HEIGHT_MM						99
 
-/* CONFIG_LGE_AUDIO
- * Add devide amp parameters
- * 2011-11-30, leia.shin@lge.com
+/*                 
+                            
+                                
  */
 #define AGC_COMPRESIION_RATE		0
 #define AGC_OUTPUT_LIMITER_DISABLE	1
@@ -188,9 +188,9 @@
 #define VFE_CAMIF_TIMER3_GPIO_INT 3
 
 #ifdef CONFIG_LGE_PM
-/* LGE_CHANGE
- * Classified the ADC value for cable detection
- * 2011-12-05, kidong0420.kim@lge.com
+/*           
+                                               
+                                     
  */
 #define ADC_CHANGE_REV	HW_REV_EVB1
 #define IBAT_CURRENT	800

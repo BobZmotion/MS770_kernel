@@ -17,25 +17,25 @@
 #define SENSOR_NAME "mt9v113"
 #define PLATFORM_DRIVER_NAME "msm_camera_mt9v113"
 #define mt9v113_obj mt9v113_##obj
-/* LGE_CHANGE_S, Adds FPS capabilities for SoC Sensors, 2012-05-16, yongjin1.kim@lge.com */
+/*                                                                                       */
 #define SENSOR_FIXED_FPS_15		1
 #define SENSOR_FIXED_FPS_30		2
 #define SENSOR_AUTO_FPS_1030	3
 #define SENSOR_AUTO_FPS_0730	4
-/* LGE_CHANGE_E, Adds FPS capabilities for SoC Sensors, 2012-05-16, yongjin1.kim@lge.com */
+/*                                                                                       */
 
 DEFINE_MUTEX(mt9v113_mut);
 static struct msm_sensor_ctrl_t mt9v113_s_ctrl;
 
-/* LGE_CHANGE_S, Implementation of SoC Sensor features for v4l2 system, 2012-02-02, yongjin1.kim@lge.com */
+/*                                                                                                       */
 #ifdef CONFIG_MACH_LGE
 static int camera_started;
 static int prev_balance_mode;
 static int prev_effect_mode;
 static int prev_brightness_mode;
-static int prev_fps_mode;	/* LGE_CHANGE, Adds FPS capabilities for SoC Sensors, 2012-05-16, yongjin1.kim@lge.com */
+static int prev_fps_mode;	/*                                                                                     */
 #endif
-/* LGE_CHANGE_E, Implementation of SoC Sensor features for v4l2 system, 2012-02-02, yongjin1.kim@lge.com */
+/*                                                                                                       */
 
 static struct msm_camera_i2c_reg_conf mt9v113_start_settings[] = {
 	{0x0018, 0x4028},	// john.park, 2011-05-09, To replace Polling check
@@ -237,7 +237,7 @@ static struct msm_camera_i2c_reg_conf mt9v113_recommend_settings[] = {
 	{0x36FC, 0x5E33},
 	{0x36FE, 0x07D8},
 	{0x3700, 0x51DC},
-/* LGE_CHANGE_S, Lens shading tuning, 2012-06-11, yt.kim@lge.com */
+/*                                                               */
 #ifdef CONFIG_MACH_MSM8960_L0
 /* 85% Lens shading*/
 	{ 0x364E, 0x01B0},// P_GR_P0Q0
@@ -421,7 +421,7 @@ static struct msm_camera_i2c_reg_conf mt9v113_recommend_settings[] = {
 	{0x3644, 0x0148},
 	{0x3642, 0x00F0},
 #endif
-/* LGE_CHANGE_E, Lens shading tuning, 2012-06-11, yt.kim@lge.com */
+/*                                                               */
 	{0x3210, 0x09B8},
 	{0x098C, 0x2306},	{0x0990, 0x0133},
 	{0x098C, 0x2308},	{0x0990, 0xFFC4},
@@ -530,7 +530,7 @@ static struct msm_camera_i2c_reg_conf mt9v113_recommend_settings[] = {
 //	{0xFFFF, 0x0064},	// Delay
 };
 
-/* LGE_CHANGE_S, Implementation of SoC Sensor features for v4l2 system, 2012-02-02, yongjin1.kim@lge.com */
+/*                                                                                                       */
 #ifdef CONFIG_MACH_LGE
 /* White balance register settings */
 static struct msm_camera_i2c_reg_conf wb_default_tbl_sub[]=
@@ -625,10 +625,10 @@ static struct msm_camera_i2c_reg_conf effect_sepia_tbl_sub[]=
 	{0x0990, 0x6442},	// MODE_A_SEPIA_ON
 	{0x098C, 0x275B},	// LOGICAL_ADDRESS_ACCESS			===== 8
 	{0x0990, 0x6442},	// MODE_B_SEPIA_ON
-//Start LGE_BSP_CAMERA::elin.lee@lge.com 2011-07-14  Fix the Sepia effect
+//                                                                       
 	{0x098C, 0x2763},	// LOGICAL_ADDRESS_ACCESS [MODE_COMMONMODESETTINGS_FX_SEPIA_SETTINGS]
 	{0x0990, 0xE817},	// MCU_DATA_0
-//End LGE_BSP_CAMERA::elin.lee@lge.com 2011-07-14  Fix the Sepia effect
+//                                                                     
 };
 static struct msm_camera_i2c_reg_conf effect_negative_tbl_sub[]=
 {
@@ -663,19 +663,19 @@ static struct msm_camera_i2c_reg_conf fps_auto_730_tbl_sub[]=
 	{0x098C, 0xA20C},	{0x0990, 0x0010},	// AE_MAX_INDEX
 };
 
-/* LGE_CHANGE_S, Disabling because this structure is not used yet, 2012-05-27, yongjin1.kim@lge.com */
+/*                                                                                                  */
 static struct msm_camera_i2c_reg_conf refreshmode_sub[]=
 {
 	{0x098C, 0xA103},	{0x0990, 0x0006},
 };
-/*LGE_CHANGE_E, Disabling because this structure is not used yet, 2012-05-27, yongjin1.kim@lge.com */
+/*                                                                                                 */
 
 static struct msm_camera_i2c_reg_conf refresh_sub[]=
 {
 	{0x098C, 0xA103},	{0x0990, 0x0005},
 };
 #endif
-/* LGE_CHANGE_E, Implementation of SoC Sensor features for v4l2 system, 2012-02-02, yongjin1.kim@lge.com */
+/*                                                                                                       */
 
 static struct v4l2_subdev_info mt9v113_subdev_info[] = {
 	{
@@ -938,7 +938,7 @@ int32_t mt9v113_camera_i2c_write_tbl(struct msm_camera_i2c_client *client,
 {
 	int i;
 	int32_t rc = -EIO;
-#if 1 // seonghyon.cho@lge.com 2011.10.19
+#if 1 //                                 
 	printk(KERN_ERR "### %s %d %d size: %d \n",
 		__func__,client->addr_type,data_type, size);
 #endif
@@ -1066,7 +1066,7 @@ void mt9v113_sensor_group_hold_off(struct msm_sensor_ctrl_t *s_ctrl)
 	return;
 }
 
-int mt9v113_check_sensor_mode(struct msm_sensor_ctrl_t *s_ctrl);  /* LGE_CHANGE, fix reset & AE/AWB start, 2012-06-07 ku.kwon@lge.com */
+int mt9v113_check_sensor_mode(struct msm_sensor_ctrl_t *s_ctrl);  /*                                                                  */
 static int32_t mt9v113_set_wb(struct msm_sensor_ctrl_t *s_ctrl, uint8_t mode);
 static int32_t mt9v113_set_effect(struct msm_sensor_ctrl_t *s_ctrl, uint8_t mode);
 static int mt9v113_set_brightness(struct msm_sensor_ctrl_t *s_ctrl, uint8_t mode);
@@ -1080,12 +1080,12 @@ int32_t mt9v113_sensor_setting(struct msm_sensor_ctrl_t *s_ctrl,
 	v4l2_subdev_notify(&s_ctrl->sensor_v4l2_subdev,
 		NOTIFY_ISPIF_STREAM, (void *)ISPIF_STREAM(
 		PIX_0, ISPIF_OFF_IMMEDIATELY));
-	//s_ctrl->func_tbl->sensor_stop_stream(s_ctrl);		/* LGE_CHANGE, fix reset & AE/AWB start, 2012-06-07 ku.kwon@lge.com */
+	//                                                                                                                     
 	msleep(30);
 	if (update_type == MSM_SENSOR_REG_INIT) {
 		s_ctrl->curr_csi_params = NULL;
 		msm_sensor_enable_debugfs(s_ctrl);
-/* LGE_CHANGE_S, fix reset & AE/AWB start, 2012-06-07 ku.kwon@lge.com */
+/*                                                                    */
 #if 0
 		mt9v113_sensor_write_init_settings(s_ctrl);
 
@@ -1115,13 +1115,13 @@ int32_t mt9v113_sensor_setting(struct msm_sensor_ctrl_t *s_ctrl,
 		prev_balance_mode = 1;
 		prev_effect_mode = 0;
 		prev_brightness_mode = 6;
-		prev_fps_mode = 3;	/* LGE_CHANGE, Adds FPS capabilities for SoC Sensors, 2012-05-16, yongjin1.kim@lge.com */
+		prev_fps_mode = 3;	/*                                                                                     */
 #endif
-/* LGE_CHANGE_E, fix reset & AE/AWB start, 2012-06-07 ku.kwon@lge.com */
+/*                                                                    */
 	} else if (update_type == MSM_SENSOR_UPDATE_PERIODIC) {
-/* LGE_CHANGE_S, fix reset & AE/AWB start, 2012-06-07 ku.kwon@lge.com */
+/*                                                                    */
 		//mt9v113_sensor_write_res_settings(s_ctrl, res);
-/* LGE_CHANGE_E, fix reset & AE/AWB start, 2012-06-07 ku.kwon@lge.com */
+/*                                                                    */
 		if (s_ctrl->curr_csi_params != s_ctrl->csi_params[res]) {
 			s_ctrl->curr_csi_params = s_ctrl->csi_params[res];
 			v4l2_subdev_notify(&s_ctrl->sensor_v4l2_subdev,
@@ -1143,7 +1143,7 @@ int32_t mt9v113_sensor_setting(struct msm_sensor_ctrl_t *s_ctrl,
 		v4l2_subdev_notify(&s_ctrl->sensor_v4l2_subdev,
 			NOTIFY_ISPIF_STREAM, (void *)ISPIF_STREAM(
 			PIX_0, ISPIF_ON_FRAME_BOUNDARY));
-/* LGE_CHANGE_S, fix reset & AE/AWB start, 2012-06-07 ku.kwon@lge.com */
+/*                                                                    */
 //		s_ctrl->func_tbl->sensor_start_stream(s_ctrl);
 #if 1
 		mt9v113_sensor_write_init_settings(s_ctrl);
@@ -1168,7 +1168,7 @@ int32_t mt9v113_sensor_setting(struct msm_sensor_ctrl_t *s_ctrl,
 			return rc;
 		rc = mt9v113_check_sensor_mode(s_ctrl);
 
-		/* LGE_CHANGE_S, fix reset & AE/AWB start side effect, 2012-06-08 ku.kwon@lge.com */
+		/*                                                                                */
 		camera_started = 1;
 		if(prev_balance_mode != 1)
 		{
@@ -1195,9 +1195,9 @@ int32_t mt9v113_sensor_setting(struct msm_sensor_ctrl_t *s_ctrl,
 			else if(mode == SENSOR_FIXED_FPS_30) mt9v113_set_fps(&mt9v113_s_ctrl, 30, 30);
 			else if(mode == SENSOR_AUTO_FPS_0730) mt9v113_set_fps(&mt9v113_s_ctrl, 5, 30);
 		}
-		/* LGE_CHANGE_E, fix reset & AE/AWB start side effect, 2012-06-08 ku.kwon@lge.com */
+		/*                                                                                */
 #endif
-/* LGE_CHANGE_E, fix reset & AE/AWB start, 2012-06-07 ku.kwon@lge.com */
+/*                                                                    */
 		msleep(30);
 	}
 
@@ -1205,15 +1205,15 @@ int32_t mt9v113_sensor_setting(struct msm_sensor_ctrl_t *s_ctrl,
 }
 
 
-/* ES4 ku.kwon@lge.com
-static int __init msm_sensor_init_module(void)
-{
-	printk("yongjin1.kim: %s\n", __func__);
-	return platform_driver_register(&mt9v113_driver);
-}
+/*                    
+                                              
+ 
+                                        
+                                                  
+ 
 */
 
-/* LGE_CHANGE_S, Implementation of SoC Sensor features for v4l2 system, 2012-02-02, yongjin1.kim@lge.com */
+/*                                                                                                       */
 #ifdef CONFIG_MACH_LGE
 /*
 static int mt9v113_polling_reg(unsigned short waddr, unsigned short wcondition, unsigned short result, int delay, int time_out)
@@ -1287,13 +1287,13 @@ static int32_t mt9v113_set_wb(struct msm_sensor_ctrl_t *s_ctrl, uint8_t mode)
 	int32_t rc = 0;
 	CDBG("ku.kwon: %s %d\n", __func__, mode);
 
-	/* LGE_CHANGE_S, fix reset & AE/AWB start side effect, 2012-06-08 ku.kwon@lge.com */
+	/*                                                                                */
 	if(!camera_started) {
 		CDBG("### [CHECK]%s: camera is not started yet, delay work to the end of initialization -> %d\n", __func__, (int)mode);
 		prev_balance_mode = mode;
 		return rc;
 	}
-	/* LGE_CHANGE_E, fix reset & AE/AWB start side effect, 2012-06-08 ku.kwon@lge.com */
+	/*                                                                                */
 
 	if(prev_balance_mode == mode)
 	{
@@ -1376,13 +1376,13 @@ static int32_t mt9v113_set_effect(struct msm_sensor_ctrl_t *s_ctrl, uint8_t mode
 	int32_t rc = 0;
 	CDBG("yongjin1.kim: %s %d\n", __func__, mode);
 
-	/* LGE_CHANGE_S, fix reset & AE/AWB start side effect, 2012-06-08 ku.kwon@lge.com */
+	/*                                                                                */
 	if(!camera_started) {
 		CDBG("### [CHECK]%s: camera is not started yet, delay work to the end of initialization -> %d\n", __func__, (int)mode);
 		prev_effect_mode = mode;
 		return rc;
 	}
-	/* LGE_CHANGE_E, fix reset & AE/AWB start side effect, 2012-06-08 ku.kwon@lge.com */
+	/*                                                                                */
 
 	if(prev_effect_mode == mode)
 	{
@@ -1461,13 +1461,13 @@ static int mt9v113_set_brightness(struct msm_sensor_ctrl_t *s_ctrl, uint8_t mode
 	int32_t rc = 0;
 	CDBG("### yongjin1.kim, %s: mode = %d(2)\n", __func__, mode);
 
-	/* LGE_CHANGE_S, fix reset & AE/AWB start side effect, 2012-06-08 ku.kwon@lge.com */
+	/*                                                                                */
 	if(!camera_started) {
 		CDBG("### [CHECK]%s: camera is not started yet, delay work to the end of initialization -> %d\n", __func__, (int)mode);
 		prev_brightness_mode = mode;
 		return rc;
 	}
-	/* LGE_CHANGE_E, fix reset & AE/AWB start side effect, 2012-06-08 ku.kwon@lge.com */
+	/*                                                                                */
 
 	if (prev_brightness_mode==mode){
 		CDBG("###%s: skip mt9v113_set_brightness\n", __func__);
@@ -1520,10 +1520,10 @@ static int mt9v113_set_brightness(struct msm_sensor_ctrl_t *s_ctrl, uint8_t mode
 	return rc;
 }
 
-/* LGE_CHANGE_S, Adds FPS capabilities for SoC Sensors, 2012-05-16, yongjin1.kim@lge.com */
+/*                                                                                       */
 static int32_t mt9v113_set_fps(struct msm_sensor_ctrl_t *s_ctrl, uint8_t minfps, uint8_t maxfps) {
     int32_t rc = 0;
-    int mode;	/* LGE_CHANGE_S, fix reset & AE/AWB start, 2012-06-07 ku.kwon@lge.com */
+    int mode;	/*                                                                    */
 
     printk("### yongjin1.kim ### %s: minfps = %d, maxfps = %d \n", __func__, minfps, maxfps);
 
@@ -1533,13 +1533,13 @@ static int32_t mt9v113_set_fps(struct msm_sensor_ctrl_t *s_ctrl, uint8_t minfps,
     else if(minfps == 5 && maxfps == 30) { mode = SENSOR_AUTO_FPS_0730; }
     else { mode = prev_fps_mode; }
 
-    /* LGE_CHANGE_S, fix reset & AE/AWB start side effect, 2012-06-08 ku.kwon@lge.com */
+    /*                                                                                */
     if(!camera_started) {
         CDBG("###  [CHECK]%s: camera is not started yet, delay work to the end of initialization -> %d\n", __func__, mode);
         prev_fps_mode = mode;
         return rc;
     }
-    /* LGE_CHANGE_E, fix reset & AE/AWB start side effect, 2012-06-08 ku.kwon@lge.com */
+    /*                                                                                */
 
     if(prev_fps_mode == mode)
     {
@@ -1585,13 +1585,13 @@ static int32_t mt9v113_set_fps(struct msm_sensor_ctrl_t *s_ctrl, uint8_t minfps,
             return -EINVAL;
     }
 
-/* LGE_CHANGE_S, Disabling because this refresh method is not used yet, 2012-05-27, yongjin1.kim@lge.com
-    rc = mt9v113_camera_i2c_write_tbl(s_ctrl->sensor_i2c_client, refreshmode_sub, ARRAY_SIZE(refreshmode_sub), MSM_CAMERA_I2C_WORD_DATA);
-    if (rc < 0)
-        return rc;
+/*                                                                                                      
+                                                                                                                                         
+               
+                  
 
-    rc = mt9v113_check_sensor_mode(s_ctrl);
-   LGE_CHANGE_S, Disabling because this refresh method is not used yet, 2012-05-27, yongjin1.kim@lge.com */
+                                           
+                                                                                                         */
 
     rc = mt9v113_camera_i2c_write_tbl(s_ctrl->sensor_i2c_client, refresh_sub, ARRAY_SIZE(refresh_sub), MSM_CAMERA_I2C_WORD_DATA);
     if (rc < 0)
@@ -1609,9 +1609,9 @@ static int32_t mt9v113_set_fps(struct msm_sensor_ctrl_t *s_ctrl, uint8_t minfps,
 
     return rc;
 }
-/* LGE_CHANGE_E, Adds FPS capabilities for SoC Sensors, 2012-05-16, yongjin1.kim@lge.com */
+/*                                                                                       */
 #endif
-/* LGE_CHANGE_E, Implementation of SoC Sensor features for v4l2 system, 2012-02-02, yongjin1.kim@lge.com */
+/*                                                                                                       */
 
 static struct v4l2_subdev_video_ops mt9v113_subdev_video_ops = {
 	.enum_mbus_fmt = msm_sensor_v4l2_enum_fmt,
@@ -1623,12 +1623,12 @@ static struct v4l2_subdev_ops mt9v113_subdev_ops = {
 };
 
 static struct msm_sensor_fn_t mt9v113_func_tbl = {
-/* LGE_CHANGE_S, fix reset & AE/AWB start, 2012-06-07 ku.kwon@lge.com */
+/*                                                                    */
 	.sensor_start_stream = mt9v113_sensor_start_stream,
 	.sensor_stop_stream = mt9v113_sensor_stop_stream,
 	.sensor_group_hold_on = mt9v113_sensor_group_hold_on,
 	.sensor_group_hold_off = mt9v113_sensor_group_hold_off,
-/* LGE_CHANGE_E, fix reset & AE/AWB start, 2012-06-07 ku.kwon@lge.com */
+/*                                                                    */
 #if 0 /* removed at M8960AAAAANLYA1022 */
 	.sensor_get_prev_lines_pf = msm_sensor_get_prev_lines_pf,
 	.sensor_get_prev_pixels_pl = msm_sensor_get_prev_pixels_pl,
@@ -1646,14 +1646,14 @@ static struct msm_sensor_fn_t mt9v113_func_tbl = {
 	.sensor_config = msm_sensor_config,
 	.sensor_power_up = mt9v113_sensor_power_up,
 	.sensor_power_down = mt9v113_sensor_power_down,
-/* LGE_CHANGE_S, Implementation of SoC Sensor features for v4l2 system, 2012-02-02, yongjin1.kim@lge.com */
+/*                                                                                                       */
 #ifdef CONFIG_MACH_LGE
 	.sensor_set_wb = mt9v113_set_wb,
 	.sensor_set_effect = mt9v113_set_effect,
 	.sensor_set_brightness = mt9v113_set_brightness,
-	.sensor_set_soc_minmax_fps = mt9v113_set_fps,	/* LGE_CHANGE, Adds FPS capabilities for SoC Sensors, 2012-05-16, yongjin1.kim@lge.com */
+	.sensor_set_soc_minmax_fps = mt9v113_set_fps,	/*                                                                                     */
 #endif
-/* LGE_CHANGE_E, Implementation of SoC Sensor features for v4l2 system, 2012-02-02, yongjin1.kim@lge.com */
+/*                                                                                                       */
 };
 
 static struct msm_sensor_reg_t mt9v113_regs = {

@@ -29,14 +29,14 @@ int mask_request_validate(unsigned char mask_buf[]);
 void diag_clear_reg(int);
 int chk_apps_only(void);
 void diag_send_event_mask_update(smd_channel_t *, int num_bytes);
-#if 1	// defined(LGE_DIAG_PATCHES_FROM_QCT_CASE_00823742)	// 2012.05.01 james.park@lge.com: applying diag patches from QCT Case#00823742.
+#if 1	//                                                                                                                                 
 void diag_send_msg_mask_update(smd_channel_t *, int ssid_first,
 					 int ssid_last, int proc);
 void diag_send_log_mask_update(smd_channel_t *, int);
 #else
 void diag_send_msg_mask_update(smd_channel_t *);
 void diag_send_log_mask_update(smd_channel_t *);
-#endif /* LGE_DIAG_PATCHES_FROM_QCT_CASE_00823742 */
+#endif /*                                         */
 /* State for diag forwarding */
 #ifdef CONFIG_DIAG_OVER_USB
 int diagfwd_connect(void);

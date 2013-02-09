@@ -19,7 +19,7 @@
 #include "devices.h"
 #if !defined(CONFIG_MACH_LGE)
 #include "board-8960.h"
-#else /* for LGE Board */
+#else /*               */
 #include <mach/board_lge.h>
 #include CONFIG_BOARD_HEADER_FILE
 #endif
@@ -129,9 +129,9 @@ static struct msm_gpiomux_config msm8960_cdp_flash_configs[] = {
 
 #if defined(CONFIG_MACH_MSM8960_D1LA) || defined(CONFIG_MACH_MSM8960_LGPS3)
 
-/* LGE_CHANGE
- * Seperate Rev_B and Rev_C GPIO setting.
- * 2011-11-26 ku.kwon@lge.com
+/*           
+                                         
+                             
  */
 static struct msm_gpiomux_config msm8960_cam_common_configs_a[] = {
 	{
@@ -465,13 +465,13 @@ static struct msm_bus_vectors cam_zsl_vectors[] = {
 		.src = MSM_BUS_MASTER_VFE,
 		.dst = MSM_BUS_SLAVE_EBI_CH0,
 		.ab  = 302071680,
-/* Start LGE_BSP_CAMERA : jongkyung.kim@lge.com 2012-02-20 Continuos Shot Preveiw& Capture Abnormal Phenomenon with ZSL, Case: 00754853 */
+/*                                                                                                                                      */
 #if 0
 		.ib  = 1208286720,
 #else
 		.ib  = 1812430080,
 #endif
-/* End LGE_BSP_CAMERA   : jongkyung.kim@lge.com 2012-02-20 Continuos Shot Preveiw& Capture Abnormal Phenomenon with ZSL, Case: 00754853 */
+/*                                                                                                                                      */
 	},
 	{
 		.src = MSM_BUS_MASTER_VPE,
@@ -483,13 +483,13 @@ static struct msm_bus_vectors cam_zsl_vectors[] = {
 		.src = MSM_BUS_MASTER_JPEG_ENC,
 		.dst = MSM_BUS_SLAVE_EBI_CH0,
 		.ab  = 540000000,
-/* Start LGE_BSP_CAMERA : jongkyung.kim@lge.com 2012-02-20 Continuos Shot Preveiw& Capture Abnormal Phenomenon with ZSL, Case: 00754853 */
+/*                                                                                                                                      */
 #if 0
 		.ib  = 1350000000,
 #else
 		.ib  = 2025000000,
 #endif
-/* End LGE_BSP_CAMERA	: jongkyung.kim@lge.com 2012-02-20 Continuos Shot Preveiw& Capture Abnormal Phenomenon with ZSL, Case: 00754853 */
+/*                                                                                                                                    */
 	},
 	{
 		.src = MSM_BUS_MASTER_JPEG_ENC,
@@ -719,10 +719,10 @@ static int32_t msm_camera_8960_ext_power_ctrl(int enable)
 void __init msm8960_init_cam(void)
 {
 #if defined(CONFIG_MACH_MSM8960_D1LA) || defined(CONFIG_MACH_MSM8960_LGPS3)
-	/* LGE_CHANGE
-	 * Seperate Rev_B and Rev_C GPIO setting.
-	 * 2011-11-26 ku.kwon@lge.com
-	 */
+	/*           
+                                          
+                              
+  */
 	if (lge_get_board_revno() < HW_REV_C)
 		msm_gpiomux_install(msm8960_cam_common_configs_a,
 			ARRAY_SIZE(msm8960_cam_common_configs_a));
@@ -846,10 +846,10 @@ void __init lge_add_camera_devices(void)
 #endif
 
 #if defined(CONFIG_MACH_MSM8960_D1LA) || defined(CONFIG_MACH_MSM8960_LGPS3)
-	/* LGE_CHANGE
-	 * Seperate Rev_B and Rev_C GPIO setting.
-	 * 2011-11-26 ku.kwon@lge.com
-	 */
+	/*           
+                                          
+                              
+  */
 	 /*
 	if (lge_get_board_revno() >= HW_REV_C) {
 	  msm_camera_sensor_imx111_data.gpio_conf->cam_gpio_tbl = msm_cam_gpio_2d_tbl_c;

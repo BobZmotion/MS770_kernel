@@ -42,10 +42,10 @@ static struct msm_camera_i2c_reg_conf mt9e013_prev_settings[] = {
 	{0x034C, 0x0660},/*X_OUTPUT_SIZE*/
 	{0x034E, 0x04C8},/*Y_OUTPUT_SIZE*/
 	{0x306E, 0xFCB0},/*DATAPATH_SELECT*/
-	/* LGE_CHANGE:
-	 * Added Flip & Mirror configuration (0x04C3 -> 0xC4C3)
-	 * 2011-10-25, sunkyoo.hwang@lge.com
-	 */
+	/*            
+                                                        
+                                     
+  */
 	{0x3040, 0xC4C3},/*READ_MODE*/
 
 	{0x3178, 0x0000},/*ANALOG_CONTROL5*/
@@ -76,10 +76,10 @@ static struct msm_camera_i2c_reg_conf mt9e013_snap_settings[] = {
 	{0x034C, 0x0CD0},/*X_OUTPUT_SIZE*/
 	{0x034E, 0x09A0},/*Y_OUTPUT_SIZE*/
 	{0x306E, 0xFC80},/*DATAPATH_SELECT*/
-	/* LGE_CHANGE:
-	 * Added Flip & Mirror configuration (0x0041 -> 0xC041)
-	 * 2011-10-25, sunkyoo.hwang@lge.com
-	 */
+	/*            
+                                                        
+                                     
+  */
 	{0x3040, 0xC041},/*READ_MODE*/
 	{0x3178, 0x0000},/*ANALOG_CONTROL5*/
 	{0x3ED0, 0x1E24},/*DAC_LD_4_5*/

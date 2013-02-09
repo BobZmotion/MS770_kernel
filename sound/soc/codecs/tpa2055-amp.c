@@ -23,7 +23,7 @@
 #include <linux/err.h>
 #include <linux/mutex.h>
 #include <linux/delay.h>
-/* BEGIN:0009748        ehgrace.kim@lge.com     2010.10.07*/
+/*                                                        */
 /* MOD: modifiy the amp for sonification mode for subsystem audio calibration */
 #include <linux/fs.h>
 #include <linux/miscdevice.h>
@@ -40,20 +40,20 @@
 #define ICODEC_HEADSET_SPK_RX	3
 #define ICODEC_SPEAKER_RX	4
 #define ICODEC_POWEROFF		5
-/* BEGIN:0010882        ehgrace.kim@lge.com     2010.11.15*/
+/*                                                        */
 /* MOD: add the call mode */
 #define ICODEC_HEADSET_PHONE_RX	6
 #define ICODEC_SPEAKER_PHONE_RX	7
-/* END:0010882        ehgrace.kim@lge.com     2010.11.15*/
+/*                                                      */
 #define	DEBUG_AMP_CTL	1
 #define AMP_IOCTL_MAGIC 't'
-/* BEGIN:0010385        ehgrace.kim@lge.com     2010.11.08*/
+/*                                                        */
 /* MOD: add the get value for hiddenmenu */
 #define AMP_SET_DATA	_IOW(AMP_IOCTL_MAGIC, 0, struct amp_cal *)
 #define AMP_GET_DATA	_IOW(AMP_IOCTL_MAGIC, 1, struct amp_cal *)
-/* END:0010385        ehgrace.kim@lge.com     2010.11.08*/
+/*                                                      */
 
-/* BEGIN:0010882        ehgrace.kim@lge.com     2010.11.15*/
+/*                                                        */
 /* MOD: add the call mode */
 #define IN1_GAIN 0
 #define IN2_GAIN 1
@@ -90,9 +90,9 @@ struct amp_cal_type {
 };
 
 
-/*BEGIN:0011017	ehgrace.kim@lge.com	2010.11.16, 2010.12.06, 2010.12.13, 2011.02.07, 2011.02.17*/
+/*                                                                                            */
 /*MOD:apply the audio calibration */
-/*BEGIN:0010363	ehgrace.kim@lge.com	2010.11.01*/
+/*                                            */
 /*MOD:apply the audio calibration for spkand spk&headset */
 #if 0
 struct amp_cal_type amp_cal_data = { IN1GAIN_0DB, IN2GAIN_0DB, SPK_VOL_M10DB, HPL_VOL_0DB, HPR_VOL_M60DB, IN1GAIN_0DB, IN2GAIN_0DB, SPK_VOL_M1DB, HPL_VOL_0DB, HPR_VOL_M60DB };
@@ -107,14 +107,14 @@ struct amp_cal_type amp_cal_data = {
 	IN1GAIN_6DB, IN2GAIN_12DB, SPK_VOL_M2DB, HPL_VOL_M6DB, HPR_VOL_M6DB,
 	SLIMLVL_4P90V, HLIMLVL_1P15V, SLIMLVL_4P90V, HLIMLVL_1P15V};
 #endif
-/*END:0010363	ehgrace.kim@lge.com	2010.11.01*/
-/*END:0011017	ehgrace.kim@lge.com	2010.11.16, 2010.12.06, 2010.12.13, 2011.02.07, 2011.02.17*/
+/*                                          */
+/*                                                                                          */
 
-/* BEGIN:0009753        ehgrace.kim@lge.com     2010.10.22*/
+/*                                                        */
 /* MOD: modifiy to delete the first boot noise */
 bool first_boot = 1;
-/* END:0009753        ehgrace.kim@lge.com     2010.10.22*/
-/* END:0009748        ehgrace.kim@lge.com     2010.10.07*/
+/*                                                      */
+/*                                                      */
 
 static uint32_t msm_snd_debug = 1;
 module_param_named(debug_mask, msm_snd_debug, uint, 0664);
@@ -197,11 +197,11 @@ int TPA2055D3_PowerUpClassD_IN1(void)
 	return(fail);
 }
 
-/* BEGIN:0010882        ehgrace.kim@lge.com     2010.11.15*/
+/*                                                        */
 /* MOD: add the call mode */
-/* BEGIN:0009748        ehgrace.kim@lge.com     2010.10.07*/
+/*                                                        */
 /* MOD: modifiy the amp for sonification mode for subsystem audio calibration */
-/* BEGIN:0009753        ehgrace.kim@lge.com     2010.10.22*/
+/*                                                        */
 /* MOD: modifiy to delete the first boot noise */
 int TPA2055D3_PowerUpClassD_IN2(void)
 {
@@ -238,8 +238,8 @@ int TPA2055D3_PowerUpClassD_PHONE_IN2(void)
 	fail |= WriteI2C(SUBSYSTEM_CONTROL, (~SWS & ~BYPASS & ~SSM_EN));
 	return(fail);
 }
-/* END:0009753		ehgrace.kim@lge.com 	2010.10.22*/		
-/* END:0010882        ehgrace.kim@lge.com     2010.11.15*/
+/*                                             */		
+/*                                                      */
 
 int TPA2055D3_PowerUpClassD_IN1IN2(void)
 {
@@ -260,7 +260,7 @@ int TPA2055D3_PowerDownClassD(void)
 	return(fail);
 }
 
-/* BEGIN:0010882        ehgrace.kim@lge.com     2010.11.15*/
+/*                                                        */
 /* MOD: add the call mode */
 int TPA2055D3_PowerUpHP_IN1(void)
 {
@@ -287,7 +287,7 @@ int TPA2055D3_PowerUpHP_PHONE_IN1(void)
 	printk("HP : gain %x, volR:%x, volL:%x\n", amp_cal_data.call_in1_gain, amp_cal_data.call_hp_rvol, amp_cal_data.call_hp_lvol);
 	return(fail);
 }
-/* END:0010882        ehgrace.kim@lge.com     2010.11.15*/
+/*                                                      */
 
 int TPA2055D3_PowerUpHP_IN2(void)
 {
@@ -313,7 +313,7 @@ int TPA2055D3_PowerUpHP_IN1IN2(void)
 	return(fail);
 }
 
-/* BEGIN:0010882        ehgrace.kim@lge.com     2010.11.15*/
+/*                                                        */
 /* MOD: add add the subsystem control for call mode */
 int TPA2055D3_PowerUp_IN1IN2(void)
 {
@@ -332,8 +332,8 @@ int TPA2055D3_PowerUp_IN1IN2(void)
 	printk("MIX : HP - gain %x, volR %x, volL %x : SPK - gain %x, vol %x\n", amp_cal_data.mix_in1_gain, amp_cal_data.mix_hp_rvol, amp_cal_data.mix_hp_lvol, amp_cal_data.mix_in2_gain, amp_cal_data.mix_spk_vol);
 	return(fail);
 }
-/* END:0010882        ehgrace.kim@lge.com     2010.11.15*/
-/* END:0009748        ehgrace.kim@lge.com     2010.10.07*/
+/*                                                      */
+/*                                                      */
 
 int TPA2055D3_PowerDown_HP(void)
 {
@@ -356,18 +356,18 @@ void set_amp_gain(int icodec_num)
                         printk("voc_codec %d  for HEADSET_ST_RX amp\n", icodec_num);
                         TPA2055D3_PowerUpHP_IN1();
                         break;
-/* BEGIN:0009748        ehgrace.kim@lge.com     2010.10.07*/
+/*                                                        */
 /* MOD: modifiy the amp for sonification mode for subsystem audio calibration */
                 case  ICODEC_SPEAKER_RX:
                         printk("voc_codec %d for SPEAKER_RX amp\n", icodec_num);
                         TPA2055D3_PowerUpClassD_IN2();
                         break;
-/* END:0009748        ehgrace.kim@lge.com     2010.10.07*/
+/*                                                      */
                 case  ICODEC_HEADSET_SPK_RX:
                         printk("voc_codec %d for HS_SPK_RX amp\n", icodec_num);
                         TPA2055D3_PowerUp_IN1IN2();
                         break;
-/* BEGIN:0010882        ehgrace.kim@lge.com     2010.11.15*/
+/*                                                        */
 /* MOD: add the call mode */
                 case  ICODEC_HEADSET_PHONE_RX:
                         printk("voc_codec %d  for HEADSET_PHONE_RX amp\n", icodec_num);
@@ -377,7 +377,7 @@ void set_amp_gain(int icodec_num)
                         printk("voc_codec %d for SPEAKER_PHONE_RX amp\n", icodec_num);
                         TPA2055D3_PowerUpClassD_PHONE_IN2();
                         break;
-/* END:0010882        ehgrace.kim@lge.com     2010.11.15*/
+/*                                                      */
 
                 case  ICODEC_POWEROFF:
                         printk("voc_codec %d for AMP PWROFF\n", icodec_num);
@@ -392,11 +392,11 @@ void set_amp_gain(int icodec_num)
 }
 EXPORT_SYMBOL(set_amp_gain);
 
-/* BEGIN:0010882        ehgrace.kim@lge.com     2010.11.15*/
+/*                                                        */
 /* MOD: add the call mode */
-/* BEGIN:0009748        ehgrace.kim@lge.com     2010.10.07*/
+/*                                                        */
 /* ADD: modifiy the amp for sonification mode for subsystem audio calibration */
-/* BEGIN:0010385        ehgrace.kim@lge.com     2010.11.08*/
+/*                                                        */
 /* MOD: add the get value for hiddenmenu */
 static long amp_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
 {
@@ -545,8 +545,8 @@ static long amp_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
 	}
 	return rc;
 }
-/* END:0010385        ehgrace.kim@lge.com     2010.11.08*/
-/* END:0010882        ehgrace.kim@lge.com     2010.11.15*/
+/*                                                      */
+/*                                                      */
 
 static int amp_open(struct inode *inode, struct file *file)
 {
@@ -572,7 +572,7 @@ struct miscdevice amp_misc = {
 	.name = "tpa_amp",
 	.fops = &tpa_fops,
 };
-/* END:0009748        ehgrace.kim@lge.com     2010.10.07*/
+/*                                                      */
 
 static int bryce_amp_ctl_probe(struct i2c_client *client, const struct i2c_device_id *id)
 {
@@ -601,10 +601,10 @@ static int bryce_amp_ctl_probe(struct i2c_client *client, const struct i2c_devic
 	
 	set_amp_gain(ICODEC_POWEROFF);
 
-/* BEGIN:0009748        ehgrace.kim@lge.com     2010.10.07*/
+/*                                                        */
 /* ADD: modifiy the amp for sonification mode for subsystem audio calibration */
 	err = misc_register(&amp_misc);
-/* END:0009748        ehgrace.kim@lge.com     2010.10.07*/
+/*                                                      */
 	return 0;
 }
 

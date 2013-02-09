@@ -53,7 +53,7 @@
 
 #ifdef CONFIG_LGE_HANDLE_PANIC
 /* 
- * Magic number for LGE Error handler
+                                     
  */
 #define LGE_ERROR_HANDLE_MAGIC_NUM        0xA97F2C46
 /*
@@ -287,9 +287,9 @@ void arch_reset(char mode, const char *cmd)
 				code = simple_strtoul(cmd + 4, NULL, 16) & 0xff;
 				__raw_writel(0x6f656d00 | code, restart_reason);
 #ifdef CONFIG_LGE_CHARGER_TEMP_SCENARIO
-			/* LGE_CHANGE: For detecting reboot by remove battery
-			 * 2012-01-30, bongkyu.kim@lge.com
-			 */
+			/*                                                   
+                                     
+    */
 			} else if (!strncmp(cmd, "battery", 7)) {
 				__raw_writel(0x77665510, restart_reason);
 #endif
@@ -315,9 +315,9 @@ reset:
 			code = simple_strtoul(cmd + 4, NULL, 16) & 0xff;
 			__raw_writel(0x6f656d00 | code, restart_reason);
 #ifdef CONFIG_LGE_CHARGER_TEMP_SCENARIO
-		/* LGE_CHANGE: For detecting reboot by remove battery
-		 * 2012-01-30, bongkyu.kim@lge.com
-		 */
+		/*                                                   
+                                    
+   */
 		} else if (!strncmp(cmd, "battery", 7)) {
 			__raw_writel(0x77665510, restart_reason);
 #endif

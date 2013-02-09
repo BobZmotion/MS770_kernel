@@ -38,18 +38,18 @@ static struct msm_camera_i2c_reg_conf imx111_groupoff_settings[] = {
 };
 
 static struct msm_camera_i2c_reg_conf imx111_prev_settings[] = {
-	/*LGE_CHANGE_S
-	Add sensor's option able to flip and morror to correct orientation
-	2011.11.15 jinsang.yun@lge.com
-	Seperate D1L-a from others
-	2011.12.19 ku.kwon@lge.com
-	*/
+	/*            
+                                                                   
+                               
+                           
+                           
+ */
 #if defined(CONFIG_MACH_MSM8960_D1LA) || defined(CONFIG_MACH_MSM8960_D1LV)
 	{0x0101, 0x03}, /* read out direction */
 #else
 	{0x0101, 0x00}, /* read out direction */
 #endif
-	/*LGE_CHANGE_E*/
+	/*            */
 	{0x0305, 0x02},
 	{0x0307, 0x38},
 	{0x30A4, 0x02},
@@ -128,18 +128,18 @@ static struct msm_camera_i2c_reg_conf imx111_prev_settings[] = {
 
 static struct msm_camera_i2c_reg_conf imx111_video_settings[] = {
 	/* Video E 30 fps */
-	/*LGE_CHANGE_S
-	Add sensor's option able to flip and morror to correct orientation
-	2011.11.15 jinsang.yun@lge.com
-	Seperate D1L-a from others
-	2011.12.19 ku.kwon@lge.com
-	*/
+	/*            
+                                                                   
+                               
+                           
+                           
+ */
 #if defined(CONFIG_MACH_MSM8960_D1LA) || defined(CONFIG_MACH_MSM8960_D1LV)
 	{0x0101, 0x03}, /* read out direction */
 #else
 	{0x0101, 0x00}, /* read out direction */
 #endif
-	/*LGE_CHANGE_E*/
+	/*            */
 	{0x0305, 0x02},
 	{0x0307, 0x32},
 	{0x30A4, 0x02},
@@ -212,18 +212,18 @@ static struct msm_camera_i2c_reg_conf imx111_video_settings[] = {
 
 static struct msm_camera_i2c_reg_conf imx111_snap_settings[] = {
 	/* 22 fps */
-	/*LGE_CHANGE_S
-	Add sensor's option able to flip and morror to correct orientation
-	2011.11.15 jinsang.yun@lge.com
-	Seperate D1L-a from others
-	2011.12.19 ku.kwon@lge.com
-	*/
+	/*            
+                                                                   
+                               
+                           
+                           
+ */
 #if defined(CONFIG_MACH_MSM8960_D1LA) || defined(CONFIG_MACH_MSM8960_D1LV)
 	{0x0101, 0x03}, /* read out direction */
 #else
 	{0x0101, 0x00}, /* read out direction */
 #endif
-	/*LGE_CHANGE_E*/
+	/*            */
 	{0x0305, 0x02},
 	{0x0307, 0x53},
 	{0x30A4, 0x02},
@@ -406,10 +406,10 @@ static struct msm_camera_i2c_conf_array imx111_confs[] = {
 	ARRAY_SIZE(imx111_prev_settings), 0, MSM_CAMERA_I2C_BYTE_DATA},
 	{&imx111_video_settings[0],
 	ARRAY_SIZE(imx111_video_settings), 0, MSM_CAMERA_I2C_BYTE_DATA},
-/* LGE_CHANGE_S, Camera Zero shutter lag patch, 2012.01.12 jungryoul.choi@lge.com */
+/*                                                                                */
 	{&imx111_snap_settings[0],
 	ARRAY_SIZE(imx111_snap_settings), 0, MSM_CAMERA_I2C_BYTE_DATA},
-/* LGE_CHANGE_E, Camera Zero shutter lag patch, 2012.01.12 jungryoul.choi@lge.com */
+/*                                                                                */
 };
 
 static struct msm_sensor_output_info_t imx111_dimensions[] = {
@@ -440,7 +440,7 @@ static struct msm_sensor_output_info_t imx111_dimensions[] = {
 		.vt_pixel_clk = 200000000,
 		.op_pixel_clk = 200000000,
 	},
-/* LGE_CHANGE_S, Camera Zero shutter lag patch, 2012.01.12 jungryoul.choi@lge.com */
+/*                                                                                */
 	{
 		/* 22.5 fps */
 		.x_output = 0x0CD0, /* 3280 */
@@ -450,7 +450,7 @@ static struct msm_sensor_output_info_t imx111_dimensions[] = {
 		.vt_pixel_clk = 199200000,
 		.op_pixel_clk = 199200000,
 	},
-/* LGE_CHANGE_E, Camera Zero shutter lag patch, 2012.01.12 jungryoul.choi@lge.com */
+/*                                                                                */
 };
 
 static struct msm_camera_csid_vc_cfg imx111_cid_cfg[] = {
@@ -477,9 +477,9 @@ static struct msm_camera_csi2_params *imx111_csi_params_array[] = {
 	&imx111_csi_params,
 	&imx111_csi_params,
 	&imx111_csi_params,
-/* LGE_CHANGE_S, Camera Zero shutter lag patch, 2012.01.12 jungryoul.choi@lge.com */
+/*                                                                                */
 	&imx111_csi_params,
-/* LGE_CHANGE_E, Camera Zero shutter lag patch, 2012.01.12 jungryoul.choi@lge.com */
+/*                                                                                */
 };
 
 static struct msm_sensor_output_reg_addr_t imx111_reg_addr = {
@@ -688,7 +688,7 @@ int32_t imx111_sensor_write_exp_gain1(struct msm_sensor_ctrl_t *s_ctrl,
 }
 
 
-/* LGE_CHANGE_S, Fix for L-DCM Sub-camera issue, 2012.02.29 ku.kwon@lge.com */
+/*                                                                          */
 #define GPIO_VGACAM_LDO_EN      (64)
 
 int imx111_sensor_power_up(struct msm_sensor_ctrl_t *s_ctrl)
@@ -739,7 +739,7 @@ int imx111_sensor_power_down(struct msm_sensor_ctrl_t *s_ctrl)
 	pr_err("%s: X\n", __func__);
 	return 0;
 }
-/* LGE_CHANGE_S, Fix for L-DCM Sub-camera issue, 2012.02.29 ku.kwon@lge.com */
+/*                                                                          */
 
 ////////////////////////////////////////////////
 //Start :randy@qualcomm.com for calibration 2012.03.25
@@ -919,10 +919,10 @@ static struct msm_sensor_fn_t imx111_func_tbl = {
 	.sensor_get_output_info = msm_sensor_get_output_info,
 	.sensor_config = msm_sensor_config,
 	.sensor_get_eeprom_data = imx111_read_eeprom_data,	//randy@qualcomm.com for calibration 2012.03.25
-/* LGE_CHANGE_S, Fix for L-DCM Sub-camera issue, 2012.02.29 ku.kwon@lge.com */
+/*                                                                          */
 	.sensor_power_up = imx111_sensor_power_up,
 	.sensor_power_down = imx111_sensor_power_down,
-/* LGE_CHANGE_E, Fix for L-DCM Sub-camera issue, 2012.02.29 ku.kwon@lge.com */
+/*                                                                          */
 };
 
 static struct msm_sensor_reg_t imx111_regs = {

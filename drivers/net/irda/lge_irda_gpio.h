@@ -51,4 +51,4 @@ int lge_irda_gpio_read(int gpionum);
 }
 #endif
 
-#endif /* __LGE_IRDA_GPIO_H__ */
+#endif /*                     */

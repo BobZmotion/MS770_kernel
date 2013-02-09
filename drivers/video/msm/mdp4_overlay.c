@@ -620,7 +620,7 @@ void mdp4_overlay_rgb_setup(struct mdp4_overlay_pipe *pipe)
 
 	mdp_pipe_ctrl(MDP_CMD_BLOCK, MDP_BLOCK_POWER_ON, FALSE);
 
-/* [START] 20120208 force FLIP_MODE for INVERSE PANEL - kyunghoo.ryu@lge.com */
+/*                                                                           */
 #if defined(CONFIG_FB_MSM_MIPI_LGIT_CMD_WVGA_INVERSE_PT_PANEL) || \
 	defined(CONFIG_FB_MSM_MIPI_LGIT_VIDEO_WVGA_INVERSE_PT_PANEL)
 	if (panel_rotate_180 && (pipe->pipe_num == OVERLAY_PIPE_RGB1 || pipe->pipe_num == OVERLAY_PIPE_RGB2))
@@ -772,7 +772,7 @@ void mdp4_overlay_vg_setup(struct mdp4_overlay_pipe *pipe)
 		}
 	}
 
-	/* [START] 20120208 force FLIP_MODE for INVERSE PANEL - kyunghoo.ryu@lge.com */
+	/*                                                                           */
 #if defined(CONFIG_FB_MSM_MIPI_LGIT_CMD_WVGA_INVERSE_PT_PANEL) || \
 		defined(CONFIG_FB_MSM_MIPI_LGIT_VIDEO_WVGA_INVERSE_PT_PANEL)
 
@@ -1772,10 +1772,10 @@ void mdp4_mixer_blend_setup(struct mdp4_overlay_pipe *pipe)
 
 void mdp4_overlay_reg_flush(struct mdp4_overlay_pipe *pipe, int all)
 {
-	/* LGE_CHANGE
-	 * Add QCT patches for blue screen issue after 1041 patches
-	 * 2012-03-15, baryun.hwang@lge.com
-	 */
+	/*           
+                                                            
+                                    
+  */
 #ifdef QCT_PATCH
 	struct mdp4_overlay_pipe *bg_pipe;
 #endif
@@ -1875,9 +1875,9 @@ void mdp4_overlay_pipe_free(struct mdp4_overlay_pipe *pipe)
 static int mdp4_overlay_validate_downscale(struct mdp_overlay *req,
 	struct msm_fb_data_type *mfd, uint32 perf_level, uint32 pclk_rate)
 {
-// LGE_CHANGE_S, [G1_Player][sangwook76.kim@lge.com], 20120601, QCT case 854780 downscale error {
+//                                                                                               
     __u32 scale_fct_y;
-// LGE_CHANGE_S, [G1_Player][sangwook76.kim@lge.com], 20120601, QCT case 854780 downscale error}
+//                                                                                              
 	__u32 panel_clk_khz, mdp_clk_khz;
 	__u32 num_hsync_pix_clks, mdp_clks_per_hsync;
     //__u32 src_wh;
@@ -1886,13 +1886,15 @@ static int mdp4_overlay_validate_downscale(struct mdp_overlay *req,
 	unsigned long fillratex100, mdp_pixels_produced;
 	unsigned long mdp_clk_hz;
 
-	/* LGE_CHANGE
-	 * Apply QCT patch for blue screen appear while playing video
-	 * TD#163031
-	 * SR#00870425
-	 * 2012-06-05, baryun.hwang@lge.com
-	 */
+	/*           
+                                                              
+             
+               
+                                    
+  */
+#if !defined(CONFIG_FB_MSM_MIPI_DSI_R61529)
 	unsigned int compression_rate_w, compression_rate_h;
+#endif
 
 	pr_debug("%s: LCDC Mode Downscale validation with MDP Core"
 		" Clk rate\n", __func__);
@@ -1928,7 +1930,7 @@ static int mdp4_overlay_validate_downscale(struct mdp_overlay *req,
 		"total_hsync_period_ps %u\n", hsync_period_ps,
 		mdp_period_ps, total_hsync_period_ps);
 
-// LGE_CHANGE_S, [G1_Player][sangwook76.kim@lge.com], 20120601, QCT case 854780 downscale error {
+//                                                                                               
 	//src_wh = req->src_rect.w * req->src_rect.h;
 	//if (src_wh % req->dst_rect.h)
 	//	fill_rate_y_dir = (src_wh / req->dst_rect.h) + 1;
@@ -1937,7 +1939,7 @@ static int mdp4_overlay_validate_downscale(struct mdp_overlay *req,
 
     scale_fct_y = ((req->src_rect.h - 1) / req->dst_rect.h) + 1;
     fill_rate_y_dir = (scale_fct_y * req->src_rect.w);
-// LGE_CHANGE_S, [G1_Player][sangwook76.kim@lge.com], 20120601, QCT case 854780 downscale error }
+//                                                                                               
 
 	fill_rate_x_dir = (mfd->panel_info.xres - req->dst_rect.w)
 		+ req->src_rect.w;
@@ -1955,11 +1957,11 @@ static int mdp4_overlay_validate_downscale(struct mdp_overlay *req,
 	pr_debug("fillratex100 %lu, mdp_pixels_produced %lu\n",
 		fillratex100, mdp_pixels_produced);
 
-	/* LGE_CHANGE
-	 * Apply QCT patch for blue screen appear while "video wiz" plays Full HD video for MS770
-	 * SR#00909625
-	 * 2012-07-09, hoseok.kim@lge.com
-	 */
+	/*           
+                                                                                          
+               
+                                  
+  */
 #if defined(CONFIG_FB_MSM_MIPI_DSI_R61529)
 	if (mdp_pixels_produced <= mfd->panel_info.xres + 50) {
 #else
@@ -1968,12 +1970,13 @@ static int mdp4_overlay_validate_downscale(struct mdp_overlay *req,
 		mdp4_stat.err_underflow++;
 		return -ERANGE;
 	}
-	/* LGE_CHANGE
-	 * Apply QCT patch for blue screen appear while playing video
-	 * TD#163031
-	 * SR#00870425
-	 * 2012-06-05, baryun.hwang@lge.com
-	 */
+	/*           
+                                                              
+             
+               
+                                    
+  */
+#if !defined(CONFIG_FB_MSM_MIPI_DSI_R61529)
 	compression_rate_w = (req->dst_rect.w * 100) / req->src_rect.w;
 	compression_rate_h = (req->dst_rect.h * 100) / req->src_rect.h;
 
@@ -1982,6 +1985,7 @@ static int mdp4_overlay_validate_downscale(struct mdp_overlay *req,
 		printk("Entering abnormal video downscale case!!\n");
 		return -ERANGE;
 	}
+#endif
 
 	return 0;
 }
@@ -2109,7 +2113,7 @@ static int mdp4_overlay_req2pipe(struct mdp_overlay *req, int mixer,
 		return -ENOMEM;
 	}
 
-	/* [START] 20120208 force FLIP_MODE for INVERSE PANEL - kyunghoo.ryu@lge.com */
+	/*                                                                           */
 #if defined(CONFIG_FB_MSM_MIPI_LGIT_CMD_WVGA_INVERSE_PT_PANEL) || \
 		defined(CONFIG_FB_MSM_MIPI_LGIT_VIDEO_WVGA_INVERSE_PT_PANEL)
 		pipe->mfd = mfd;
@@ -2160,7 +2164,7 @@ static int mdp4_overlay_req2pipe(struct mdp_overlay *req, int mixer,
 
 	pipe->op_mode = 0;
 
-/* [START] 20120208 force FLIP_MODE for INVERSE PANEL - kyunghoo.ryu@lge.com */
+/*                                                                           */
 #if defined(CONFIG_FB_MSM_MIPI_LGIT_CMD_WVGA_INVERSE_PT_PANEL) || \
 	defined(CONFIG_FB_MSM_MIPI_LGIT_VIDEO_WVGA_INVERSE_PT_PANEL)
 #if 1
@@ -2388,10 +2392,10 @@ static uint32 mdp4_overlay_get_perf_level(struct mdp_overlay *req,
 			return OVERLAY_PERF_LEVEL3;
 
 	} else if (req->src.width*req->src.height <= OVERLAY_720P_TILE_SIZE) {
-		/* LGE_CAHNGE
-		* QCT temp. patch for bluescreen issue
-		* when playing 720p video clip in portrait mode(SR#00800402)
-		*/
+		/*           
+                                        
+                                                              
+  */
 #ifndef CONFIG_MACH_LGE
 		/* QCT orignal code */
 		u32 max, min;
@@ -2461,12 +2465,12 @@ static void mdp4_overlay1_update_blt_mode(struct msm_fb_data_type *mfd)
 		return;
 	if (mfd->use_ov1_blt) {
 		mdp4_allocate_writeback_buf(mfd, MDP4_MIXER1);
-#if defined(CONFIG_FB_MSM_DTV) /* LGE - added QCT 1041 Release */ 
+#if defined(CONFIG_FB_MSM_DTV) /*                              */ 
 		mdp4_dtv_overlay_blt_start(mfd);
 #endif
 		pr_debug("%s overlay1 writeback is enabled\n", __func__);
 	} else {
-#if defined(CONFIG_FB_MSM_DTV) /* LGE - added QCT 1041 Release */ 
+#if defined(CONFIG_FB_MSM_DTV) /*                              */ 
 		mdp4_dtv_overlay_blt_stop(mfd);
 #endif
 		pr_debug("%s overlay1 writeback is disabled\n", __func__);
@@ -2959,7 +2963,7 @@ int mdp4_overlay_play(struct fb_info *info, struct msmfb_overlay_data *req)
 
 	if (mfd->use_ov0_blt)
 		mdp4_overlay_update_blt_mode(mfd);
-/* [START] 20120208 force FLIP_MODE for INVERSE PANEL - kyunghoo.ryu@lge.com */
+/*                                                                           */
 #if defined(CONFIG_FB_MSM_MIPI_LGIT_CMD_WVGA_INVERSE_PT_PANEL) || \
 	defined(CONFIG_FB_MSM_MIPI_LGIT_VIDEO_WVGA_INVERSE_PT_PANEL)
 	pipe->mfd = mfd;
@@ -2972,13 +2976,13 @@ int mdp4_overlay_play(struct fb_info *info, struct msmfb_overlay_data *req)
 		mdp4_overlay_vg_setup(pipe);	/* video/graphic pipe */
 	} else {
 		if (pipe->flags & MDP_SHARPENING) {
-/* Disable printing log temporarily
- * 2012-02-02, jongyeol.yang@lge.com
- * start
-			pr_warn(
-			"%s: Sharpening/Smoothing not supported on RGB pipe\n",
-								     __func__);
- * end
+/*                                 
+                                    
+        
+           
+                                                          
+                       
+      
  */
 			pipe->flags &= ~MDP_SHARPENING;
 		}

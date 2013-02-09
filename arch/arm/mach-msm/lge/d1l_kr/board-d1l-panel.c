@@ -1346,7 +1346,7 @@ static struct platform_device mipi_dsi_hitachi_panel_device = {
 };
 
 #endif /* #ifdef CONFIG_FB_MSM_MIPI_LGIT */
-#endif /* #ifdef CONFIG_LGE_BACKLIGHT_LM3533*/
+#endif /*                                   */
 
 #ifdef CONFIG_LGE_KCAL
 extern int set_kcal_values(int kcal_r, int kcal_g, int kcal_b);
@@ -1784,7 +1784,7 @@ static struct i2c_registry d1l_i2c_backlight_device __initdata = {
 		ARRAY_SIZE(msm_i2c_backlight_info),
 };
 
-#endif /* CONFIG_LGE_BACKLIGHT_LM3533 */
+#endif /*                             */
 
 #endif /* CONFIG_I2C */
 

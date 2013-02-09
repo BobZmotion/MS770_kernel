@@ -28,9 +28,9 @@
 #include <linux/types.h>
 #include <mach/camera.h>
 
-/* LGE_CHANGE S, Low temperature exception handling, 2012-04-26 ku.kwon@lge.com */
+/*                                                                              */
 #include <linux/mfd/pm8xxx/pm8921-charger.h>
-/* LGE_CHANGE E, Low temperature exception handling, 2012-04-26 ku.kwon@lge.com */
+/*                                                                              */
 
 #define LM3559_I2C_NAME  				"lm3559"
 
@@ -181,20 +181,20 @@ void lm3559_enable_flash_mode(enum led_status state)
 	if(state == LM3559_LED_LOW){
 		/* 0001 0001 : 112.5 mA */
 		CDBG("[LM3559_LED_LOW]LM3559_REG_FLASH_BRIGHTNESS \n");
-/* LGE_CHANGE S, Low temperature exception handling, 2012-04-26 ku.kwon@lge.com */
+/*                                                                              */
 		lm3559_write_reg(lm3559_i2c_client, LM3559_REG_FLASH_BRIGHTNESS, 0x44);
-/* LGE_CHANGE E, Low temperature exception handling, 2012-04-26 ku.kwon@lge.com */
+/*                                                                              */
 	}
 	else{
 		/*0011 0011 : 225 mA => 0110 0110 : 393.75 mA */
 		CDBG("[LM3559_LED_HIGH]LM3559_REG_FLASH_BRIGHTNESS \n");
-/* LGE_CHANGE_S, L0/L2 flash led current limited, 2012-06-11 yt.kim@lge.com */
+/*                                                                          */
 #if defined(CONFIG_MACH_MSM8960_L0) || defined (CONFIG_MACH_MSM8960_L2S)
 		lm3559_write_reg(lm3559_i2c_client, LM3559_REG_FLASH_BRIGHTNESS, 0x77);
 #else
 		lm3559_write_reg(lm3559_i2c_client, LM3559_REG_FLASH_BRIGHTNESS, 0xAA);
 #endif
-/* LGE_CHANGE_E, L0/L2 flash led current limited, 2012-06-11 yt.kim@lge.com */
+/*                                                                          */
 	}
 	lm3559_write_reg(lm3559_i2c_client, LM3559_REG_ENABLE, 0x1B);
 }
@@ -234,9 +234,9 @@ void lm3559_led_disable(void)
 int lm3559_flash_set_led_state(int led_state)
 {
 	int rc = 0;
-/* LGE_CHANGE S, Low temperature exception handling, 2012-04-26 ku.kwon@lge.com */
+/*                                                                              */
 	int batt_temp = 0;
-/* LGE_CHANGE S, Low temperature exception handling, 2012-04-26 ku.kwon@lge.com */
+/*                                                                              */
 
 	pr_err("%s: led_state = %d\n", __func__, led_state);
 
@@ -250,7 +250,7 @@ int lm3559_flash_set_led_state(int led_state)
 		break;
 	case MSM_CAMERA_LED_HIGH:
 		lm3559_led_enable();
-/* LGE_CHANGE S, Low temperature exception handling, 2012-04-26 ku.kwon@lge.com */
+/*                                                                              */
 		batt_temp = pm8921_batt_temperature();
 		if(batt_temp > -100) {
 			pr_err("%s: Working on LED_HIGH Flash mode (Battery temperature = %d)\n", __func__, batt_temp);
@@ -259,7 +259,7 @@ int lm3559_flash_set_led_state(int led_state)
 			pr_err("%s: Working on LED_LOW Flash mode (Battery temperature = %d)\n", __func__, batt_temp);
 			lm3559_enable_flash_mode(LM3559_LED_LOW);
 		}
-/* LGE_CHANGE S, Low temperature exception handling, 2012-04-26 ku.kwon@lge.com */
+/*                                                                              */
 		break;
 	case MSM_CAMERA_LED_INIT:
 		lm3559_config_gpio_on();

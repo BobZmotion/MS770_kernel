@@ -69,7 +69,7 @@ enum {
 	SX150X_CAM,
 	SX150X_LIQUID,
 };
-/* BEGIN : jooyeong.lee@lge.com 2012-02-27 Change the charger_temp_scenario */
+/*                                                                          */
 #ifdef CONFIG_LGE_CHARGER_TEMP_SCENARIO
 enum {
 	THERM_M10,
@@ -105,7 +105,7 @@ enum {
 	CHG_BATT_STOP_CHARGING_STATE,
 };
 #endif
-/* END : jooyeong.lee@lge.com 2012-02-27 */
+/*                                       */
 #endif
 
 
@@ -131,7 +131,7 @@ uint32_t msm_rpm_get_swfi_latency(void);
 #define MSM_8960_GSBI3_QUP_I2C_BUS_ID 3
 #define MSM_8960_GSBI10_QUP_I2C_BUS_ID 10
 
-/* LGE Specific */
+/*              */
 #ifndef _BOARD_L_DCM_H_
 #define _BOARD_L_DCM_H_
 
@@ -153,7 +153,7 @@ uint32_t msm_rpm_get_swfi_latency(void);
 #define TS_X_MAX								720
 #define TS_Y_MIN								0
 #define TS_Y_MAX								1280
-/* 4.0" lgit wvga - kyunghoo.ryu@lge.com */
+/*                                       */
 #define LCD_RESOLUTION_X						800
 #define LCD_RESOLUTION_Y						496
 #define MSM_FB_WIDTH_MM							52
@@ -322,9 +322,9 @@ uint32_t msm_rpm_get_swfi_latency(void);
 #define CAM2_VANA_LOAD_UA       85600
 
 #ifdef CONFIG_LGE_PM
-/* LGE_CHANGE
- * Classified the ADC value for cable detection
- * 2012-01-03, hiro.kwon@lge.com
+/*           
+                                               
+                                
  */
 #define ADC_CHANGE_REV	HW_REV_B
 #define IBAT_CURRENT	700

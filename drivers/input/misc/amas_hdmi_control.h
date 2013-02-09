@@ -1,5 +1,5 @@
 /***************************/
-/* Made by dongwook.lee@lge.com */
+/*                              */
 /* Register control driver for MSM8960 */
 /***************************/
 #ifndef _HDMI_DEV_H_

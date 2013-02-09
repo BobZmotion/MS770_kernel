@@ -328,9 +328,9 @@ extern void set_crash_store_disable(void);
 extern void store_crash_log(char* p);
 extern void lge_set_kernel_crash_magic(void);
 #ifdef CONFIG_CPU_CP15_MMU
-/* LGE_CHANGE 
- * save cpu and mmu registers to support simulation when debugging
- * taehung.kim@lge.com 2011-10-13
+/*            
+                                                                  
+                                 
  */
 extern void lge_save_ctx(struct pt_regs*,unsigned int, unsigned int, unsigned int);
 #endif

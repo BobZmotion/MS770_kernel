@@ -39,10 +39,10 @@ static void memset16(void *_ptr, unsigned short val, unsigned count)
 #if defined(CONFIG_MACH_LGE) && \
 	(defined(CONFIG_FB_MSM_DEFAULT_DEPTH_ARGB8888) ||\
 	 defined(CONFIG_FB_MSM_DEFAULT_DEPTH_RGBA8888))
-/* LGE_CHANGE
-* This function is used for load_565rle_image function.
-* it deals with 32 bit images
-* 2011-10-20, baryun.hwang@lge.com
+/*           
+                                                       
+                             
+                                  
 */
 static void memset32(void *_ptr, unsigned short val, unsigned count)
 {
@@ -123,9 +123,9 @@ err_logo_close_file:
 #if defined(CONFIG_MACH_LGE) && \
 	(defined(CONFIG_FB_MSM_DEFAULT_DEPTH_ARGB8888) ||\
 	 defined(CONFIG_FB_MSM_DEFAULT_DEPTH_RGBA8888))
-/* LGE_CHANGE
-* This function is added to load 888rle images
-* 2011-10-20, baryun.hwang@lge.com
+/*           
+                                              
+                                  
 */
 int load_888rle_image(char *filename)
 {

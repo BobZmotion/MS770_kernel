@@ -38,9 +38,9 @@
 #endif
 
 
-/* LGE_CHANGE
- * WR for lockup during BLT mode enterence
- * 2012-06-14, jh.chun@lge.com
+/*           
+                                          
+                              
  */
 #define LGE_BLT_LOCKUP_WR
 
@@ -300,10 +300,10 @@ int mdp4_dsi_video_on(struct platform_device *pdev)
 	MDP_OUTP(MDP_BASE + DSI_VIDEO_BASE + 0x2c, dsi_underflow_clr);
 	MDP_OUTP(MDP_BASE + DSI_VIDEO_BASE + 0x30, dsi_hsync_skew);
 	MDP_OUTP(MDP_BASE + DSI_VIDEO_BASE + 0x38, ctrl_polarity);
-	/* LGE_CHANGE
-	 * Add QCT patches for blue screen issue after 1041 patches
-	 * 2012-03-15, baryun.hwang@lge.com
-	 */
+	/*           
+                                                            
+                                    
+  */
 #ifdef QCT_PATCH
 	mdp4_overlay_reg_flush(pipe, 1);
 #endif

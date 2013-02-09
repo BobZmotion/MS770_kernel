@@ -190,7 +190,7 @@ struct dsi_clk_desc {
 #define MIPI_DSI_LEN 32 /* read up to 28 paramters temporary */
 #else
 #define MIPI_DSI_LEN 8 /* 4 x 4 - 6 - 2, bytes dcs header+crc-align  */
-#endif /* CONFIG_LGE_ESD_CHECK */
+#endif /*                      */
 
 struct dsi_buf {
 	uint32 *hdr;	/* dsi host header */

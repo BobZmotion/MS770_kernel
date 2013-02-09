@@ -47,7 +47,7 @@ enum format {
 };
 
 
-#define LGE_FW_WORKAROUND // mint.choi@lge.com, 2012/04/04, pcm crash fix LGE
+#define LGE_FW_WORKAROUND //                                                 
 enum amr_rate_type {
 	AMR_RATE_4750, /* AMR 4.75 kbps */
 	AMR_RATE_5150, /* AMR 5.15 kbps */
@@ -229,7 +229,7 @@ static int msm_voip_dtx_mode_put(struct snd_kcontrol *kcontrol,
 	return 0;
 }
 
-//[AUDIO_BSP] 20120213, mint.choi@lge.com, modified voip volume level for domestic models
+//                                                                                       
 #if defined(CONFIG_MACH_MSM8960_D1LSK) || defined(CONFIG_MACH_MSM8960_D1LKT) || defined(CONFIG_MACH_MSM8960_D1LU)
 static struct snd_kcontrol_new msm_voip_controls[] = {
 	SOC_SINGLE_EXT("Voip Tx Mute", SND_SOC_NOPM, 0, 1, 0,
@@ -675,7 +675,7 @@ static int msm_pcm_close(struct snd_pcm_substream *substream)
 		/* release in_queue and free_in_queue */
 		pr_debug("release all buffer\n");
 
-		spin_lock_irqsave(&prtd->dsp_lock, dsp_flags); // LGE
+		spin_lock_irqsave(&prtd->dsp_lock, dsp_flags); //    
 
 		p_substream = prtd->playback_substream;
 		if (p_substream == NULL) {
@@ -723,12 +723,12 @@ capt:		c_substream = prtd->capture_substream;
 			}
 		}
 done:
-		spin_unlock_irqrestore(&prtd->dsp_lock, dsp_flags); // LGE
+		spin_unlock_irqrestore(&prtd->dsp_lock, dsp_flags); //    
 		p_dma_buf = (prtd->playback_substream==NULL)?NULL:&prtd->playback_substream->dma_buffer ;
-		/* LGE_CHANGE
-		 * 20120426, cheolyong.yu@lge.com
-		 * Defense code to prevent null point reference
-		 */
+		/*           
+                                   
+                                                 
+   */
 		// if( p_dma_buf->area != NULL ) {
 		if( p_dma_buf != NULL && p_dma_buf->area != NULL ) {
 //			mutex_lock(&voip_info.lock);  << this info is same with prtd
@@ -742,10 +742,10 @@ done:
 		}
 
 		c_dma_buf = (prtd->capture_substream==NULL)?NULL:&prtd->capture_substream->dma_buffer ;
-		/* LGE_CHANGE
-		 * 20120426, cheolyong.yu@lge.com
-		 * Defense code to prevent null point reference
-		 */
+		/*           
+                                   
+                                                 
+   */
 		// if( c_dma_buf->area != NULL ) {
 		if( c_dma_buf != NULL && c_dma_buf->area != NULL ) {
 //			mutex_lock(&voip_info.lock);<< this info is same with prtd

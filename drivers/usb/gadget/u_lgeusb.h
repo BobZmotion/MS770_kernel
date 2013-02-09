@@ -30,4 +30,4 @@ int lgeusb_get_sw_ver(char *);
 int lgeusb_get_sub_ver(char *);
 #endif
 
-#endif /* __U_LGEUSB_H__ */
+#endif /*                */

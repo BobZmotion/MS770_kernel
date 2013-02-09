@@ -25,11 +25,11 @@
 
 #ifdef CONFIG_LGE_NFC_PN544
 /*
-#define PN544_DRV_NAME		CONFIG_LGE_NFC_DEV_NAME
-#define NFC_GPIO_VEN		CONFIG_LGE_NFC_GPIO_VEN
-#define NFC_GPIO_IRQ		CONFIG_LGE_NFC_GPIO_IRQ
-#define NFC_GPIO_FIRM		CONFIG_LGE_NFC_GPIO_MODE
-#define NFC_I2C_SLAVEADDR	CONFIG_LGE_NFC_GPIO_I2C
+                                               
+                                             
+                                             
+                                               
+                                                 
 */
 #define PN544_DRV_NAME		"pn544"
 #define NFC_GPIO_VEN		58

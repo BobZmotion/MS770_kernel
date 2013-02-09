@@ -861,7 +861,7 @@ static int32_t q6asm_callback(struct apr_client_data *data, void *priv)
 		case ASM_SESSION_CMD_RUN:
 		case ASM_SESSION_CMD_REGISTER_FOR_TX_OVERFLOW_EVENTS:
 		case ASM_STREAM_CMD_FLUSH_READBUFS:
-// dongwook.lee@lge.com add {
+//                           
 #ifdef CONFIG_LGE_COMPRESSED_PATH
 		case ASM_SESSION_CMD_CONNECT_AFE_PORT:			
 		case ASM_DATA_CMD_IEC_60958_FRAME_RATE:
@@ -875,7 +875,7 @@ static int32_t q6asm_callback(struct apr_client_data *data, void *priv)
 		}
 		case ASM_STREAM_CMD_OPEN_READ:
 		case ASM_STREAM_CMD_OPEN_WRITE:
-// dongwook.lee@lge.com add {
+//                           
 #ifdef CONFIG_LGE_COMPRESSED_PATH
 		case ASM_STREAM_CMD_OPEN_WRITE_COMPRESSED:
 #endif
@@ -1362,7 +1362,7 @@ fail_cmd:
 	return -EINVAL;
 }
 
-// dongwook.lee@lge.com add {
+//                           
 #ifdef CONFIG_LGE_COMPRESSED_PATH
 
 int q6asm_open_write_compressed(struct audio_client *ac, uint32_t format)
@@ -3148,7 +3148,7 @@ fail_cmd:
 	return -EINVAL;
 }
 
-// dongwook.lee@lge.com add {
+//                           
 #ifdef CONFIG_LGE_COMPRESSED_PATH
 int q6asm_iec_60958_frame_rate_write(struct audio_client *ac, uint32_t sample_rate)
 {
@@ -3583,9 +3583,9 @@ static int __init q6asm_init(void)
 	out_buffer = kmalloc(OUT_BUFFER_SIZE, GFP_KERNEL);
 #ifdef CONFIG_LGE_AUDIO
 	/*
-	 * permission is changed S_IWUGO => S_IWUSR | S_IWGRP for CTS
-	 * bob.cho@lge.com, 02/07/2012
-	 */
+                                                              
+                               
+  */
 	out_dentry = debugfs_create_file("audio_out_latency_measurement_node",\
 				S_IFREG | S_IRUGO | S_IWUSR | S_IWGRP,\
 				NULL, NULL, &audio_output_latency_debug_fops);
@@ -3599,9 +3599,9 @@ static int __init q6asm_init(void)
 	in_buffer = kmalloc(IN_BUFFER_SIZE, GFP_KERNEL);
 #ifdef CONFIG_LGE_AUDIO
 	/*
-	 * permission is changed S_IWUGO => S_IWUSR | S_IWGRP for CTS
-	 * bob.cho@lge.com, 02/07/2012
-	 */
+                                                              
+                               
+  */
 	in_dentry = debugfs_create_file("audio_in_latency_measurement_node",\
 				S_IFREG | S_IRUGO | S_IWUSR | S_IWGRP,\
 				NULL, NULL, &audio_input_latency_debug_fops);

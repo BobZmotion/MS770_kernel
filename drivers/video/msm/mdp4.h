@@ -235,10 +235,10 @@ enum {
 #define MDP4_OP_SCALEX_EN	BIT(0)
 
 #define MDP4_REV40_UP_SCALING_MAX (8)
-/* LGE_CHANGE
- * QCT Patch, CR#353363
- * Black-out of Divx 88x96 video on TVout(HDMI)
- * 2012-05-18, jongyeol.yang@lge.com
+/*           
+                       
+                                               
+                                    
  */
 #if CONFIG_MACH_LGE
 #define MDP4_REV41_OR_LATER_UP_SCALING_MAX (25) //QCT Patch

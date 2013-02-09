@@ -16,7 +16,7 @@
 
 static struct msm_panel_info pinfo;
 
-// G1TDR_MPCS_FRW [hoseok.kim@lge.com 20120402] Apply QCT Case #00807552 patch to fix Frame Rate and DSI clock.
+//                                                                                                             
 // change PLL 1 ~ 3 (0xf9, 0xb0, 0xda).
 static struct mipi_dsi_phy_ctrl dsi_video_mode_phy_db = {
 	/* regulator */

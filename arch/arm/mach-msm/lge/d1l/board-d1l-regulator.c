@@ -30,7 +30,7 @@ VREG_CONSUMERS(L1) = {
 VREG_CONSUMERS(L2) = {
 	REGULATOR_SUPPLY("8921_l2",		NULL),
 	REGULATOR_SUPPLY("dsi_vdda",		"mipi_dsi.1"),
-#if 0 /* #ifdef CONFIG_MACH_LGE - temporary removed for M8960AAAAANLYA1045 */
+#if 0 /*                                                                   */
 	REGULATOR_SUPPLY("mipi_csi_vdd",	"4-000d"), /* GSBI4, Slave Addr: 0x0d, imx111 */
 	REGULATOR_SUPPLY("mipi_csi_vdd",	"4-006e"), /* GSBI4, Slave Addr: 0x6e, imx119 */
 #else
@@ -515,8 +515,8 @@ msm_pm8921_regulator_pdata[] __devinitdata = {
 	PM8XXX_NLDO1200(L28, "8921_l28", 0, 1, 1050000, 1050000, 200, "8921_s7",
 		0, 3),
 #ifdef CONFIG_MACH_LGE
-/* All LGE boards(LGP_S3, B2L and D1L) need to set L29 to 1.8V */
-/*tarzan.park@lge.com audience i2c power */
+/*                                                             */
+/*                                       */
 	PM8XXX_LDO(L29,      "8921_l29", 0, 1, 1800000, 1800000, 200, "8921_s8",
 		0, 4),
 #else
@@ -538,9 +538,9 @@ msm_rpm_regulator_init_data[] __devinitdata = {
 	RPM_SMPS(S4,	 1, 1, 0, 1800000, 1800000, NULL, 100000, 1p60),
 	RPM_SMPS(S7,	 0, 1, 0, 1150000, 1150000, NULL, 100000, 3p20),
 #ifdef CONFIG_MACH_LGE
-	/* LGE_CHANGE
-	* Change RTR8600 max voltage to improve GSM PPRE
-	* 2012-03-09  janghyun.baek  */	
+	/*           
+                                                 
+                              */	
 	RPM_SMPS(S8,	 1, 1, 1, 2100000, 2230000, NULL, 100000, 1p60),
 #else  /* QCT org */
 	RPM_SMPS(S8,	 1, 1, 1, 2050000, 2050000, NULL, 100000, 1p60),
@@ -572,10 +572,10 @@ msm_rpm_regulator_init_data[] __devinitdata = {
 	RPM_LDO(L16,	 0, 1, 0, 2800000, 2800000, NULL,      0, 0),
 	RPM_LDO(L17,	 0, 1, 0, 1800000, 2950000, NULL,      0, 0),
 #ifdef CONFIG_SII8334_MHL_TX
-	/*LGE_CHANGE
-	 *MHL_TX use L18 with 1.2V
-	 *2011-09-27, jongyeol.yang@lge.com
-	*/
+	/*          
+                           
+                                    
+ */
 	RPM_LDO(L18,	 0, 1, 0, 1100000, 1300000, "8921_s4", 0, 0),
 #else	/*qualcomm original code*/
 	RPM_LDO(L18,	 0, 1, 0, 1300000, 1300000, "8921_s4", 0, 0),

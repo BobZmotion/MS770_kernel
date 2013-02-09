@@ -202,10 +202,10 @@ int diag_hdlc_decode(struct diag_hdlc_decode_type *hdlc)
 				}
 			} else if (src_byte == CONTROL_CHAR) {
 
-				// LGE_UPDATE_S  :  albert.kwon@lge.com 2012-3-6
+				//                                              
 				if (len==0)  //remove start with 7E
 					continue;
-				// LGE_UPDATE_E  :  albert.kwon@lge.com 2012-3-6
+				//                                              
 
 				dest_ptr[len++] = src_byte;
 				pkt_bnd = 1;

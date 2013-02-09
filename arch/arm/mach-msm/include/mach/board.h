@@ -347,10 +347,10 @@ struct msm_panel_common_pdata {
 	defined(CONFIG_FB_MSM_MIPI_R61529_VIDEO_HVGA_PT_PANEL) ||\
 	defined(CONFIG_FB_MSM_MIPI_R61529_CMD_HVGA_PT_PANEL)
 #ifdef CONFIG_LGE_LCD_TUNING
-	/* LGE_CHANGE
-	 * To get init code used for LCD driver
-	 * 2011-11-09, baryun.hwang@lge.com
-	 */
+	/*           
+                                        
+                                    
+  */
 	int (*read_regset)(unsigned long);
 	int (*write_regset)(unsigned long);
 #endif

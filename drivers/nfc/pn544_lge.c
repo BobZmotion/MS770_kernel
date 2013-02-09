@@ -20,19 +20,19 @@
 #include <linux/spinlock.h>
 #include <linux/nfc/pn544_lge.h>
 
-/* LGE_CHANGE_S
- * 
- * do device driver initialization
- * using multithread during booting,
- * in order to reduce booting time.
- * 
- * byungchul.park@lge.com 20120328
+/*             
+   
+                                  
+                                    
+                                   
+   
+                                  
  */
 #define LGE_MULTICORE_FASTBOOT
 #ifdef LGE_MULTICORE_FASTBOOT
 #include <linux/kthread.h>
 #endif
-/* LGE_CHANGE_E */
+/*              */
 
 #define MAX_BUFFER_SIZE	512
 #define PN544_RESET_CMD 	0
@@ -146,13 +146,13 @@ void pn544_factory_standby_set(void)
     msleep(10);
 }
 
-/* LGE_CHANGE_S
- * 
- * do device driver initialization
- * using multithread during booting,
- * in order to reduce booting time.
- * 
- * byungchul.park@lge.com 20120328
+/*             
+   
+                                  
+                                    
+                                   
+   
+                                  
  */
 #ifdef LGE_MULTICORE_FASTBOOT
 static int pn544_factory_standby_set_thread(void *arg)
@@ -162,7 +162,7 @@ static int pn544_factory_standby_set_thread(void *arg)
 	return 0;
 }
 #endif
-/* LGE_CHANGE_E */
+/*              */
 
 static void pn544_disable_irq(struct pn544_dev *pn544_dev)
 {
@@ -651,13 +651,13 @@ static int pn544_probe(struct i2c_client *client,
 	pn544_disable_irq(pn544_dev);
 	i2c_set_clientdata(client, pn544_dev);
 	pr_info(PN544_DRV_NAME ": pn544_probe() end\n");
-/* LGE_CHANGE_S
- * 
- * do device driver initialization
- * using multithread during booting,
- * in order to reduce booting time.
- * 
- * byungchul.park@lge.com 20120328
+/*             
+   
+                                  
+                                    
+                                   
+   
+                                  
  */
 #ifdef LGE_MULTICORE_FASTBOOT
 	{
@@ -672,7 +672,7 @@ static int pn544_probe(struct i2c_client *client,
 #else
 	pn544_factory_standby_set();
 #endif
-/* LGE_CHANGE_E */
+/*              */
 	return 0;
 
 err_request_irq_failed:

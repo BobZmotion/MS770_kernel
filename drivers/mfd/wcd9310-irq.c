@@ -265,10 +265,10 @@ int tabla_irq_init(struct tabla *tabla)
 			tabla->irq_masks_cur[i]);
 	}
 
-	/* CONFIG_LGE_AUDIO
-	 * 2011-12-29, junday.lee@lge.com
-	 * Enable MBHC sleep hook event. Patched by joint lap
-	 */
+	/*                 
+                                  
+                                                      
+  */
 	if ((ret = request_threaded_irq(tabla->irq, NULL, tabla_irq_thread,
 					IRQF_TRIGGER_HIGH | IRQF_ONESHOT,
 					"tabla", tabla)))

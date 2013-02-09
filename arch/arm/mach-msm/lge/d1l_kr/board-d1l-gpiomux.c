@@ -12,7 +12,7 @@
  */
 
 /*
- * include LGE board specific header file
+                                         
  */
 #include CONFIG_BOARD_HEADER_FILE
 #include <mach/board_lge.h>
@@ -95,7 +95,7 @@ static struct gpiomux_setting gsbi5 = {
 	.drv = GPIOMUX_DRV_8MA,
 	.pull = GPIOMUX_PULL_NONE,
 };
-/* For camera flash, enables gsbi8, sunkyoo.hwang@lge.com, 10/06/2011 */
+/*                                                                    */
 #if defined(CONFIG_LGE_NFC_PN544) || defined(CONFIG_MSM_CAMERA_FLASH_LM3559)
 static struct gpiomux_setting gsbi8 = {
 	.func = GPIOMUX_FUNC_1,
@@ -144,7 +144,7 @@ static struct gpiomux_setting gsbi10 = {
 	.drv = GPIOMUX_DRV_8MA,
 	.pull = GPIOMUX_PULL_NONE,
 };
-#endif /* CONFIG_LGE_BROADCAST */
+#endif /*                      */
 
 static struct gpiomux_setting gsbi12 = {
 	.func = GPIOMUX_FUNC_1,
@@ -331,10 +331,10 @@ static struct gpiomux_setting hdmi_active_2_cfg = {
 	.pull = GPIOMUX_PULL_DOWN,
 };
 #ifndef CONFIG_MACH_LGE
-/* LGE_CHANGE
- * QCT Original Code
- * But Unused configurations by LGE.
- * 2012-03-12, jongyeol.yang@lge.com
+/*           
+                    
+                                    
+                                    
  */
 static struct gpiomux_setting hdmi_active_3_cfg = {
 	.func = GPIOMUX_FUNC_GPIO,
@@ -349,7 +349,7 @@ static struct gpiomux_setting hdmi_active_4_cfg = {
 	.pull = GPIOMUX_PULL_UP,
 	.dir = GPIOMUX_OUT_HIGH,
 };
-#endif /* CONFIG_MACH_LGE */
+#endif /*                 */
 #endif
 
 
@@ -495,7 +495,7 @@ static struct msm_gpiomux_config msm8960_gsbi_configs[] __initdata = {
 			[GPIOMUX_SUSPENDED] = &gsbi5,
 		},
 	},
-/* For camera flash, enables gsbi8, sunkyoo.hwang@lge.com, 10/06/2011 */
+/*                                                                    */
 #if defined(CONFIG_LGE_NFC_PN544) || defined(CONFIG_MSM_CAMERA_FLASH_LM3559)
 	{
 		.gpio		= 36,	/* GSBI8 I2C QUP SDA */
@@ -585,7 +585,7 @@ static struct msm_gpiomux_config msm8960_gsbi_configs[] __initdata = {
 			[GPIOMUX_SUSPENDED] = &gsbi10,
 		},
 	},
-#endif /* CONFIG_LGE_BROADCAST */
+#endif /*                      */
 
 #ifdef CONFIG_LGE_AUDIO_TPA2028D
 	/* Add the I2C driver for Audio Amp, ehgrace.kim@lge.cim, 06/13/2011 */
@@ -855,11 +855,11 @@ static struct msm_gpiomux_config msm8960_hdmi_configs[] __initdata = {
 		},
 	},
 #ifndef CONFIG_MACH_LGE
-	/* LGE_CHANGE
-	 * QCT Original Code
-	 * But Unused configurations by LGE.
-	 * 2012-03-12, jongyeol.yang@lge.com
-	 */
+	/*           
+                     
+                                     
+                                     
+  */
 	{
 		.gpio = 15,
 		.settings = {
@@ -874,7 +874,7 @@ static struct msm_gpiomux_config msm8960_hdmi_configs[] __initdata = {
 			[GPIOMUX_SUSPENDED] = &hdmi_suspend_cfg,
 		},
 	},
-#endif /* CONFIG_MACH_LGE */
+#endif /*                 */
 };
 #endif
 
@@ -900,9 +900,9 @@ static struct gpiomux_setting nfc_pn544pn65n_firm_cfg = {
 	.dir = GPIOMUX_OUT_LOW,
 };
 #endif
-//20110725, seunghyup.ryoo@lge.com, NFC GPIO Setting [END]
+//                                                        
 
-//20110725, seunghyup.ryoo@lge.com, NFC GPIO Setting [START]
+//                                                          
 #if defined(CONFIG_LGE_NFC_PN544)
 static struct msm_gpiomux_config msm8960_nfc_configs[] __initdata = {
 	{
@@ -927,7 +927,7 @@ static struct msm_gpiomux_config msm8960_nfc_configs[] __initdata = {
 	},
 };
 #endif
-//20110725, seunghyup.ryoo@lge.com, NFC GPIO Setting [END]
+//                                                        
 
 int __init msm8960_init_gpiomux(void)
 {
@@ -954,22 +954,22 @@ int __init msm8960_init_gpiomux(void)
 	msm_gpiomux_install(msm8960_audio_codec_configs,
 			ARRAY_SIZE(msm8960_audio_codec_configs));
 #ifdef CONFIG_LGE_AUDIO
-	/* LGE_CHANGE
-	* 2012-01-30, bob.cho@lge.com
-	* do not configurate gpio of auxpcm
-	* configurated in bootloader (sbl3)
-	*/
+	/*           
+                              
+                                    
+                                    
+ */
 	rc = (ARRAY_SIZE(msm8960_audio_auxpcm_configs))?rc:0;
 #else
 	msm_gpiomux_install(msm8960_audio_auxpcm_configs,
 			ARRAY_SIZE(msm8960_audio_auxpcm_configs));
 #endif
-//20110725, seunghyup.ryoo@lge.com, NFC GPIO Setting [START]
+//                                                          
 #if defined(CONFIG_LGE_NFC_PN544)
 	msm_gpiomux_install(msm8960_nfc_configs,
 			ARRAY_SIZE(msm8960_nfc_configs));
 #endif
-//20110725, seunghyup.ryoo@lge.com, NFC GPIO Setting [END]
+//                                                        
 //
 	msm_gpiomux_install(wcnss_5wire_interface,
 			ARRAY_SIZE(wcnss_5wire_interface));

@@ -32,8 +32,8 @@
 #include "msm-pcm-q6.h"
 #include <sound/q6asm.h>
 #endif
-/* This file should not be compiled when HDMI is disabled.
- * 2012-02-17, dangwoo.choi@lge.com
+/*                                                        
+                                   
  */
 //keyman
 #ifdef CONFIG_LGE_COMPRESSED_PATH
@@ -70,10 +70,10 @@ static int msm_dai_q6_hdmi_hw_params(struct snd_pcm_substream *substream,
 	dai_data->channels = params_channels(params);
 	dai_data->rate = params_rate(params);
 #ifdef CONFIG_LGE_COMPRESSED_PATH
-//	printk("msm_dai_q6_hdmi_hw_params: dai_data->rate:%d ratenum:%d, rateden:%d\n",dai_data->rate, params->rate_num, params->rate_den); //keyman.kim@lge.com
+//                                                                                                                                                         
 	if(compressed_open_flag)
 	{
-		dai_data->rate = params->rate_num;	// keyman.kim@lge.com
+		dai_data->rate = params->rate_num;	//                   
 		dai_data->port_config.hdmi_multi_ch.data_type= 1;	//non_linear case
 	}
 	else

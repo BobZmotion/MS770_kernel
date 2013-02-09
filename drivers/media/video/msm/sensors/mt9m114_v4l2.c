@@ -1233,7 +1233,7 @@ static struct msm_camera_i2c_reg_conf mt9m114_recommend_settings[] = {
 	//0xFFFF, 0x0032,
 };
 
-#if 0 // seonghyon.cho@lge.com 2011.10.21
+#if 0 //                                 
 /* Effect register settings */
 struct msm_camera_i2c_reg_conf const effect_default_tbl_sub[]=
 {

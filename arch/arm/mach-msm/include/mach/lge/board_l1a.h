@@ -73,7 +73,7 @@ enum {
 	SX150X_LIQUID,
 };
 
-/* BEGIN : jooyeong.lee@lge.com 2012-02-27 Change the charger_temp_scenario */
+/*                                                                          */
 #ifdef CONFIG_LGE_CHARGER_TEMP_SCENARIO
 enum {
 	THERM_M10,
@@ -109,7 +109,7 @@ enum {
 	CHG_BATT_STOP_CHARGING_STATE,
 };
 #endif
-/* END : jooyeong.lee@lge.com 2012-02-27 */
+/*                                       */
 #endif
 
 extern struct sx150x_platform_data msm8960_sx150x_data[];
@@ -133,7 +133,7 @@ uint32_t msm_rpm_get_swfi_latency(void);
 #define MSM_8960_GSBI3_QUP_I2C_BUS_ID 3
 #define MSM_8960_GSBI10_QUP_I2C_BUS_ID 10
 
-/* LGE Specific */
+/*              */
 #ifndef _BOARD_L1A_H_
 #define _BOARD_L1A_H_
 
@@ -163,9 +163,9 @@ uint32_t msm_rpm_get_swfi_latency(void);
 #define MSM_FB_WIDTH_MM							53
 #define MSM_FB_HEIGHT_MM						95
 
-/* CONFIG_LGE_AUDIO
- * Add devide amp parameters
- * 2011-11-30, leia.shin@lge.com
+/*                 
+                            
+                                
  */
 #define AGC_COMPRESIION_RATE		0
 #define AGC_OUTPUT_LIMITER_DISABLE	1
@@ -195,12 +195,12 @@ uint32_t msm_rpm_get_swfi_latency(void);
 	PM8XXX_GPIO_INPUT(26, PM_GPIO_PULL_UP_30),    /* SD_CARD_DET_N */ \
 	PM8XXX_GPIO_OUTPUT(43, 0)                    /* DISP_RESET_N */
 
-/* 120511 mansu.lee@lge.com N/C GPIOs setting for sleep current */
+/*                                                              */
 #ifdef CONFIG_LGE_PM
 #define LGE_PM8921_NC_GPIO_INITDATA \
 	32,33,73,74,99,100,101
 #endif
-/* 120511 mansu.lee@lge.com */
+/*                          */
 
 #ifdef CONFIG_BATTERY_MAX17043
 #define MAX17043_FUELGAUGE_GPIO_OLD_IRQ			40
@@ -351,9 +351,9 @@ uint32_t msm_rpm_get_swfi_latency(void);
 #define CAM2_VDIG_LOAD_UA       6400
 #define CAM2_VANA_LOAD_UA       85600
 #elif defined(CONFIG_IMX119)
-/* LGE_CHANGE
- * Seperate MT9V113 and IMX119.
- * 2012-02-21 yousung.kang@lge.com
+/*           
+                               
+                                  
  */
 #define CAM2_VIO_MINUV          1800000
 #define CAM2_VIO_MAXUV          1800000
@@ -382,9 +382,9 @@ uint32_t msm_rpm_get_swfi_latency(void);
 #endif
 
 #ifdef CONFIG_LGE_PM
-/* LGE_CHANGE
- * Classified the ADC value for cable detection
- * 2011-12-05, kidong0420.kim@lge.com
+/*           
+                                               
+                                     
  */
 #define ADC_CHANGE_REV	HW_REV_A
 #define IBAT_CURRENT	875

@@ -12,7 +12,7 @@
  */
 
 /*
- * include LGE board specific header file
+                                         
  */
 #include CONFIG_BOARD_HEADER_FILE
 #include <mach/board_lge.h>
@@ -159,7 +159,7 @@ struct sx150x_platform_data msm8960_sx150x_data[] = {
 #define MSM_PMEM_KERNEL_EBI1_SIZE 0x280000
 #define MSM_ION_SF_SIZE		0x3E00000 /* (62MB) */// Original MSM_PMEM_SIZE /* (40MB) */ 
 #define MSM_ION_MM_FW_SIZE	0x200000 /* (2MB) */
-#define MSM_ION_MM_SIZE		0x9C00000 /*(156MB)(168MB)(144MB)(120MB)*/ //Original MSM_PMEM_ADSP_SIZE  /* LGE_CHANGE, Camera Zero shutter lag patch, 2012.01.12 jungryoul.choi@lge.com */
+#define MSM_ION_MM_SIZE		0x9C00000 /*(156MB)(168MB)(144MB)(120MB)*/ //                                                                                                               
 #define MSM_ION_QSECOM_SIZE	0x600000 /* (6MB) */
 #define MSM_ION_MFC_SIZE	SZ_8K
 #define MSM_ION_AUDIO_SIZE	MSM_PMEM_AUDIO_SIZE
@@ -487,7 +487,7 @@ static struct platform_device ion_dev = {
 	.id = 1,
 	.dev = { .platform_data = &ion_pdata },
 };
-//added subsystem platform devices for ehgrace.kim@lge.com
+//                                                        
 #endif
 
 struct platform_device fmem_device = {
@@ -793,10 +793,10 @@ static void __init locate_unstable_memory(void)
 	msm8960_reserve_info.low_unstable_address = mb->start -
 					MIN_MEMORY_BLOCK_SIZE + mb->size;
 #ifdef CONFIG_MACH_LGE
-	/* LGE_CHANGE: Because CONFIG_ENABLE_DMM feature has some problem yet,
-	 * remove movable zone here.
-	 * 2012-03-28, bongkyu.kim@lge.com
-	 */
+	/*                                                                    
+                             
+                                   
+  */
 	msm8960_reserve_info.max_unstable_size = 0;
 #else
 	msm8960_reserve_info.max_unstable_size = MIN_MEMORY_BLOCK_SIZE;
@@ -1330,9 +1330,9 @@ static void __init msm8960_init_irq(void)
 }
 
 #ifdef CONFIG_BATTERY_MAX17043
-/* LGE_CHANGE
- * Add to enable dual mode protocol of  gsbi5 for MAX17043
- * 2011-10-04, hyuncheol0.kim@lge.com
+/*           
+                                                          
+                                     
  */
 #define MSM_GSBI5_PHYS		0x16400000
 #define GSBI_DUAL_MODE_CODE	0x60
@@ -1355,9 +1355,9 @@ static void __init msm8960_init_buses(void)
 #endif
 
 #ifdef CONFIG_BATTERY_MAX17043
-/* LGE_CHANGE
- * Add to enable dual mode protocol of  gsbi5 for MAX17043
- * 2011-10-04, hyuncheol0.kim@lge.com
+/*           
+                                                          
+                                     
  */
 #ifdef CONFIG_I2C_QUP
 	{
@@ -1387,7 +1387,7 @@ static struct msm_spi_platform_data msm8960_qup_spi_gsbi10_pdata = {
 	.max_clock_speed = 24000000,
 #endif
 };
-#endif //CONFIG_LGE_BROADCAST_TDMB
+#endif //                         
 /* 
  * QCT Original
  *
@@ -2031,15 +2031,15 @@ static struct msm_i2c_platform_data msm8960_i2c_qup_gsbi2_pdata = {
 };
 
 static struct msm_i2c_platform_data msm8960_i2c_qup_gsbi4_pdata = {
-	.clk_freq = 100000, /*LGE_CHANGE Camera BlackScreen Problem Caused by MIPI Iterrupt, 2011-04-07, kyungjin.min@lge.com*/
+	.clk_freq = 100000, /*                                                                                               */
 	.src_clk_rate = 24000000,
 	.msm_i2c_config_gpio = gsbi_qup_i2c_gpio_config,
 };
 
 #ifdef CONFIG_BATTERY_MAX17043
-/* LGE_CHANGE
- * Add to enable dual mode protocol of  gsbi5 for MAX17043
- * 2011-10-04, hyuncheol0.kim@lge.com
+/*           
+                                                          
+                                     
  */
 static struct msm_i2c_platform_data msm8960_i2c_qup_gsbi5_pdata = {
 	.clk_freq = 400000,
@@ -2055,7 +2055,7 @@ static struct msm_i2c_platform_data msm8960_i2c_qup_gsbi3_pdata = {
 	.msm_i2c_config_gpio = gsbi_qup_i2c_gpio_config,
 };
 
-/* For camera flash, enables gsbi8, sunkyoo.hwang@lge.com, 10/06/2011 */
+/*                                                                    */
 #if defined(CONFIG_LGE_NFC_PN544) || defined(CONFIG_MSM_CAMERA_FLASH_LM3559)
 static struct msm_i2c_platform_data msm8960_i2c_qup_gsbi8_pdata = {
    .clk_freq = 400000,		/*  Uses I2C as 400KHz */
@@ -2079,7 +2079,7 @@ static struct msm_i2c_platform_data msm8960_i2c_qup_gsbi10_pdata = {
 	.clk_freq = 100000,
 	.src_clk_rate = 24000000,
 };
-#endif /* CONFIG_LGE_BROADCAST */
+#endif /*                      */
 
 static struct msm_i2c_platform_data msm8960_i2c_qup_gsbi12_pdata = {
 	.clk_freq = 100000,
@@ -2153,7 +2153,7 @@ static struct spi_board_info tdmb_spi_board_info[] __initdata = {
 #endif
 	},
 };
-#endif /* CONFIG_LGE_BROADCAST */
+#endif /*                      */
 
 static struct platform_device msm_device_saw_core0 = {
 	.name          = "saw-regulator",
@@ -2177,16 +2177,16 @@ static struct tsens_platform_data msm_tsens_pdata  = {
 		.hw_type		= MSM_8960,
 		.tsens_num_sensor	= 5,
 };
-/* LGE_CHANGE
- * Change MSM_tsens driver Implementation.
- * mansu.lee@lge.com 2012-02-14
-static struct platform_device msm_tsens_device = {
-	.name	= "tsens8960-tm",
-	.id	= -1,
-	.dev	= {
-		.platform_data = &msm_tsens_pdata,
-	},
-};
+/*           
+                                          
+                               
+                                                  
+                        
+          
+         
+                                    
+   
+  
 */
 #ifdef CONFIG_MSM_FAKE_BATTERY
 static struct platform_device fish_battery_device = {
@@ -2260,11 +2260,11 @@ static struct platform_device *common_devices[] __initdata = {
 	&msm_device_smd,
 	//&msm8960_device_uart_gsbi5,
 	&msm_device_uart_dm6,
-/* 20111112, chaeuk.lee@lge.com, Add FeliCa UART [START] */
+/*                                                       */
 #ifdef CONFIG_LGE_FELICA
 	&msm8960_device_uart_gsbi8,
 #endif
-/* 20111112, chaeuk.lee@lge.com, Add FeliCa UART [END] */
+/*                                                     */
 	&msm_device_saw_core0,
 	&msm_device_saw_core1,
 	&msm8960_device_ext_5v_vreg,
@@ -2290,7 +2290,7 @@ static struct platform_device *common_devices[] __initdata = {
 	&msm8960_device_qup_spi_gsbi10,
 #else
 	&msm8960_device_qup_i2c_gsbi10,
-#endif /* CONFIG_LGE_BROADCAST */
+#endif /*                      */
 
 #ifndef CONFIG_MSM_DSPS
 	&msm8960_device_qup_i2c_gsbi12,
@@ -2424,7 +2424,7 @@ static struct platform_device *rumi3_devices[] __initdata = {
 #endif /* QCT Original */
 
 static struct platform_device *cdp_devices[] __initdata = {
-//added the subsystem platform devices by ehgrace.kim@lge.com
+//                                                           
 	&msm_8960_q6_lpass,
 	&msm_8960_q6_mss_fw,
 	&msm_8960_q6_mss_sw,
@@ -2476,9 +2476,9 @@ static struct platform_device *cdp_devices[] __initdata = {
 	&msm_bus_mm_fabric,
 	&msm_bus_sys_fpb,
 	&msm_bus_cpss_fpb,
-/* mansu.lee@lge.com 2012-02-14 Change MSM_tsens driver Implementation. */
+/*                                                                      */
 /*	&msm_tsens_device,      */
-/* mansu.lee@lge.com 2012-02-14 */
+/*                              */
 };
 
 static void __init msm8960_i2c_init(void)
@@ -2511,10 +2511,10 @@ static void __init msm8960_i2c_init(void)
 #endif
 
 #ifdef CONFIG_BATTERY_MAX17043
-	/* LGE_CHANGE
-	 * Add to enable dual mode protocol of  gsbi5 for MAX17043
-	 * 2011-10-04, hyuncheol0.kim@lge.com
-	 */
+	/*           
+                                                           
+                                      
+  */
 	if (lge_get_uart_mode())
 		msm8960_i2c_qup_gsbi5_pdata.use_gsbi_shared_mode = 1;
 
@@ -2522,7 +2522,7 @@ static void __init msm8960_i2c_init(void)
 					&msm8960_i2c_qup_gsbi5_pdata;
 #endif
 
-/* For camera flash, enables gsbi8, sunkyoo.hwang@lge.com, 10/06/2011 */
+/*                                                                    */
 #if defined(CONFIG_LGE_NFC_PN544) || defined(CONFIG_MSM_CAMERA_FLASH_LM3559)
 	msm8960_device_qup_i2c_gsbi8.dev.platform_data =
 					&msm8960_i2c_qup_gsbi8_pdata;
@@ -2886,9 +2886,9 @@ static void __init msm8960_sim_init(void)
 		&msm8960_device_watchdog.dev.platform_data;
 
 	wdog_pdata->bark_time = 15000;
-/*  mansu.lee@lge.com 2012-02-14 Change MSM_tsens driver Implementation. */
+/*                                                                       */
 	msm_tsens_early_init(&msm_tsens_pdata);
-/*  mansu.lee@lge.com 2012-02-14 */
+/*                               */
 	BUG_ON(msm_rpm_init(&msm_rpm_data));
 	BUG_ON(msm_rpmrs_levels_init(msm_rpmrs_levels,
 				ARRAY_SIZE(msm_rpmrs_levels)));
@@ -2926,9 +2926,9 @@ static void __init msm8960_sim_init(void)
 
 static void __init msm8960_rumi3_init(void)
 {
-/*  mansu.lee@lge.com 2012-02-14 Change MSM_tsens driver Implementation. */
+/*                                                                       */
 	msm_tsens_early_init(&msm_tsens_pdata);
-/*  mansu.lee@lge.com 2012-02-14 */
+/*                               */
 	BUG_ON(msm_rpm_init(&msm_rpm_data));
 	BUG_ON(msm_rpmrs_levels_init(msm_rpmrs_levels,
 				ARRAY_SIZE(msm_rpmrs_levels)));
@@ -2964,9 +2964,9 @@ static void __init msm8960_cdp_init(void)
 {
 	if (meminfo_init(SYS_MEMORY, SZ_256M) < 0)
 		pr_err("meminfo_init() failed!\n");
-/*  mansu.lee@lge.com 2012-02-14 Change MSM_tsens driver Implementation. */
+/*                                                                       */
 	msm_tsens_early_init(&msm_tsens_pdata);
-/*  mansu.lee@lge.com 2012-02-14 */
+/*                               */
 	BUG_ON(msm_rpm_init(&msm_rpm_data));
 	BUG_ON(msm_rpmrs_levels_init(msm_rpmrs_levels,
 				ARRAY_SIZE(msm_rpmrs_levels)));
@@ -3007,7 +3007,7 @@ static void __init msm8960_cdp_init(void)
 #ifdef CONFIG_LGE_BROADCAST_TDMB
 	msm8960_device_qup_spi_gsbi10.dev.platform_data = &msm8960_qup_spi_gsbi10_pdata;
 	spi_register_board_info(tdmb_spi_board_info, ARRAY_SIZE(tdmb_spi_board_info));
-#endif /* CONFIG_LGE_BROADCAST */
+#endif /*                      */
 
 	msm8960_init_pmic();
 #if !defined(CONFIG_MACH_LGE)
@@ -3056,7 +3056,7 @@ static void __init msm8960_cdp_init(void)
 	lge_add_lcd_devices();
 	lge_add_input_devices();
 	lge_add_misc_devices();
-/*tarzan.park@lge.com 20110930 call sound device */
+/*                                               */
 	lge_add_sound_devices();
 #if defined(CONFIG_LGE_NFC_PN544)
 	lge_add_nfc_devices();
@@ -3081,7 +3081,7 @@ static void __init msm8960_cdp_init(void)
 		platform_add_devices(mdm_devices, ARRAY_SIZE(mdm_devices)); 
 }
 
-/* LGE Specific functions */
+/*                        */
 struct platform_device *pmem_devices[] __initdata = {
 #ifdef CONFIG_ANDROID_PMEM
 #ifndef CONFIG_MSM_MULTIMEDIA_USE_ION

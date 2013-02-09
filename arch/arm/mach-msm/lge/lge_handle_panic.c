@@ -25,9 +25,9 @@
 
 #include <mach/subsystem_restart.h>
 #ifdef CONFIG_CPU_CP15_MMU
-/* LGE_CHANGE 
- * save cpu and mmu registers to support simulation when debugging
- * taehung.kim@lge.com 2011-10-13
+/*            
+                                                                  
+                                 
  */
 #include <linux/ptrace.h>
 #endif
@@ -49,9 +49,9 @@ static unsigned int crash_buf_size = 0;
 static int crash_store_flag = 0;
 
 #ifdef CONFIG_CPU_CP15_MMU
-/* LGE_CHANGE 
- * save cpu and mmu registers to support simulation when debugging
- * taehung.kim@lge.com 2011-10-13
+/*            
+                                                                  
+                                 
  */
 unsigned long *cpu_crash_ctx=NULL;
 #endif
@@ -170,9 +170,9 @@ void store_crash_log(char *p)
 }
 
 #ifdef CONFIG_CPU_CP15_MMU
-/* LGE_CHANGE 
- * save cpu and mmu registers to support simulation when debugging
- * taehung.kim@lge.com 2011-10-13
+/*            
+                                                                  
+                                 
  */
 void lge_save_ctx(struct pt_regs* regs, unsigned int ctrl, unsigned int transbase, unsigned int dac)
 {
@@ -296,9 +296,9 @@ static int __init lge_panic_handler_probe(struct platform_device *pdev)
 	void *buffer;
 	int ret = 0;
 #ifdef CONFIG_CPU_CP15_MMU
-/* LGE_CHANGE 
- * save cpu and mmu registers to support simulation when debugging
- * taehung.kim@lge.com 2011-10-13
+/*            
+                                                                  
+                                 
  */
 	void *ctx_buf;
 	size_t ctx_start;
@@ -330,9 +330,9 @@ static int __init lge_panic_handler_probe(struct platform_device *pdev)
 	crash_dump_log->size = 0;
 	crash_buf_size = buffer_size - offsetof(struct crash_log_dump, buffer);
 #ifdef CONFIG_CPU_CP15_MMU
-/* LGE_CHANGE 
- * save cpu and mmu registers to support simulation when debugging
- * taehung.kim@lge.com 2011-10-13
+/*            
+                                                                  
+                                 
  */
 	ctx_start = res->end + 1;
 	ctx_buf = ioremap(ctx_start,1024);

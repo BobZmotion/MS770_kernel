@@ -55,7 +55,7 @@ struct lge_isa1200_platform_data {
 	int (*clock)(int enable);		/* clock control for PWM/CLK. NULL assumes clock is always-on. */
 
 	int max_timeout; /* maximum available timeout in millisec */
-	int default_vib_strength; /* default vibrator strength : register LGE_ISA1200_HCTRL5 value */
+	int default_vib_strength; /*                                                               */
 
 	struct isa1200_reg_seq *init_seq; /* initialization sequence */
 };

@@ -70,7 +70,7 @@ struct hdmi_msm_state_type {
 	boolean reauth ;
 	struct work_struct hdcp_reauth_work, hdcp_work;
 	struct completion hdcp_success_done;
-/* LGE : Solve dtv_off called during HDCP authentification*/
+/*                                                        */
 #ifdef CONFIG_MACH_LGE
 	struct completion hdcp_activation_done;
 #endif
@@ -119,10 +119,10 @@ struct hdmi_msm_state_type {
 extern struct hdmi_msm_state_type *hdmi_msm_state;
 
 #ifdef CONFIG_MACH_LGE
-/* LGE_CHANGE
- * patch from QCT.
- * Add code for crash in hdmi_pll_enable()
- * 2010-03-15, soodong.kim@lge.com
+/*           
+                  
+                                          
+                                  
  */
 extern bool device_suspended;
 #endif

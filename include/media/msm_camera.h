@@ -769,7 +769,7 @@ struct msm_snapshot_pp_status {
 #define CFG_GET_EEPROM_DATA		33
 #define CFG_SET_ACTUATOR_INFO		34
 #define CFG_GET_ACTUATOR_INFO		35
-#define CFG_SET_SOC_FPS		36	/* LGE_CHANGE, Adds FPS capabilities for SoC Sensors, 2012-05-16, yongjin1.kim@lge.com */
+#define CFG_SET_SOC_FPS		36	/*                                                                                     */
 #define CFG_MAX			37
 
 
@@ -972,12 +972,12 @@ struct fps_cfg {
 	uint16_t fps_div;
 	uint32_t pict_fps_div;
 };
-/* LGE_CHANGE_S, Adds FPS capabilities for SoC Sensors, 2012-05-16, yongjin1.kim@lge.com */
+/*                                                                                       */
 struct fps_minmax_cfg {
 	uint8_t minfps;
 	uint8_t maxfps;
 };
-/* LGE_CHANGE_E, Adds FPS capabilities for SoC Sensors, 2012-05-16, yongjin1.kim@lge.com */
+/*                                                                                       */
 struct wb_info_cfg {
 	uint16_t red_gain;
 	uint16_t green_gain;
@@ -1132,7 +1132,7 @@ struct sensor_cfg_data {
 		struct cord aec_cord;
 		int is_autoflash;
 		struct mirror_flip mirror_flip;
-		struct fps_minmax_cfg fps_range;	/* LGE_CHANGE, Adds FPS capabilities for SoC Sensors, 2012-05-16, yongjin1.kim@lge.com */
+		struct fps_minmax_cfg fps_range;	/*                                                                                     */
 	} cfg;
 };
 

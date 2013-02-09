@@ -1048,7 +1048,7 @@ struct asm_stream_cmd_open_write {
 	u32            format;
 } __attribute__((packed));
 
-// dongwook.lee@lge.com add {
+//                           
 #ifdef CONFIG_LGE_COMPRESSED_PATH
 
 #define ASM_MEDIA_FMT_AC3_DEC                   0x00010BF6

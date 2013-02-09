@@ -229,16 +229,16 @@ static int32_t s5k4e1_act_probe(
 		(struct v4l2_subdev *)sdev);
 }
 
-/* LGE_CHANGE_S, Actuator noise fix when exit, 2012.04.12 yousung.kang@lge.com */
+/*                                                                             */
 int32_t s5k4e1_act_power_down(void *a_info)
 {
 	int32_t rc = 0;
 	rc = s5k4e1_act_t.func_tbl.actuator_power_down(&s5k4e1_act_t);
 	return rc;
 }
-/* LGE_CHANGE_E, Actuator noise fix when exit, 012.04.12 yousung.kang@lge.com */
+/*                                                                            */
 
-/* LGE_CHANGE_S, Noise fix using h/w damping, 2012.04.16 yousung.kang@lge.com */
+/*                                                                            */
 int32_t s5k4e1_actuator_set_default_focus(
 	struct msm_actuator_ctrl_t *a_ctrl)
 {
@@ -285,7 +285,7 @@ int32_t s5k4e1_actuator_move_focus(
 	else
 		return msm_actuator_move_focus(a_ctrl, dir, num_steps);
 }
-/* LGE_CHANGE_E, Noise fix using h/w damping, 2012.04.16 yousung.kang@lge.com */
+/*                                                                            */
 
 int32_t s5k4e1_actuator_af_power_down(struct msm_actuator_ctrl_t *a_ctrl)
 {
@@ -298,7 +298,7 @@ int32_t s5k4e1_actuator_af_power_down(struct msm_actuator_ctrl_t *a_ctrl)
 	if (a_ctrl->step_position_table[a_ctrl->curr_step_pos] !=
 		a_ctrl->initial_code) {
 
-/* LGE_CHANGE_S, Fix actuator noise when Camera close, 2012.04.13, yousung.kang@lge.com */
+/*                                                                                      */
 /*
 		if(a_ctrl->curr_step_pos > 11)
 		{
@@ -323,7 +323,7 @@ int32_t s5k4e1_actuator_af_power_down(struct msm_actuator_ctrl_t *a_ctrl)
 		  mdelay(100);
 
 		}*/
-/* LGE_CHANGE_E, Fix actuator noise when Camera close, 2012.04.13, yousung.kang@lge.com */
+/*                                                                                      */
 
 		rc = a_ctrl->func_tbl.actuator_set_default_focus(a_ctrl);
 	    mdelay(100);
@@ -344,9 +344,9 @@ static struct msm_actuator_ctrl_t s5k4e1_act_t = {
 		.a_init_table = s5k4e1_i2c_add_driver_table,
 		.a_create_subdevice = s5k4e1_act_probe,
 		.a_config = s5k4e1_act_config,
-		/* LGE_CHANGE_S, Actuator noise fix when exit, 2012.04.12 yousung.kang@lge.com */
+		/*                                                                             */
 		.a_power_down = s5k4e1_act_power_down,
-		/* LGE_CHANGE_E, Actuator noise fix when exit, 012.04.12 yousung.kang@lge.com */
+		/*                                                                            */
 
 	},
 
@@ -381,17 +381,17 @@ static struct msm_actuator_ctrl_t s5k4e1_act_t = {
 		.actuator_set_params = s5k4e1_set_params,
 		.actuator_init_focus = NULL,
 		.actuator_init_table = msm_actuator_init_table,
-		.actuator_move_focus = s5k4e1_actuator_move_focus, 	/* LGE_CHANGE, Noise fix using h/w damping, 2012.04.16 ku.kwon@lge.com */
+		.actuator_move_focus = s5k4e1_actuator_move_focus, 	/*                                                                     */
 		.actuator_write_focus = msm_actuator_write_focus,
 		.actuator_i2c_write = s5k4e1_wrapper_i2c_write,
-		.actuator_set_default_focus = s5k4e1_actuator_set_default_focus,	/* LGE_CHANGE, Noise fix using h/w damping, 2012.04.16 ku.kwon@lge.com */
-/* LGE_CHANGE_S, Actuator noise fix when exit, 2012.04.12 yousung.kang@lge.com */
+		.actuator_set_default_focus = s5k4e1_actuator_set_default_focus,	/*                                                                     */
+/*                                                                             */
 		.actuator_power_down = msm_actuator_af_power_down,
 //		.actuator_power_down = s5k4e1_actuator_af_power_down,
-/* LGE_CHANGE_E, Actuator noise fix when exit, 012.04.12 yousung.kang@lge.com */
+/*                                                                            */
 	},
 
-/* LGE_CHANGE S, CTS Fix for testParameters, 2012-03-01 ku.kwon@lge.com */
+/*                                                                      */
 	.get_info = {
 		.focal_length_num = 343,
 		.focal_length_den = 100,
@@ -406,7 +406,7 @@ static struct msm_actuator_ctrl_t s5k4e1_act_t = {
 		.ver_view_angle_num = 4915,
 		.ver_view_angle_den = 100,
 	},
-/* LGE_CHANGE E, CTS Fix for testParameters, 2012-03-01 ku.kwon@lge.com */
+/*                                                                      */
 
 };
 

@@ -4408,10 +4408,10 @@ asmlinkage void __sched preempt_schedule_irq(void)
 {
 	struct thread_info *ti = current_thread_info();
 
-	/* LGE_CHANGE
-	 * 2012-02-02, jamin.koo@lge.com
-	 * Divide BUG_ON for narrowing the kernel crash problem respectively
-	 */
+	/*           
+                                 
+                                                                     
+  */
 #if 1
 	BUG_ON(ti->preempt_count);
 	BUG_ON(!irqs_disabled());

@@ -1327,7 +1327,7 @@ static void composite_debugfs_init(struct usb_composite_dev	*cdev)
 
 	debugfs_create_file("desc", 0444, dent, cdev, &debug_desc_ops);
 }
-#endif /* CONFIG_USB_G_LGE_ANDROID && CONFIG_DEBUG_FS */
+#endif /*                                             */
 
 static int composite_bind(struct usb_gadget *gadget)
 {
@@ -1422,10 +1422,10 @@ static int composite_bind(struct usb_gadget *gadget)
 		goto fail;
 
 #if defined CONFIG_DEBUG_FS && defined CONFIG_USB_G_LGE_ANDROID
-	/* LGE_CHANGE
-	 * Add debugfs for lge usb profile.
-	 * 2011-09-23, hyunhui.park@lge.com
-	 */
+	/*           
+                                    
+                                    
+  */
 	composite_debugfs_init(cdev);
 #endif
 

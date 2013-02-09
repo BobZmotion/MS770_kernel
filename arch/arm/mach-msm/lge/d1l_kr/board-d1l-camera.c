@@ -19,7 +19,7 @@
 #include "devices.h"
 #if !defined(CONFIG_MACH_LGE)
 #include "board-8960.h"
-#else /* for LGE Board */
+#else /*               */
 #include <mach/board_lge.h>
 #include CONFIG_BOARD_HEADER_FILE
 #endif
@@ -367,13 +367,13 @@ static struct msm_bus_vectors cam_zsl_vectors[] = {
 		.src = MSM_BUS_MASTER_VFE,
 		.dst = MSM_BUS_SLAVE_EBI_CH0,
 		.ab  = 302071680,
-/* Start LGE_BSP_CAMERA : jongkyung.kim@lge.com 2012-02-20 Continuos Shot Preveiw& Capture Abnormal Phenomenon with ZSL, Case: 00754853 */
+/*                                                                                                                                      */
 #if 0
 		.ib  = 1208286720,
 #else
 		.ib  = 1812430080,
 #endif
-/* End LGE_BSP_CAMERA   : jongkyung.kim@lge.com 2012-02-20 Continuos Shot Preveiw& Capture Abnormal Phenomenon with ZSL, Case: 00754853 */
+/*                                                                                                                                      */
 
 	},
 	{
@@ -386,13 +386,13 @@ static struct msm_bus_vectors cam_zsl_vectors[] = {
 		.src = MSM_BUS_MASTER_JPEG_ENC,
 		.dst = MSM_BUS_SLAVE_EBI_CH0,
 		.ab  = 540000000,
-/* Start LGE_BSP_CAMERA : jongkyung.kim@lge.com 2012-02-20 Continuos Shot Preveiw& Capture Abnormal Phenomenon with ZSL, Case: 00754853 */
+/*                                                                                                                                      */
 #if 0
 		.ib  = 1350000000,
 #else
 		.ib  = 2025000000,
 #endif
-/* End LGE_BSP_CAMERA	: jongkyung.kim@lge.com 2012-02-20 Continuos Shot Preveiw& Capture Abnormal Phenomenon with ZSL, Case: 00754853 */
+/*                                                                                                                                    */
 	},
 	{
 		.src = MSM_BUS_MASTER_JPEG_ENC,

@@ -104,7 +104,7 @@ static struct pm8xxx_gpio_init pm8921_gpios[] __initdata = {
 	PM8XXX_GPIO_INPUT(MAX17043_FUELGAUGE_GPIO_IRQ, PM_GPIO_PULL_UP_30),    /* FUEL_GAUGE_INT_N */
 #endif
 #ifdef CONFIG_LGE_AUDIO
-/* add by ehgrace.kim@lge.com for headset */
+/*                                        */
 	PM8XXX_GPIO_OUTPUT(31, 0),                    /* EAR_MIC_EN_35D */
 	PM8XXX_GPIO_INPUT(32, PM_GPIO_PULL_NO),       /* EARPOL_DETECT_35D */
 #endif
@@ -121,7 +121,7 @@ static struct pm8xxx_mpp_init pm8921_mpps[] __initdata = {
 	PM8XXX_MPP_INIT(PM8XXX_AMUX_MPP_8, A_INPUT, PM8XXX_MPP_AIN_AMUX_CH8,
 								DOUT_CTRL_LOW),
 #ifdef CONFIG_LGE_AUDIO
-/* add by ehgrace.kim@lge.com for headset */
+/*                                        */
 	PM8XXX_MPP_INIT(4, D_INPUT, PM8921_MPP_DIG_LEVEL_S4, DIN_TO_INT),
 	PM8XXX_MPP_INIT(9, D_INPUT, PM8921_MPP_DIG_LEVEL_S4, DIN_TO_INT),
 #endif
@@ -132,10 +132,10 @@ void __init msm8960_pm8921_gpio_mpp_init(void)
 	int i, rc;
 
 	for (i = 0; i < ARRAY_SIZE(pm8921_gpios); i++) {
-		/* LGE_CHANGE
-		 * 2011-12-03, hyuncheol0.kim@lge.com
-		 * Work-around code to support old H/W revision.
-		 */
+		/*           
+                                       
+                                                  
+   */
 #ifdef CONFIG_LGE_PM
 #ifdef CONFIG_BATTERY_MAX17043
 		if (pm8921_gpios[i].gpio ==
@@ -205,14 +205,14 @@ static struct pm8xxx_adc_amux pm8xxx_adc_channels_data[] = {
 		ADC_DECIMATION_TYPE2, ADC_SCALE_XOTHERM},
 	{"pa_therm0", ADC_MPP_1_AMUX3, CHAN_PATH_SCALING1, AMUX_RSV1,
 		ADC_DECIMATION_TYPE2, ADC_SCALE_PA_THERM},
-/* BEGIN: kidong0420.kim@lge.com 2011-11-09 Implement cable detection */
+/*                                                                    */
 	{"pcb_rev", ADC_MPP_1_AMUX6, CHAN_PATH_SCALING1, AMUX_RSV1,
 		ADC_DECIMATION_TYPE2, ADC_SCALE_DEFAULT},
 	{"cdma_therm", ADC_MPP_1_AMUX8, CHAN_PATH_SCALING1, AMUX_RSV1,
 		ADC_DECIMATION_TYPE2, ADC_SCALE_XOTHERM},
 	{"usb_id", ADC_MPP_1_AMUX6, CHAN_PATH_SCALING1, AMUX_RSV1,
 		ADC_DECIMATION_TYPE2, ADC_SCALE_DEFAULT},
-/* END: kidong0420.kim@lge.com 2011-11-09 */
+/*                                        */
 };
 
 static struct pm8xxx_adc_properties pm8xxx_adc_data = {
@@ -281,7 +281,7 @@ static int pm8921_therm_mitigation[] = {
 	325,
 };
 
-/* LGE_UPDATE_S, 4.35 High Cell Voltage, roy.park@lge.com, 2011/08/17 -->[ */
+/*                                                                         */
 #if defined(CONFIG_LGE_PM_435V_BATT)
 #define MAX_VOLTAGE_MV		4350
 static struct pm8921_charger_platform_data pm8921_chg_pdata __devinitdata = {
@@ -298,20 +298,20 @@ static struct pm8921_charger_platform_data pm8921_chg_pdata __devinitdata = {
 #ifdef CONFIG_LGE_CHARGER_TEMP_SCENARIO
 	.cool_temp			= 0,	/* from 10, */
 	.warm_temp			= 0,	/* from 40, */
-/* BEGIN : jooyeong.lee@lge.com 2012-02-27 Change the charger_temp_scenario */
+/*                                                                          */
 	.temp_level_1		= 55,
 	.temp_level_2		= 45,
 	.temp_level_3		= 42,
 	.temp_level_4		= -5,
 	.temp_level_5		= -10,
-/* END : jooyeong.lee@lge.com 2012-02-27 */
+/*                                       */
 
-	/* LGE_CHANGE
- 	* add the xo_thermal mitigation way 
-	* 2012-04-10, hiro.kwon@lge.com
-	*/
+	/*           
+                                      
+                                
+ */
 	.thermal_mitigation_method = IUSB_REDUCE_METHOD,
-	/* 2012-04-10, hiro.kwon@lge.com */	
+	/*                               */	
 
 #else
 	.cool_temp			= 0,	/* from 10, */
@@ -348,19 +348,19 @@ static struct pm8921_charger_platform_data pm8921_chg_pdata __devinitdata = {
 #ifdef CONFIG_LGE_CHARGER_TEMP_SCENARIO
 	.cool_temp			= 0,	/* from 10, */
 	.warm_temp			= 0,	/* from 40, */
-/* BEGIN : jooyeong.lee@lge.com 2012-02-27 Change the charger_temp_scenario */
+/*                                                                          */
 	.temp_level_1		= 55,
 	.temp_level_2		= 45,
 	.temp_level_3		= 42,
 	.temp_level_4		= -5,
 	.temp_level_5		= -10,
-/* END : jooyeong.lee@lge.com 2012-02-27 */
-	/* LGE_CHANGE
- 	* add the xo_thermal mitigation way 
-	* 2012-04-10, hiro.kwon@lge.com
-	*/
+/*                                       */
+	/*           
+                                      
+                                
+ */
 	.thermal_mitigation_method = IUSB_REDUCE_METHOD,
-	/* 2012-04-10, hiro.kwon@lge.com */	
+	/*                               */	
 
 #else
 	.cool_temp		= -10, /* from 10 */
@@ -384,7 +384,7 @@ static struct pm8921_charger_platform_data pm8921_chg_pdata __devinitdata = {
 	.batt_id_pu_gpio	= BATT_ID_PULLUP_GPIO,	/* No. of msm gpio for battery id pull up */
 #endif
 };
-#endif/* LGE_UPDATE_E, 4.35 High Cell Voltage,  <--] */
+#endif/*                                             */
 
 
 static struct pm8xxx_misc_platform_data pm8xxx_misc_pdata = {
@@ -553,16 +553,16 @@ static struct msm_ssbi_platform_data msm8960_ssbi_pm8921_pdata __devinitdata = {
 
 #ifdef CONFIG_BATTERY_MAX17043
 
-/* BEGIN: hiro.kwon@lge.com 2011-12-22 RCOMP update when the temperature of the cell changes */
+/*                                                                                           */
 #if defined (CONFIG_MACH_MSM8960_D1LA)
-/* START: mansu.lee@lge.com 2012-01-16 Implement Quickstart for Test Mode and SOC Accurency */
+/*                                                                                          */
 static struct max17043_ocv_to_soc_data cal_data[] = {
 	{3400,	 0}, {3660,	 2}, {3711,	 15}, {3757,	 19},
 	{3770,	26}, {3778,	31}, {3795, 	 36}, {3821,	 45},
 	{3855,	54}, {3910,	60}, {3971,	 67}, {4023,	 74},
 	{4080,	80}, {4190,	91}, {4310,	100}, {-1,	 -1},
 };
-/* END: mansu.lee@lge.com 2012-01-16 */
+/*                                   */
 static struct max17043_platform_data max17043_pdata = {
 	.starting_rcomp	=	0x44,/* Default Value for BL-53QH Battery */
 	.temp_co_hot	=	-125,
@@ -570,7 +570,7 @@ static struct max17043_platform_data max17043_pdata = {
 	.soc_cal_data	=	cal_data,
 };
 #elif defined (CONFIG_MACH_MSM8960_D1LV)
-/* START: mansu.lee@lge.com 2012-01-16 Implement Quickstart for Test Mode and SOC Accurency */
+/*                                                                                          */
 static struct max17043_ocv_to_soc_data cal_data[] = {
 	{3400,	 0}, {3691,	13}, {3732,	 15}, {3740,	 18},
 	{3743,	23}, {3757,	23}, {3760,	 27}, {3762,	 31},
@@ -578,7 +578,7 @@ static struct max17043_ocv_to_soc_data cal_data[] = {
 	{4197,	91}, {4307,	100}, {-1,	-1},
 
 };
-/* END: mansu.lee@lge.com 2012-01-16 */
+/*                                   */
 static struct max17043_platform_data max17043_pdata = {
 	.starting_rcomp	=	0x44,
 	.temp_co_hot	=	0,
@@ -586,15 +586,15 @@ static struct max17043_platform_data max17043_pdata = {
 	.soc_cal_data	=	cal_data,
 };
 #endif
-/* END: hiro.kwon@lge.com 2011-12-22 */
+/*                                   */
 
 static struct i2c_board_info max17043_i2c_info[] = {
 	{
 		I2C_BOARD_INFO("max17043", MAX17043_FUELGAUGE_I2C_ADDR),
 		.irq = PM8921_GPIO_PM_TO_SYS(MAX17043_FUELGAUGE_GPIO_IRQ),
-		/* BEGIN: hiro.kwon@lge.com 2011-12-22 RCOMP update when the temperature of the cell changes */
+		/*                                                                                           */
 		.platform_data = (void *)&max17043_pdata,
-		/* END: hiro.kwon@lge.com 2011-12-22 */
+		/*                                   */
 	}
 };
 
@@ -607,10 +607,10 @@ static struct i2c_registry d1l_i2c_pm_subsystem __initdata = {
 
 static void __init lge_add_i2c_pm_subsystem_devices(void)
 {
-	/* LGE_CHANGE
-	 * 2011-12-03, hyuncheol0.kim@lge.com
-	 * Work-around code to support old H/W revision.
-	 */
+	/*           
+                                      
+                                                 
+  */
 #if defined (CONFIG_MACH_MSM8960_D1LA)
 	if (lge_get_board_revno() >= HW_REV_A &&
 		lge_get_board_revno() <= HW_REV_B)
@@ -630,7 +630,7 @@ static void __init lge_add_i2c_pm_subsystem_devices(void)
 
 #endif // CONFIG_BATTERY_MAX17043
 
-#endif // CONFIG_LGE_PM
+#endif //              
 
 /* common function */
 void __init lge_add_pm_devices(void)

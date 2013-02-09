@@ -50,7 +50,6 @@ static struct msm_camera_i2c_reg_conf s5k4e1_prev_settings[] = {
 	/* MIPI Size Setting ... */
 	{0x30A9, 0x02},/* Horizontal Binning On */
 	{0x300E, 0xEB},/* Vertical Binning On */
-	{0x0387, 0x03},/* y_odd_inc 03(10b AVG) */
 	{0x0344, 0x00},/* x_addr_start 0 */
 	{0x0345, 0x00},
 	{0x0348, 0x0A},/* x_addr_end 2607 */
@@ -82,13 +81,13 @@ static struct msm_camera_i2c_reg_conf s5k4e1_prev_settings[] = {
 	{0x0204, 0x00},		//analog gain[msb] 0100 x8 0080 x4
 	{0x0205, 0x80},		//analog gain[lsb] 0040 x2 0020 x1
 #else
-	{0x0202, 0x04}, //coarse integration time
-	{0x0203, 0x5A},
-	{0x0204, 0x00}, //analog gain[msb]
-	{0x0205, 0x22}, //analog gain[lsb]
+	{0x0202, 0x03}, //coarse integration time
+	{0x0203, 0xCE},
+	{0x0204, 0x00}, //analog gain[msb] 
+	{0x0205, 0x30}, //analog gain[lsb] 
 #endif
 };
-/* LGE_CHANGE_S Full HD support, 2012.03.28 yt.kim@lge.com */
+/*                                                         */
 static struct msm_camera_i2c_reg_conf s5k4e1_video_settings[] = {
 	{0x301B, 0x75 },/* CDS option setting */
 	{0x30BC, 0xA8 },/* 0x98=>0xA8 */
@@ -106,7 +105,6 @@ static struct msm_camera_i2c_reg_conf s5k4e1_video_settings[] = {
 	// MIPI Size Setting
 	{0x30A9, 0x03},/* Horizontal Binning On */
 	{0x300E, 0xE8},/* Vertical Binning On */
-	{0x0387, 0x01},/* y_odd_inc */
 	{0x034C, 0x07},/* x_output size */
 	{0x034D, 0x90},
 	{0x034E, 0x04},/* y_output size */
@@ -116,9 +114,17 @@ static struct msm_camera_i2c_reg_conf s5k4e1_video_settings[] = {
 	{0x0346, 0x01},/* y_addr_start 432 */
 	{0x0347, 0xB0},
 	{0x0348, 0x08},/* x_addr_end 2272 */
-	{0x0349, 0xE0},
+	{0x0349, 0xDF},//E0=>DF
 	{0x034A, 0x05},/* y_addr_end 1528 */
-	{0x034B, 0xF8},
+	{0x034B, 0xF7},//0xF8=>0xF7 0829
+	{0x0380, 0x00},/* x_even_inc 1 */
+	{0x0381, 0x01},
+	{0x0382, 0x00},/* x_odd_inc 1 */
+	{0x0383, 0x01},
+	{0x0384, 0x00},/* y_even_inc 1 */
+	{0x0385, 0x01},
+	{0x0386, 0x00},/* y_odd_inc 1 */
+	{0x0387, 0x01},
 	{0x30BF, 0xAB},
 	{0x30C0, 0x80},
 	{0x30C8, 0x09},
@@ -130,13 +136,13 @@ static struct msm_camera_i2c_reg_conf s5k4e1_video_settings[] = {
 	{0x0204, 0x00},  //analog gain[msb] 0100 x8 0080 x4
 	{0x0205, 0x80},  //analog gain[lsb] 0040 x2 0020 x1
 #else
-	{0x0202, 0x04}, //coarse integration time
-	{0x0203, 0x5A},
-	{0x0204, 0x00}, //analog gain[msb]
-	{0x0205, 0x22}, //analog gain[lsb]
+	{0x0202, 0x05}, //coarse integration time
+	{0x0203, 0xB7},
+	{0x0204, 0x00}, //analog gain[msb] 
+	{0x0205, 0x20}, //analog gain[lsb] 
 #endif
 };
-/* LGE_CHANGE_E Full HD support, 2012.03.28 yt.kim@lge.com */
+/*                                                         */
 
 static struct msm_camera_i2c_reg_conf s5k4e1_snap_settings[] = {
 	{0x301B, 0x75},/* CDS option setting */
@@ -153,7 +159,6 @@ static struct msm_camera_i2c_reg_conf s5k4e1_snap_settings[] = {
 	/* MIPI Size Setting ... */
 	{0x30A9, 0x03},/*Horizontal Binning Off */
 	{0x300E, 0xE8},/* Vertical Binning Off */
-	{0x0387, 0x01},/* y_odd_inc */
 	{0x0344, 0x00},/* x_addr_start 0 */
 	{0x0345, 0x00},
 	{0x0348, 0x0A},/* x_addr_end 2607 */
@@ -185,14 +190,14 @@ static struct msm_camera_i2c_reg_conf s5k4e1_snap_settings[] = {
 	{0x0204, 0x00}, 		 //analog gain[msb] 0100 x8 0080 x4
 	{0x0205, 0x80}, 		 //analog gain[lsb] 0040 x2 0020 x1
 #else
-	{0x0202, 0x04}, //coarse integration time
-	{0x0203, 0x5A},
-	{0x0204, 0x00}, //analog gain[msb]
-	{0x0205, 0x44}, //analog gain[lsb]
+	{0x0202, 0x03}, //coarse integration time
+	{0x0203, 0xCE},
+	{0x0204, 0x00}, //analog gain[msb] 
+	{0x0205, 0x30}, //analog gain[lsb] 
 #endif
 };
 
-/* LGE_CHANGE_S Camera Zero shutter lag, 2012.03.12 yt.kim@lge.com */
+/*                                                                 */
 static struct msm_camera_i2c_reg_conf s5k4e1_zsl_settings[] = {
 	{0x301B, 0x75},/* CDS option setting */
 	{0x30BC, 0x98},/* 0xB0=>0x98 */
@@ -209,7 +214,6 @@ static struct msm_camera_i2c_reg_conf s5k4e1_zsl_settings[] = {
 	/* MIPI Size Setting ... */
 	{ 0x30A9, 0x03 },	//Horizontal Binning Off
 	{ 0x300E, 0xE8 },	//Vertical Binning Off
-	{ 0x0387, 0x01 },	//y_odd_inc
 	{ 0x034C, 0x0A },	//x_output size
 	{ 0x034D, 0x00 },
 	{ 0x034E, 0x07 },	//y_output size
@@ -222,6 +226,14 @@ static struct msm_camera_i2c_reg_conf s5k4e1_zsl_settings[] = {
 	{ 0x0349, 0x17 },
 	{ 0x034A, 0x07 },	//y_addr_end
 	{ 0x034B, 0x93 },
+	{0x0380, 0x00},/* x_even_inc 1 */
+	{0x0381, 0x01},
+	{0x0382, 0x00},/* x_odd_inc 1 */
+	{0x0383, 0x01},
+	{0x0384, 0x00},/* y_even_inc 1 */
+	{0x0385, 0x01},
+	{0x0386, 0x00},/* y_odd_inc 1 */
+	{0x0387, 0x01},	
 	{ 0x30BF, 0xAB },	//outif_enable[7], data_type[5:0](2Bh = bayer 10bit)
 	{ 0x30C0, 0x80 },	//video_offset[7:4] 3200%12
 	{ 0x30C8, 0x0C },	//video_data_length 3200 = 2560 * 1.25
@@ -236,14 +248,14 @@ static struct msm_camera_i2c_reg_conf s5k4e1_zsl_settings[] = {
 	{0x0202, 0x04}, //coarse integration time
 	{0x0203, 0x5A},
 	{0x0204, 0x00}, //analog gain[msb]
-	{0x0205, 0x44}, //analog gain[lsb]
+	{0x0205, 0x2A}, //analog gain[lsb] 
 #endif
 };
-/* LGE_CHANGE_E Camera Zero shutter lag, 2012.03.12 yt.kim@lge.com */
+/*                                                                 */
 
-/* If model uses H-V flip register for 180 rotation and EEPROM reading
- * You shoud set LGE_SENSOR_ROTATE_180_USED in Android.mk
- * See rolloff.c file in vendor
+/*                                                                    
+                                                         
+                               
  */
 static struct msm_camera_i2c_reg_conf s5k4e1_recommend_settings[] = {
 	/* Analog Setting */
@@ -323,14 +335,14 @@ static struct msm_camera_i2c_conf_array s5k4e1_confs[] = {
 	ARRAY_SIZE(s5k4e1_snap_settings), 0, MSM_CAMERA_I2C_BYTE_DATA},
 	{&s5k4e1_prev_settings[0],
 	ARRAY_SIZE(s5k4e1_prev_settings), 0, MSM_CAMERA_I2C_BYTE_DATA},
-/* LGE_CHANGE_S Full HD support, 2012.03.28 yt.kim@lge.com */
+/*                                                         */
 	{&s5k4e1_video_settings[0],
 	ARRAY_SIZE(s5k4e1_video_settings), 0, MSM_CAMERA_I2C_BYTE_DATA},
-/* LGE_CHANGE_E Full HD support, 2012.03.28 yt.kim@lge.com */
-/* LGE_CHANGE_S Camera Zero shutter lag, 2012.03.12 yt.kim@lge.com */
+/*                                                         */
+/*                                                                 */
 	{&s5k4e1_zsl_settings[0],
 	ARRAY_SIZE(s5k4e1_zsl_settings), 0, MSM_CAMERA_I2C_BYTE_DATA},
-/* LGE_CHANGE_E Camera Zero shutter lag, 2012.03.12 yt.kim@lge.com */
+/*                                                                 */
 };
 
 static struct msm_sensor_output_info_t s5k4e1_dimensions[] = {
@@ -354,7 +366,7 @@ static struct msm_sensor_output_info_t s5k4e1_dimensions[] = {
 		.op_pixel_clk = 80000000,
 		.binning_factor = 1,
 	},
-/* LGE_CHANGE_S Full HD support, 2012.03.28 yt.kim@lge.com */
+/*                                                         */
 	{
 		/* video */
 		.x_output = 0x790,/*1936, =>1920(16)*/
@@ -365,8 +377,8 @@ static struct msm_sensor_output_info_t s5k4e1_dimensions[] = {
 		.op_pixel_clk = 122400000,
 		.binning_factor = 1,
 	},
-/* LGE_CHANGE_E Full HD support, 2012.03.28 yt.kim@lge.com */
-/* LGE_CHANGE_S Camera Zero shutter lag, 2012.03.12 yt.kim@lge.com */
+/*                                                         */
+/*                                                                 */
 	{
 		.x_output = 0xA00,//2569  0xA30,/*2608 => 2560(48)*/
 		.y_output = 0x780,//1920  0x7A8,/*1960 => 1920(40)*/
@@ -376,7 +388,7 @@ static struct msm_sensor_output_info_t s5k4e1_dimensions[] = {
 		.op_pixel_clk = 85600000,
 		.binning_factor = 1,
 	},
-/* LGE_CHANGE_E Camera Zero shutter lag, 2012.03.12 yt.kim@lge.com */
+/*                                                                 */
 };
 
 static struct msm_camera_csid_vc_cfg s5k4e1_cid_cfg[] = {
@@ -402,8 +414,8 @@ static struct msm_camera_csi2_params s5k4e1_csi_params = {
 static struct msm_camera_csi2_params *s5k4e1_csi_params_array[] = {
 	&s5k4e1_csi_params,
 	&s5k4e1_csi_params,
-	&s5k4e1_csi_params,/* LGE_CHANGE Full HD support, 2012.03.28 yt.kim@lge.com */
-	&s5k4e1_csi_params,/* LGE_CHANGE_S Camera Zero shutter lag, 2012.03.12 yt.kim@lge.com */
+	&s5k4e1_csi_params,/*                                                       */
+	&s5k4e1_csi_params,/*                                                                 */
 };
 
 static struct msm_sensor_output_reg_addr_t s5k4e1_reg_addr = {
@@ -533,6 +545,7 @@ static int32_t s5k4e1_write_exp_gain2(struct msm_sensor_ctrl_t *s_ctrl,
 
 
 	fl_lines = s_ctrl->curr_frame_length_lines;
+	fl_lines = (fl_lines * s_ctrl->fps_divider) / Q10;
 	offset = s_ctrl->sensor_exp_gain_info->vert_offset;
 
 	if (fl_lines - offset < line)
@@ -597,7 +610,7 @@ static int32_t s5k4e1_sensor_power_up(struct msm_sensor_ctrl_t *s_ctrl)
 {
 	int32_t rc = 0;
 	struct msm_camera_sensor_info *data = s_ctrl->sensordata;
-	printk("%s: E, %d\n", __func__, __LINE__); /* LGE_CHANGE, Show log always, 2012-05-24, sunkyoo.hwang@lge.com */
+	printk("%s: E, %d\n", __func__, __LINE__); /*                                                                */
 	s_ctrl->reg_ptr = kzalloc(sizeof(struct regulator *)
 			* data->sensor_platform_info->num_vreg, GFP_KERNEL);
 	if (!s_ctrl->reg_ptr) {
@@ -651,7 +664,7 @@ static int32_t s5k4e1_sensor_power_up(struct msm_sensor_ctrl_t *s_ctrl)
 	if (data->sensor_platform_info->ext_power_ctrl != NULL)
 		data->sensor_platform_info->ext_power_ctrl(1);
 
-	printk("%s: X, %d\n", __func__, __LINE__); /* LGE_CHANGE, Show log always, 2012-05-24, sunkyoo.hwang@lge.com */
+	printk("%s: X, %d\n", __func__, __LINE__); /*                                                                */
 	return rc;
 enable_clk_failed:
 		msm_camera_config_gpio_table(data, 0);
@@ -675,7 +688,7 @@ request_gpio_failed:
 static int32_t s5k4e1_sensor_power_down(struct msm_sensor_ctrl_t *s_ctrl)
 {
 	struct msm_camera_sensor_info *data = s_ctrl->sensordata;
-	printk("%s: E, %d\n", __func__, __LINE__); /* LGE_CHANGE, Show log always, 2012-05-24, sunkyoo.hwang@lge.com */
+	printk("%s: E, %d\n", __func__, __LINE__); /*                                                                */
 
 	s_ctrl->func_tbl->sensor_stop_stream(s_ctrl);
 	msleep(20);
@@ -694,7 +707,7 @@ static int32_t s5k4e1_sensor_power_down(struct msm_sensor_ctrl_t *s_ctrl)
 		s_ctrl->reg_ptr, 0);
 	msm_camera_request_gpio_table(data, 0);
 	kfree(s_ctrl->reg_ptr);
-	printk("%s: X, %d\n", __func__, __LINE__); /* LGE_CHANGE, Show log always, 2012-05-24, sunkyoo.hwang@lge.com */
+	printk("%s: X, %d\n", __func__, __LINE__); /*                                                                */
 	return 0;
 }
 

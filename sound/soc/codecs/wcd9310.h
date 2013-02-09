@@ -259,9 +259,9 @@ extern void tabla_register_mclk_call_back(struct snd_soc_codec *codec,
 				 sizeof(cfg_ptr->_alpha[0]))))
 #ifdef CONFIG_SWITCH_FSA8008
 /*
-* 2012-02-06, mint.choi@lge.com
-* Enable/disable fsa8008 mic bias when inserting and removing
-* this API called by fsa8008 driver
+                               
+                                                             
+                                   
 */
 extern void tabla_codec_micbias2_ctl(int enable);
 #endif

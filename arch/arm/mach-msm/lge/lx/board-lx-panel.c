@@ -1675,7 +1675,7 @@ static char config_panel_drv[9] = {
 };
 
 static char config_display_timing[6] = {
-	0xc1, 0x07, 0x27, 0x08,
+	0xc1, 0x07, 0x28, 0x08,
 	0x08, 0x10
 };
 
@@ -2326,7 +2326,7 @@ static struct backlight_platform_data lm3533_data = {
 	.max_brightness = 0x71,
 	.default_brightness = 0xA5,
 };
-#endif /* #if defined (CONFIG_LGE_BACKLIGHT_LM3530)*/
+#endif /*                                          */
 static struct i2c_board_info msm_i2c_backlight_info[] = {
 	{
 #if defined (CONFIG_LGE_BACKLIGHT_LM3530)

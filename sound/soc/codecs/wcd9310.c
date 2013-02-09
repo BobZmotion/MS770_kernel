@@ -311,8 +311,8 @@ static unsigned short tx_digital_gain_reg[] = {
 	TABLA_A_CDC_TX10_VOL_CTL_GAIN,
 };
 
-/* 2012-05-10, changsoon2.park@lge.com start
-  * snd_cards check! if there is no sound card, make phone crash
+/*                                          
+                                                                
   */
 static int snd_check;
 static int snd_check_set(const char *val, struct kernel_param *kp)
@@ -330,7 +330,7 @@ static int snd_check_set(const char *val, struct kernel_param *kp)
 }
 module_param_call(snd_check, snd_check_set, param_get_int,
 	&snd_check, S_IRUGO|S_IWUSR|S_IWGRP);
-/* 2012-05-10, changsoon2.park@lge.com end*/
+/*                                        */
 
 #ifdef CONFIG_LGE_AUDIO_MBHC_SDEV
 static ssize_t lge_hsd_print_name(struct switch_dev *sdev, char *buf)
@@ -3007,7 +3007,7 @@ static const struct snd_soc_dapm_route audio_map[] = {
 	{"MIC BIAS2 Internal2", NULL, "LDO_H"},
 	{"MIC BIAS2 Internal3", NULL, "LDO_H"},
 #ifndef CONFIG_SWITCH_FSA8008
-	/* Change code for non_MBHC solution, minjong.gong@lge.com */
+	/*                                                         */
 	//{"MIC BIAS2 External", NULL, "LDO_H"},
 #endif
 	{"MIC BIAS3 Internal1", NULL, "LDO_H"},
@@ -3237,9 +3237,9 @@ static void tabla_codec_enable_bandgap(struct snd_soc_codec *codec,
                  tabla->audio_band_gap_cnt--;
 				 pr_debug("audio_band_gap_cnt is decreased by choice=0.\n");
                   if (!tabla->audio_band_gap_cnt){
-				  	/* Change code to avoid increasing sleep current 2012-03-16, minjong.gong@lge.com
-					  * Default value is 0x00
-				         */
+				  	/*                                                                               
+                              
+             */
 					#if 1
 						if(value) {
                     	snd_soc_write(codec, TABLA_A_BIAS_CENTRAL_BG_CTL, 0x50);
@@ -3497,7 +3497,7 @@ int tabla_mclk_enable(struct snd_soc_codec *codec, int mclk_enable, bool dapm)
 	pr_debug("%s() mclk_bandgap_state = %u. mbhc_polling_active = %u\n",
         __func__, mclk_enable, tabla->mbhc_polling_active);
 
-//overflow error on port a, value 1  bob.cho@lge.com 
+//                                                   
     if (dapm) 
         TABLA_ACQUIRE_LOCK(tabla->cdc_resource_lock); 
 
@@ -3519,7 +3519,7 @@ int tabla_mclk_enable(struct snd_soc_codec *codec, int mclk_enable, bool dapm)
     } else if (mclk_enable == MCLK_OFF_BANDGAP_OFF) {
 
 		if (!tabla->mclk_enabled) {
-//overflow error on port a, value 1  bob.cho@lge.com 
+//                                                   
             if (dapm) 
                 TABLA_RELEASE_LOCK(tabla->cdc_resource_lock); 
 			pr_err("Error, MCLK already diabled\n");
@@ -3548,7 +3548,7 @@ int tabla_mclk_enable(struct snd_soc_codec *codec, int mclk_enable, bool dapm)
         tabla->mclk_enabled = false;
         tabla_codec_disable_clock_block(codec);
 	}
-//overflow error on port a, value 1  bob.cho@lge.com 
+//                                                   
     if (dapm) 
         TABLA_RELEASE_LOCK(tabla->cdc_resource_lock); 
 	return 0;
@@ -5975,10 +5975,10 @@ int tabla_hs_detect(struct snd_soc_codec *codec,
 	tabla_get_mbhc_micbias_regs(codec, &tabla->mbhc_bias_regs);
 
 #ifdef CONFIG_LGE_AUDIO_MBHC_SDEV
-	/* CONFIG_LGE_AUDIO
-	 * 2011-12-14, junday.lee@lge.com
-	 * Switch device driver for MBHC headset detection
-	 */
+	/*                 
+                                  
+                                                   
+  */
 
 	/* initialize switch device */
 	tabla->sdev.name	= "h2w";
@@ -6416,13 +6416,13 @@ static void tabla_update_reg_address(struct tabla_priv *priv)
 
 #ifdef CONFIG_SWITCH_FSA8008
 /*
-* 2012-02-06, mint.choi@lge.com
-* Enable/disable fsa8008 mic bias when inserting and removing
-* this API called by fsa8008 driver
+                               
+                                                             
+                                   
 */
 struct snd_soc_codec *snd_codec = NULL;
 
-/* 2012-03-29, minjong.gong@lge.com */
+/*                                  */
 // #define TABLA_REG_DEBUG
 
 void tabla_codec_micbias2_ctl(int enable)
@@ -6453,9 +6453,9 @@ void tabla_codec_micbias2_ctl(int enable)
 #endif
 	} else {
 		mutex_lock(&codec->mutex);
-		//[AUDIO_BSP]_START, 20120503, junday.lee@lge.com, remove tx popup noise when remove headset during call
+		//                                                                                                      
 		snd_soc_update_bits(codec, TABLA_A_TX_1_2_EN, 0x0F, 0x00);
-		//[AUDIO_BSP]_END, 20120503, junday.lee@lge.com
+		//                                             
 		snd_soc_dapm_disable_pin(&codec->dapm, "MIC BIAS2 Power External");
 		snd_soc_dapm_sync(&codec->dapm);
 		mutex_unlock(&codec->mutex);
@@ -6767,7 +6767,7 @@ static int tabla_codec_probe(struct snd_soc_codec *codec)
 
 
 #ifdef CONFIG_SWITCH_FSA8008
-	snd_codec = codec;   // 2012-02-06, mint.choi@lge.com. for fsa8008 tabla_codec_micbias2_ctl API
+	snd_codec = codec;   //                                                                        
 #endif
 
 	return ret;

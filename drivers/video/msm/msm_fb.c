@@ -48,9 +48,9 @@
 #include "mdp.h"
 #include "mdp4.h"
 
-/* LGE_CHANGE
- * for inital qct lcdc lut set-up
- * 2012-01-10, jh.chun@lge.com
+/*           
+                                 
+                              
  */
 #if defined (CONFIG_LGE_QC_LCDC_LUT)
 #include "lge_qlut.h"
@@ -63,9 +63,9 @@ EXPORT_SYMBOL(g_qlut_change_by_kernel);
 #if defined(CONFIG_MACH_LGE) && \
 	(defined(CONFIG_FB_MSM_DEFAULT_DEPTH_ARGB8888) ||\
 	 defined(CONFIG_FB_MSM_DEFAULT_DEPTH_RGBA8888))
-/* LGE_CHANGE
- * To load 888rle format images
- * 2011-10-20, baryun.hwang@lge.com
+/*           
+                               
+                                   
  */
 extern int load_888rle_image(char *filename);
 #else /*qct original code */
@@ -83,10 +83,10 @@ static unsigned char *fbram_phys;
 static int fbram_size;
 
 #ifdef CONFIG_MACH_LGE
-/* LGE_CHANGE
- * patch from QCT.
- * Add code for crash in hdmi_pll_enable()
- * 2010-03-15, soodong.kim@lge.com
+/*           
+                  
+                                          
+                                  
  */
 bool device_suspended = FALSE;
 #endif
@@ -141,8 +141,8 @@ static int msm_fb_ioctl(struct fb_info *info, unsigned int cmd,
 			unsigned long arg);
 static int msm_fb_mmap(struct fb_info *info, struct vm_area_struct * vma);
 
-/* 11.03.16 jaeseong.gim@lge.com
-   implement "msm_fb_read" for screenshot such as DDMS" */
+/*                              
+                                                        */
 #ifdef CONFIG_LGE_DISP_FBREAD
 static ssize_t msm_fb_read(struct fb_info *info, char __user *buf,
 		size_t count, loff_t *ppos);
@@ -206,9 +206,9 @@ static int msm_fb_resource_initialized;
 	(defined(CONFIG_FB_MSM_DEFAULT_DEPTH_ARGB8888) ||\
 	 defined(CONFIG_FB_MSM_DEFAULT_DEPTH_RGBA8888))
 
-/* LGE_CHANGE
- * for early backlight on
- * 2011-10-20, baryun.hwang@lge.com
+/*           
+                         
+                                   
  */
 static int saved_backlight_level = -1;
 #endif
@@ -704,10 +704,10 @@ static int msm_fb_ext_suspend(struct device *dev)
 	if (mfd->panel_info.type == HDMI_PANEL ||
 		mfd->panel_info.type == DTV_PANEL)
 #ifdef CONFIG_MACH_LGE
-        /* LGE_CHANGE
-         * patch from QCT.
-         * Add code for crash in hdmi_pll_enable()
-         * 2010-03-15, soodong.kim@lge.com
+        /*           
+                          
+                                                  
+                                          
          */
 	{
 		device_suspended = TRUE;
@@ -730,10 +730,10 @@ static int msm_fb_ext_resume(struct device *dev)
 	if (mfd->panel_info.type == HDMI_PANEL ||
 		mfd->panel_info.type == DTV_PANEL)
 #ifdef CONFIG_MACH_LGE
-        /* LGE_CHANGE
-         * patch from QCT.
-         * Add code for crash in hdmi_pll_enable()
-         * 2010-03-15, soodong.kim@lge.com
+        /*           
+                          
+                                                  
+                                          
          */
 	{
 		device_suspended = FALSE;
@@ -819,11 +819,11 @@ void msm_fb_set_backlight(struct msm_fb_data_type *mfd, __u32 bkl_lvl)
 	if (!mfd->panel_power_on || !bl_updated) {
 		unset_bl_level = bkl_lvl;
 #ifdef CONFIG_MACH_LGE
-		/* LGE_CHANGE
-		 * Only when booting state,
-		 * it turns on backlight right after showing booting logo image
-		 * 2012-01-13, baryun.hwang@lge.com
-		 */
+		/*           
+                             
+                                                                 
+                                     
+   */
 		if (system_state != SYSTEM_BOOTING)
 #endif
 			return;
@@ -865,10 +865,10 @@ static int msm_fb_blank_sub(int blank_mode, struct fb_info *info,
 	switch (blank_mode) {
 	case FB_BLANK_UNBLANK:
 		if (!mfd->panel_power_on) {
-	/* LGE_CHANGE
-	 * Reduce delay time only for D1LV
-	 * 2012-04-06, baryun.hwang@lge.com
-	 */
+	/*           
+                                   
+                                    
+  */
 #ifdef CONFIG_MACH_MSM8960_D1LV
 			msleep(5);
 #else
@@ -1086,8 +1086,8 @@ static struct fb_ops msm_fb_ops = {
 	.owner = THIS_MODULE,
 	.fb_open = msm_fb_open,
 	.fb_release = msm_fb_release,
-/* 11.03.16 jaeseong.gim@lge.com
-   implement "msm_fb_read" for screenshot such as DDMS" */
+/*                              
+                                                        */
 #ifdef CONFIG_LGE_DISP_FBREAD
     .fb_read = msm_fb_read,
 #else
@@ -1464,13 +1464,13 @@ static int msm_fb_register(struct msm_fb_data_type *mfd)
 #if defined(CONFIG_MACH_LGE) && \
 	(defined(CONFIG_FB_MSM_DEFAULT_DEPTH_ARGB8888) ||\
 	 defined(CONFIG_FB_MSM_DEFAULT_DEPTH_RGBA8888))
-	/* LGE_CHANGE
-	 * This function is used to load LG logo image in 888 rle format.
-	 * However, it is only allowed when MIPI LCD mode not other modes
-	 * such as HDMI, DTV etc.
-	 * it is also add early backlight on
-	 * 2011-10-20, baryun.hwang@lge.com
-	 */
+	/*           
+                                                                  
+                                                                  
+                          
+                                     
+                                    
+  */
 	if (mfd->panel_info.type == MIPI_VIDEO_PANEL ||
 			mfd->panel_info.type == MIPI_CMD_PANEL){
 		msm_fb_open(mfd->fbi, 0);
@@ -1482,13 +1482,13 @@ static int msm_fb_register(struct msm_fb_data_type *mfd)
 		if (load_888rle_image(INIT_IMAGE_FILE) < 0) /* Flip buffer */
 			printk(KERN_WARNING "fail to load 888 rle image\n");
 
-		/* LGE_CHANGE
-		 * This function is used to prevent LG Logo image from being displayed later
-		 * than backlight on after adding
-		 * "msm_fb: display: Enable timing generator during first update"
-		 * by Ravishangar Kalyanam <rkalya@codeaurora.org>, 4/25
-		 * 2012-05-28, hoseok.kim@lge.com
-		 */
+		/*           
+                                                                              
+                                   
+                                                                   
+                                                          
+                                   
+   */
 		msm_fb_pan_display(var, fbi);
 
 		msm_fb_set_backlight(mfd, saved_backlight_level);
@@ -3377,7 +3377,7 @@ static int msm_fb_ioctl(struct fb_info *info, unsigned int cmd,
 			memcpy(mdp_csc_convert[1].csc_mv, csc_matrix.csc_mv, sizeof(csc_matrix.csc_mv));
 			break;
 		}
-#endif /* CONFIG_LGE_BROADCAST */
+#endif /*                      */
 
 		down(&msm_fb_ioctl_ppp_sem);
 		msmfb_set_color_conv(&csc_matrix);
@@ -3784,8 +3784,8 @@ int __init msm_fb_init(void)
 	return 0;
 }
 
-/* 11.03.16 jaeseong.gim@lge.com
-    implement "msm_fb_read" for screenshot such as DDMS" */
+/*                              
+                                                         */
 #ifdef CONFIG_LGE_DISP_FBREAD
 static ssize_t
 msm_fb_read(struct fb_info *info, char __user *buf, size_t count, loff_t *ppos)

@@ -36,7 +36,7 @@
 #include <mach/rpm-regulator.h>
 
 #include "acpuclock.h"
-/* LGE_CHANGE support factory process without battery, taehung.kim@lge.com*/
+/*                                                                        */
 #include <mach/board_lge.h>
 #include "pm.h"
 
@@ -547,8 +547,8 @@ static struct acpu_level acpu_freq_tbl_8960_kraitv2_fast[] = {
 	{ 1, {  1512000, HFPLL, 1, 0, 0x38 }, L2(16), 1150000 },
 	{ 0, { 0 } }
 };
-/* LGE_CHANGE support factory process without battery, taehung.kim@lge.com
- * if boot mode is factory then max frequency of cpu(0,1) is 1.2G
+/*                                                                        
+                                                                 
  */
 static struct acpu_level acpu_freq_tbl_8960_kraitv2_slow_lge_factory[] = {
 	{ 0, { STBY_KHZ, QSB,   0, 0, 0x00 }, L2(0),   950000 },
@@ -1417,7 +1417,7 @@ static void kraitv2_apply_vmin(struct acpu_level *tbl)
 static struct acpu_level * __init select_freq_plan(void)
 {
 	struct acpu_level *l, *max_acpu_level = NULL;
-	/* LGE_CHANGE support factory process without battery, taehung.kim@lge.com*/
+	/*                                                                        */
 	enum lge_boot_mode_type boot_mode=lge_get_boot_mode();
 	/* Select frequency tables. */
 	if (cpu_is_msm8960()) {
@@ -1434,7 +1434,7 @@ static struct acpu_level * __init select_freq_plan(void)
 		case 0x7:
 			pr_info("ACPU PVS: Slow\n");
 			v1 = acpu_freq_tbl_8960_kraitv1_slow;
-			/* LGE_CHANGE support factory process without battery, taehung.kim@lge.com*/
+			/*                                                                        */
 			if(boot_mode == LGE_BOOT_MODE_FACTORY2 || boot_mode == LGE_BOOT_MODE_PIFBOOT) {
 				v2 = acpu_freq_tbl_8960_kraitv2_slow_lge_factory;
 			} else { 
@@ -1444,7 +1444,7 @@ static struct acpu_level * __init select_freq_plan(void)
 		case 0x1:
 			pr_info("ACPU PVS: Nominal\n");
 			v1 = acpu_freq_tbl_8960_kraitv1_nom_fast;
-			/* LGE_CHANGE support factory process without battery, taehung.kim@lge.com*/
+			/*                                                                        */
 			if(boot_mode == LGE_BOOT_MODE_FACTORY2 || boot_mode == LGE_BOOT_MODE_PIFBOOT) {
 				v2 = acpu_freq_tbl_8960_kraitv2_nom_lge_factory;
 				boost_uv = BOOST_UV;
@@ -1458,7 +1458,7 @@ static struct acpu_level * __init select_freq_plan(void)
 		case 0x3:
 			pr_info("ACPU PVS: Fast\n");
 			v1 = acpu_freq_tbl_8960_kraitv1_nom_fast;
-			/* LGE_CHANGE support factory process without battery, taehung.kim@lge.com*/
+			/*                                                                        */
 			if(boot_mode == LGE_BOOT_MODE_FACTORY2 || boot_mode == LGE_BOOT_MODE_PIFBOOT) {
 				v2 = acpu_freq_tbl_8960_kraitv2_fast_lge_factory;
 				boost_uv = BOOST_UV;
@@ -1472,7 +1472,7 @@ static struct acpu_level * __init select_freq_plan(void)
 		default:
 			pr_warn("ACPU PVS: Unknown. Defaulting to slow.\n");
 			v1 = acpu_freq_tbl_8960_kraitv1_slow;
-			/* LGE_CHANGE support factory process without battery, taehung.kim@lge.com*/
+			/*                                                                        */
 			if(boot_mode == LGE_BOOT_MODE_FACTORY2 || boot_mode == LGE_BOOT_MODE_PIFBOOT) {
 				v2 = acpu_freq_tbl_8960_kraitv2_slow_lge_factory;
 			} else {

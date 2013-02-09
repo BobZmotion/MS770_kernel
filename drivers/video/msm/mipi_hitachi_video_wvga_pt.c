@@ -24,8 +24,8 @@ static struct msm_panel_info pinfo;
 
 #define DSI_BIT_CLK_337MHZ
 
-/* Adjust timing values with junseop.lee @ LGSI,
- * 2011-09-27, minjong.gong@lge.com */
+/*                                              
+                                    */
 static struct mipi_dsi_phy_ctrl dsi_video_mode_phy_db = {
 	/* 480*800, RGB888, 2 Lane 65 fps cmd mode */
 #if defined(DSI_BIT_CLK_337MHZ)

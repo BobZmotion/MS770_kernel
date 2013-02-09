@@ -60,10 +60,10 @@ static struct dsi_cmd_desc lgd_power_off_set2[] = {
 };
 */
 
-/* [LGE_CHANGE] Remove unnecessary codes.
- * Remove mutex_lock, mutex_unlock and mipi_dsi_op_mode_config
- * in mipi_lgd_lcd_on and mipi_lgd_lcd_off.
- * minjong.gong@lge.com, 2011-07-19
+/*                                       
+                                                              
+                                           
+                                   
  */
 static int mipi_lgd_lcd_on(struct platform_device *pdev)
 {

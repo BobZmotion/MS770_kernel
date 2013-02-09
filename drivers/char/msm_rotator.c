@@ -1193,10 +1193,10 @@ static int msm_rotator_start(unsigned long arg,
 	int first_free_index = INVALID_SESSION;
 	unsigned int dst_w, dst_h;
 
-	/* LGE_CHANGE
-	 * Apply fix for SR00823394 Camera Color
-	 * 2012-04-16, baryun.hwang@lge.com
-	 */
+	/*           
+                                         
+                                    
+  */
 #ifdef CONFIG_MACH_LGE
 	int need_resend=0;
 #endif
@@ -1272,10 +1272,10 @@ static int msm_rotator_start(unsigned long arg,
 			(info.session_id ==
 			(unsigned int)msm_rotator_dev->img_info[s]
 			)) {
-			/* LGE_CHANGE
-			 * Apply fix for SR00823394 Camera Color
-			 * 2012-04-16, baryun.hwang@lge.com
-			 */
+			/*           
+                                           
+                                      
+    */
 #ifdef CONFIG_MACH_LGE
 			if(msm_rotator_dev->img_info[s]->dst.format!=info.dst.format)
 				need_resend=1;
@@ -1294,10 +1294,10 @@ static int msm_rotator_start(unsigned long arg,
 			INVALID_SESSION))
 			first_free_index = s;
 	}
-		/* LGE_CHANGE
-		* Apply fix for SR00823394 Camera Color
-		* 2012-04-16, baryun.hwang@lge.com
-		*/
+		/*           
+                                         
+                                    
+  */
 #ifdef CONFIG_MACH_LGE
 		if(need_resend){
 			if (copy_to_user((void __user *)arg, &info, sizeof(info)))

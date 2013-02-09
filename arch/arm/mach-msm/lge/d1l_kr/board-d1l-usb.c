@@ -44,7 +44,7 @@ static struct msm_otg_platform_data msm_otg_pdata;
 static int wr_phy_init_seq[] = {
 	0x44, 0x80, /* set VBUS valid threshold
 			and disconnect valid threshold */
-	/* LGE Test: SQRXTUNE - 101 */
+	/*                          */
 	0x5B, 0x81, /* update DC voltage level */
 	0x3C, 0x82, /* set preemphasis and rise/fall time */
 	0x33, 0x83, /* set source impedance adjusment */

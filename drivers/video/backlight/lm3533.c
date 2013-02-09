@@ -106,10 +106,10 @@ static void lm3533_hw_reset(void)
 {
 	int gpio = main_lm3533_dev->gpio;
 
-	/* LGE_CHANGE
-	  * Fix GPIO Setting Warning
-	  * 2011. 12. 14, kyunghoo.ryu@lge.com
-	  */
+	/*           
+                             
+                                       
+   */
 
 	if (gpio_is_valid(gpio)) {
 		gpio_direction_output(gpio, 1);
@@ -142,10 +142,10 @@ static int lm3533_write_reg(struct i2c_client *client, unsigned char reg, unsign
 
 static int exp_min_value = 150;
 static int cal_value;
-/* LGE_CHANGE
-* This is a mapping table from android brightness bar value
-* to backlilght driver value.
-* 2012-02-28, baryun.hwang@lge.com
+/*           
+                                                           
+                             
+                                  
 */
 static char mapped_value[256] = {
 	1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  4,
@@ -210,9 +210,9 @@ void lm3533_backlight_on(int level)
 		lm3533_hw_reset();
 		lm3533_write_reg(main_lm3533_dev->client, 0x10, 0x0); /* HVLED 1 & 2 are controlled by Bank A */
 
-/* LGE_CHANGE
-  * Disable PWM input during CABC feature is not activated.
-  * 2011. 12. 14, kyunghoo.ryu@lge.com
+/*           
+                                                           
+                                      
   */
 #if defined(CONFIG_LGE_BACKLIGHT_CABC)
 		lm3533_write_reg(main_lm3533_dev->client, 0x14, 0x1); 	/* PWM input is enabled */

@@ -1047,7 +1047,7 @@ static struct branch_clk gfx3d_p_clk = {
 	},
 };
 
-/* jeehwan.hwang@lge.com 20120206 defeaturing hdmi & dtv feature for non hdmi device */
+/*                                                                                   */
 #ifdef CONFIG_FB_MSM_HDMI_MSM_PANEL
 static struct branch_clk hdmi_m_p_clk = {
 	.b = {
@@ -1420,11 +1420,11 @@ static struct clk_freq_tbl clk_tbl_gsbi_qup[] = {
 	F_GSBI_QUP(       0, gnd,  1, 0,  0),
 	F_GSBI_QUP( 1100000, pxo,  1, 2, 49),
 	F_GSBI_QUP( 5400000, pxo,  1, 1,  5),
-// 2011-11-23 taew00k.kang@lge.com 1Seg GSBI10 SPI 8Mhz setting [Start]
+//                                                                     
 #if defined(CONFIG_LGE_BROADCAST_1SEG)
 	F_GSBI_QUP( 8000000, pll8, 4, 1, 12),
 #endif
-// 2011-11-23 taew00k.kang@lge.com 1Seg GSBI10 SPI 8Mhz setting [End]
+//                                                                   
 	F_GSBI_QUP(10800000, pxo,  1, 2,  5),
 	F_GSBI_QUP(15060000, pll8, 1, 2, 51),
 	F_GSBI_QUP(24000000, pll8, 4, 1,  4),
@@ -3845,7 +3845,7 @@ static struct rcg_clk rot_clk = {
 	},
 };
 
-/* jeehwan.hwang@lge.com 20120206 defeaturing hdmi & dtv feature for non hdmi device */
+/*                                                                                   */
 #ifdef CONFIG_FB_MSM_HDMI_MSM_PANEL
 static int hdmi_pll_clk_enable(struct clk *clk)
 {
@@ -4651,7 +4651,7 @@ static struct measure_sel measure_mux[] = {
 	{ TEST_MM_LS(0x0D), &gfx2d1_p_clk.c },
 	{ TEST_MM_LS(0x0E), &gfx3d_p_clk.c },
 
-/* jeehwan.hwang@lge.com 20120206 defeaturing hdmi & dtv feature for non hdmi device */
+/*                                                                                   */
 #ifdef CONFIG_FB_MSM_HDMI_MSM_PANEL
 	{ TEST_MM_LS(0x0F), &hdmi_m_p_clk.c },
 	{ TEST_MM_LS(0x10), &hdmi_s_p_clk.c },
@@ -4668,12 +4668,12 @@ static struct measure_sel measure_mux[] = {
 	{ TEST_MM_LS(0x1B), &vfe_p_clk.c },
 	{ TEST_MM_LS(0x1C), &vpe_p_clk.c },
 	{ TEST_MM_LS(0x1D), &cam0_clk.c },
-/* jeehwan.hwang@lge.com 20120206 defeaturing hdmi & dtv feature for non hdmi device */
+/*                                                                                   */
 #ifdef CONFIG_FB_MSM_HDMI_MSM_PANEL
 	{ TEST_MM_LS(0x1F), &hdmi_app_clk.c },
 #endif
 	{ TEST_MM_LS(0x20), &mdp_vsync_clk.c },
-/* jeehwan.hwang@lge.com 20120206 defeaturing hdmi & dtv feature for non hdmi device */
+/*                                                                                   */
 #ifdef CONFIG_FB_MSM_HDMI_MSM_PANEL
 	{ TEST_MM_LS(0x21), &tv_dac_clk.c },
 	{ TEST_MM_LS(0x22), &tv_enc_clk.c },
@@ -4709,7 +4709,7 @@ static struct measure_sel measure_mux[] = {
 	{ TEST_MM_HS(0x1A), &mdp_clk.c },
 	{ TEST_MM_HS(0x1B), &rot_clk.c },
 	{ TEST_MM_HS(0x1C), &vpe_clk.c },
-/* jeehwan.hwang@lge.com 20120206 defeaturing hdmi & dtv feature for non hdmi device */
+/*                                                                                   */
 #ifdef CONFIG_FB_MSM_HDMI_MSM_PANEL
 	{ TEST_MM_HS(0x1E), &hdmi_tv_clk.c },
 	{ TEST_MM_HS(0x1F), &mdp_tv_clk.c },
@@ -5082,13 +5082,13 @@ static struct clk_lookup msm_clocks_8064[] = {
 	CLK_LOOKUP("lut_clk",		lut_mdp_clk.c,	"footswitch-8x60.4"),
 	CLK_LOOKUP("core_clk",		rot_clk.c,	"msm_rotator.0"),
 	CLK_LOOKUP("core_clk",		rot_clk.c,	"footswitch-8x60.6"),
-/* jeehwan.hwang@lge.com 20120206 defeaturing hdmi & dtv feature for non hdmi device */
+/*                                                                                   */
 #ifdef CONFIG_FB_MSM_HDMI_MSM_PANEL
 	CLK_DUMMY("tv_src_clk",		TV_SRC_CLK,		NULL, OFF),
 #endif
 	CLK_LOOKUP("core_clk",		vcodec_clk.c,		"msm_vidc.0"),
 	CLK_LOOKUP("core_clk",		vcodec_clk.c,	"footswitch-8x60.7"),
-/* jeehwan.hwang@lge.com 20120206 defeaturing hdmi & dtv feature for non hdmi device */
+/*                                                                                   */
 #ifdef CONFIG_FB_MSM_HDMI_MSM_PANEL
 	CLK_DUMMY("mdp_tv_clk",		MDP_TV_CLK,		NULL, OFF),
 	CLK_DUMMY("tv_clk",		MDP_TV_CLK, "footswitch-8x60.4", OFF),
@@ -5115,7 +5115,7 @@ static struct clk_lookup msm_clocks_8064[] = {
 	CLK_LOOKUP("dsi_s_pclk",	dsi2_s_p_clk.c,		NULL),
 	CLK_LOOKUP("iface_clk",		gfx3d_p_clk.c,	"kgsl-3d0.0"),
 	CLK_LOOKUP("iface_clk",		gfx3d_p_clk.c,	"footswitch-8x60.2"),
-/* jeehwan.hwang@lge.com 20120206 defeaturing hdmi & dtv feature for non hdmi device */
+/*                                                                                   */
 #ifdef CONFIG_FB_MSM_HDMI_MSM_PANEL
 	CLK_LOOKUP("master_iface_clk",	hdmi_m_p_clk.c,		NULL),
 	CLK_LOOKUP("slave_iface_clk",	hdmi_s_p_clk.c,		NULL),
@@ -5223,20 +5223,20 @@ static struct clk_lookup msm_clocks_8960_v1[] __initdata = {
 	CLK_LOOKUP("core_clk",		gsbi5_uart_clk.c, "msm_serial_hsl.0"),
 	CLK_LOOKUP("core_clk",		gsbi6_uart_clk.c, "msm_serial_hs.0"),
 	CLK_LOOKUP("core_clk",		gsbi7_uart_clk.c,	NULL),
-/* 20111112, chaeuk.lee@lge.com, Add FeliCa UART [START] */
+/*                                                       */
 #ifdef CONFIG_LGE_FELICA
 	CLK_LOOKUP("core_clk",		gsbi8_uart_clk.c, "msm_serial_hsl.1"),
 #else /* below the orignal */
 	CLK_LOOKUP("core_clk",		gsbi8_uart_clk.c,	NULL),
 #endif
-/* 20111112, chaeuk.lee@lge.com, Add FeliCa UART [END] */
-/* 20111205, chaeuk.lee@lge.com, Add IrDA UART [START] */
+/*                                                     */
+/*                                                     */
 #ifdef CONFIG_LGE_IRDA
 	CLK_LOOKUP("core_clk",		gsbi9_uart_clk.c, "msm_serial_hsl.2"),
 #else /* below the original */
 	CLK_LOOKUP("core_clk",		gsbi9_uart_clk.c,	NULL),
 #endif
-/* 20111205, chaeuk.lee@lge.com, Add IrDA UART [END] */
+/*                                                   */
 	CLK_LOOKUP("core_clk",		gsbi10_uart_clk.c,	NULL),
 	CLK_LOOKUP("core_clk",		gsbi11_uart_clk.c,	NULL),
 	CLK_LOOKUP("core_clk",		gsbi12_uart_clk.c,	NULL),
@@ -5253,41 +5253,41 @@ static struct clk_lookup msm_clocks_8960_v1[] __initdata = {
 	CLK_LOOKUP("core_clk",		gsbi3_qup_clk.c,	"qup_i2c.3"),
 	CLK_LOOKUP("core_clk",		gsbi4_qup_clk.c,	"qup_i2c.4"),
 #ifdef CONFIG_BATTERY_MAX17043
-	/* LGE_CHANGE
-	 * Modify to enable the clock of the i2c in gsbi5 for MAX17043
-	 * 2011-10-04, hyuncheol0.kim@lge.com
-	 */
+	/*           
+                                                               
+                                      
+  */
 	CLK_LOOKUP("core_clk",		gsbi5_qup_clk.c,	"qup_i2c.5"),
 #else
 	CLK_LOOKUP("core_clk",		gsbi5_qup_clk.c,	NULL),
 #endif
 	CLK_LOOKUP("core_clk",		gsbi6_qup_clk.c,	NULL),
-/* For camera flash, enables gsbi7, sunkyoo.hwang@lge.com, 10/06/2011 */
+/*                                                                    */
 #if defined(CONFIG_MSM_CAMERA_FLASH_LM3559) || defined(CONFIG_LGE_NFC_PN544)
 	CLK_LOOKUP("core_clk",		gsbi7_qup_clk.c,	"qup_i2c.7"),
 #else
 	CLK_LOOKUP("core_clk",		gsbi7_qup_clk.c,	NULL),
 #endif
-//20111124, dongjoon.kim@lge.com, Rev.C NFC I2C : GSBI 7 --> GSBI8
+//                                                                
 #if defined(CONFIG_MSM_CAMERA_FLASH_LM3559) || defined(CONFIG_LGE_NFC_PN544)|| defined(CONFIG_LGE_FELICA)
 	CLK_LOOKUP("core_clk",		gsbi8_qup_clk.c,	"qup_i2c.8"),
 #else
 	CLK_LOOKUP("core_clk",		gsbi8_qup_clk.c,	NULL),
 #endif
 #ifdef CONFIG_LGE_AUDIO
-	/*tarzan.park@lge.com audio amp i2c <- gsbi9 */
+	/*                                           */
 	CLK_LOOKUP("core_clk",		gsbi9_qup_clk.c,	"qup_i2c.9"),
 #else
 	CLK_LOOKUP("core_clk",		gsbi9_qup_clk.c,	NULL),
 #endif
-// 2011-11-15 taew00k.kang@lge.com 1Seg GSBI10 SPI porting [Start]
+//                                                                
 #if defined(CONFIG_LGE_BROADCAST_TDMB)||defined(CONFIG_LGE_BROADCAST_1SEG)
 // GSBI10 is used for 1SEG SPI
 	CLK_LOOKUP("core_clk",		gsbi10_qup_clk.c,	"spi_qsd.1"),
 #else
 	CLK_LOOKUP("core_clk",		gsbi10_qup_clk.c,	"qup_i2c.10"),
-#endif /* CONFIG_LGE_BROADCAST */
-// 2011-11-15 taew00k.kang@lge.com 1Seg GSBI10 SPI porting [End]
+#endif /*                      */
+//                                                              
 	CLK_LOOKUP("core_clk",		gsbi11_qup_clk.c,	NULL),
 	CLK_LOOKUP("core_clk",		gsbi12_qup_clk.c,	"qup_i2c.12"),
 	CLK_LOOKUP("core_clk",		pdm_clk.c,		NULL),
@@ -5322,7 +5322,7 @@ static struct clk_lookup msm_clocks_8960_v1[] __initdata = {
 	CLK_LOOKUP("iface_clk",		gsbi1_p_clk.c,		"spi_qsd.0"),
 #endif
 #ifdef CONFIG_MACH_LGE
-	//lm3050 backlight for LGE
+	//                        
 	CLK_LOOKUP("iface_clk",		gsbi2_p_clk.c,		"qup_i2c.2"),
 #else
 	CLK_LOOKUP("iface_clk",		gsbi2_p_clk.c,		NULL),
@@ -5330,23 +5330,23 @@ static struct clk_lookup msm_clocks_8960_v1[] __initdata = {
 	CLK_LOOKUP("iface_clk",		gsbi3_p_clk.c,		"qup_i2c.3"),
 	CLK_LOOKUP("iface_clk",		gsbi4_p_clk.c,		"qup_i2c.4"),
 #ifdef CONFIG_BATTERY_MAX17043
-	/* LGE_CHANGE
-	 * uart can be selected, and fuel gauge is sharing gsbi5
-	 * 2011-10-12, jinkyu.choi@lge.com
-	 */
+	/*           
+                                                         
+                                   
+  */
 	CLK_LOOKUP("iface_clk",		gsbi5_p_clk.c,	NULL),
 #else
 	CLK_LOOKUP("iface_clk",		gsbi5_p_clk.c,	"msm_serial_hsl.0"),
 #endif
 	CLK_LOOKUP("iface_clk",		gsbi6_p_clk.c,  "msm_serial_hs.0"),
-/* For camera flash, enables gsbi7, sunkyoo.hwang@lge.com, 10/06/2011 */
+/*                                                                    */
 #if defined(CONFIG_MSM_CAMERA_FLASH_LM3559) || defined(CONFIG_LGE_NFC_PN544)
 	CLK_LOOKUP("iface_clk",		gsbi7_p_clk.c,		"qup_i2c.7"),
 #else
 	CLK_LOOKUP("iface_clk",		gsbi7_p_clk.c,		NULL),
 #endif
-/* 20111112, chaeuk.lee@lge.com, Add FeliCa UART [START] */
-/* 20120104 ku.kwon@lge.com, macro reconstructed */
+/*                                                       */
+/*                                               */
 #if defined(CONFIG_LGE_NFC_PN544) || defined(CONFIG_MSM_CAMERA_FLASH_LM3559) || defined(CONFIG_LGE_FELICA)
 #ifdef CONFIG_LGE_FELICA
 	CLK_LOOKUP("iface_clk",		gsbi8_p_clk.c,		"msm_serial_hsl.1"),
@@ -5355,28 +5355,28 @@ static struct clk_lookup msm_clocks_8960_v1[] __initdata = {
 #else /* below the original */
 	CLK_LOOKUP("iface_clk",		gsbi8_p_clk.c,		NULL),
 #endif
-/* 20111112, chaeuk.lee@lge.com, Add FeliCa UART [END] */
-/* 20111205, chaeuk.lee@lge.com, Add IrDA UART [START] */
+/*                                                     */
+/*                                                     */
 #if defined(CONFIG_LGE_AUDIO) ||defined(CONFIG_LGE_IRDA)
 #ifdef CONFIG_LGE_AUDIO
-	/*tarzan.park@lge.com audio amp i2c <- gsbi9 */
+	/*                                           */
 	CLK_LOOKUP("iface_clk",		gsbi9_p_clk.c,	"qup_i2c.9"),
 #endif
 #ifdef CONFIG_LGE_IRDA
 	CLK_LOOKUP("iface_clk",		gsbi9_p_clk.c,	"msm_serial_hsl.2"),
 #endif
-/* 20111205, chaeuk.lee@lge.com, Add IrDA UART [END] */
+/*                                                   */
 #else
 	CLK_LOOKUP("iface_clk",		gsbi9_p_clk.c,		NULL),
 #endif
-// 2011-11-15 taew00k.kang@lge.com 1Seg GSBI10 SPI porting [Start]
+//                                                                
 #if defined(CONFIG_LGE_BROADCAST_TDMB)||defined(CONFIG_LGE_BROADCAST_1SEG)
 // GSBI10 is used for 1SEG SPI
 	CLK_LOOKUP("iface_clk",		gsbi10_p_clk.c,		"spi_qsd.1"),
 #else
 	CLK_LOOKUP("iface_clk",		gsbi10_p_clk.c,		"qup_i2c.10"),
-#endif /* CONFIG_LGE_BROADCAST */
-// 2011-11-15 taew00k.kang@lge.com 1Seg GSBI10 SPI porting [End]
+#endif /*                      */
+//                                                              
 	CLK_LOOKUP("iface_clk",		gsbi11_p_clk.c,		NULL),
 	CLK_LOOKUP("iface_clk",		gsbi12_p_clk.c,		"qup_i2c.12"),
 	CLK_LOOKUP("iface_clk",		tsif_p_clk.c,		NULL),
@@ -5395,7 +5395,7 @@ static struct clk_lookup msm_clocks_8960_v1[] __initdata = {
 	CLK_LOOKUP("core_clk",		pmic_ssbi2_clk.c,	NULL),
 	CLK_LOOKUP("mem_clk",		rpm_msg_ram_p_clk.c,	NULL),
 	CLK_LOOKUP("core_clk",		amp_clk.c,		NULL),
-/* LGE_CHANGE, sunkyoo.hwang@lge.com, 2012-01-16, For LGE's sensors. */
+/*                                                                   */
 #ifdef CONFIG_MACH_LGE
 	CLK_LOOKUP("cam_clk",		cam0_clk.c, "4-000d"), /* GSBI4, Slave Addr: 0x0d, imx111 */
 	CLK_LOOKUP("cam_clk",		cam1_clk.c, "4-006e"), /* GSBI4, Slave Addr: 0x6e, imx119 */
@@ -5443,7 +5443,7 @@ static struct clk_lookup msm_clocks_8960_v1[] __initdata = {
 	CLK_LOOKUP("lut_clk",		lut_mdp_clk.c,	"footswitch-8x60.4"),
 	CLK_LOOKUP("core_clk",		rot_clk.c,	"msm_rotator.0"),
 	CLK_LOOKUP("core_clk",		rot_clk.c,	"footswitch-8x60.6"),
-/* jeehwan.hwang@lge.com 20120206 defeaturing hdmi & dtv feature for non hdmi device */
+/*                                                                                   */
 #ifdef CONFIG_FB_MSM_HDMI_MSM_PANEL
 	CLK_LOOKUP("tv_src_clk",	tv_src_clk.c,		NULL),
 	CLK_LOOKUP("tv_src_clk",	tv_src_clk.c,	"footswitch-8x60.4"),
@@ -5452,7 +5452,7 @@ static struct clk_lookup msm_clocks_8960_v1[] __initdata = {
 #endif
 	CLK_LOOKUP("core_clk",		vcodec_clk.c,	"msm_vidc.0"),
 	CLK_LOOKUP("core_clk",		vcodec_clk.c,	"footswitch-8x60.7"),
-/* jeehwan.hwang@lge.com 20120206 defeaturing hdmi & dtv feature for non hdmi device */
+/*                                                                                   */
 #ifdef CONFIG_FB_MSM_HDMI_MSM_PANEL
 	CLK_LOOKUP("mdp_tv_clk",	mdp_tv_clk.c,		NULL),
 	CLK_LOOKUP("tv_clk",		mdp_tv_clk.c,	"footswitch-8x60.4"),
@@ -5484,7 +5484,7 @@ static struct clk_lookup msm_clocks_8960_v1[] __initdata = {
 	CLK_LOOKUP("iface_clk",		gfx2d1_p_clk.c,	"footswitch-8x60.1"),
 	CLK_LOOKUP("iface_clk",		gfx3d_p_clk.c,	"kgsl-3d0.0"),
 	CLK_LOOKUP("iface_clk",		gfx3d_p_clk.c,	"footswitch-8x60.2"),
-/* jeehwan.hwang@lge.com 20120206 defeaturing hdmi & dtv feature for non hdmi device */
+/*                                                                                   */
 #ifdef CONFIG_FB_MSM_HDMI_MSM_PANEL
 	CLK_LOOKUP("master_iface_clk",	hdmi_m_p_clk.c,	"hdmi_msm.1"),
 	CLK_LOOKUP("slave_iface_clk",	hdmi_s_p_clk.c,	"hdmi_msm.1"),
@@ -5962,7 +5962,7 @@ static void __init msm8960_clock_init(void)
 		       sizeof(ijpeg_clk.c.fmax));
 		memcpy(mdp_clk.c.fmax, fmax_mdp_8064,
 		       sizeof(ijpeg_clk.c.fmax));
-/* jeehwan.hwang@lge.com 20120206 defeaturing hdmi & dtv feature for non hdmi device */
+/*                                                                                   */
 #ifdef CONFIG_FB_MSM_HDMI_MSM_PANEL
 		memcpy(tv_src_clk.c.fmax, fmax_tv_src_8064,
 		       sizeof(tv_src_clk.c.fmax));
@@ -6030,9 +6030,9 @@ static void __init msm8960_clock_init(void)
 		clk_enable(&sdc3_p_clk.c);
 	}
 #ifdef CONFIG_MACH_LGE
-	/* [junyeong.han@lge.com] 2011-12-27
-	 * Disable gp0_clk because it was enabled by bootloader or etc.
-	 * Please revert it after disable gp0 clock in bootloader */
+	/*                                  
+                                                                
+                                                           */
 	clk_set_rate(&gp0_clk.c, 9600000);
 	clk_enable(&gp0_clk.c);
 	clk_disable(&gp0_clk.c);

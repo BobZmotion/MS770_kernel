@@ -86,7 +86,7 @@ static int vpe_reset(void)
 {
 	uint32_t vpe_version;
 	uint32_t rc = 0;
-/* LGE_CHANGE_S, stop VPE cleanly when mediaserver crashes, 2012-05-15, sunkyoo.hwang@lge.com */
+/*                                                                                            */
 	unsigned long flags = 0;
 
 	spin_lock_irqsave(&vpe_ctrl->lock, flags);
@@ -96,7 +96,7 @@ static int vpe_reset(void)
 		return rc;
 	}
 	spin_unlock_irqrestore(&vpe_ctrl->lock, flags);
-/* LGE_CHANGE_E, stop VPE cleanly when mediaserver crashes, 2012-05-15, sunkyoo.hwang@lge.com */
+/*                                                                                            */
 
 	vpe_reset_state_variables();
 	vpe_version = msm_io_r(vpe_ctrl->vpebase + VPE_HW_VERSION_OFFSET);
@@ -679,7 +679,7 @@ static int msm_vpe_resource_init(struct platform_device *pdev)
 /* from this part it is error handling. */
 vpe_unmap_mem_region:
 	iounmap(vpe_ctrl->vpebase);
-	vpe_ctrl->vpebase = NULL; /* LGE_CHANGE, stop VPE cleanly when mediaserver crashes, 2012-05-15, sunkyoo.hwang@lge.com */
+	vpe_ctrl->vpebase = NULL; /*                                                                                          */
 	return rc;  /* this rc should have error code. */
 }
 
@@ -691,11 +691,11 @@ void msm_vpe_subdev_release(struct platform_device *pdev)
 		return;
 	}
 
-	vpe_reset(); /* LGE_CHANGE, stop VPE cleanly when mediaserver crashes, 2012-05-15, sunkyoo.hwang@lge.com */
-	vpe_disable(); /* LGE_CHANGE, stop VPE cleanly when mediaserver crashes, 2012-05-15, sunkyoo.hwang@lge.com */
+	vpe_reset(); /*                                                                                          */
+	vpe_disable(); /*                                                                                          */
 
 	iounmap(vpe_ctrl->vpebase);
-	vpe_ctrl->vpebase = NULL; /* LGE_CHANGE, stop VPE cleanly when mediaserver crashes, 2012-05-15, sunkyoo.hwang@lge.com */
+	vpe_ctrl->vpebase = NULL; /*                                                                                          */
 	atomic_set(&vpe_init_done, 0);
 }
 EXPORT_SYMBOL(msm_vpe_subdev_release);

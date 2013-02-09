@@ -291,7 +291,7 @@ static irqreturn_t broadcast_tdmb_spi_isr(int irq, void *handle)
 //			printk("######### spi read function is so late skip #########\n");			
 			return IRQ_HANDLED;
 		}		
-//		printk("***** broadcast_tdmb_spi_isr coming *******\n"); 	//LGE_BROADCAST_TEST_I
+//                                                                                  
 		queue_work(pTdmbInfo->spi_wq, &pTdmbInfo->spi_work);    
 	}
 	else
@@ -327,14 +327,14 @@ static void broacast_tdmb_spi_work(struct work_struct *tdmb_work)
 	pTdmbWorkData = container_of(tdmb_work, struct TDMB_FC8050_CTRL, spi_work);
 	if ( pTdmbWorkData )
 	{
-//		printk("broadcast_tdmb_spi_work START\n");	//LGE_BROADCAST_TEST_I
+//                                                                   
 		fc8050_isr_control(0);
 		pTdmbWorkData->spi_irq_status = TRUE;
 		broadcast_drv_if_isr();
 		pTdmbWorkData->spi_irq_status = FALSE;
 		fc8050_isr_control(1);
-//		printk("broadcast_tdmb_spi_work END\n");	//LGE_BROADCAST_TEST_I
-//		printk("broacast_tdmb_spi_work is called handle=0x%x\n", (unsigned int)pTdmbWorkData);	//LGE_BROADCAST_TEST_I
+//                                                                 
+//                                                                                                               
 	}
 	else
 	{

@@ -230,9 +230,9 @@ static const struct dev_pm_ops pm8xxx_vib_pm_ops = {
 };
 #endif
 
-/* LGE_CHANGE
-* control the volume of vibration
-* 2012-01-02, donggyun.kim@lge.com
+/*           
+                                 
+                                  
 */
 #ifdef CONFIG_LGE_PMIC8XXX_VIBRATOR_VOL
 #define PWM_MAGNITUDE_MAX 128
@@ -241,7 +241,7 @@ static const struct dev_pm_ops pm8xxx_vib_pm_ops = {
 
 static ssize_t pm8xxx_vib_lvl_show(struct device *dev, struct device_attribute *attr, char *buf)
 {
-/* Bypass cause of unused function, donggyun.kim@lge.com, 03/07/2012 */
+/*                                                                   */
 #if 0
 	struct timed_output_dev *dev_ = (struct timed_output_dev *)dev_get_drvdata(dev);
 	struct pm8xxx_vib *vib = container_of(dev_, struct pm8xxx_vib, timed_dev);
@@ -271,7 +271,7 @@ static ssize_t pm8xxx_vib_lvl_store(struct device *dev, struct device_attribute 
 	struct pm8xxx_vib *vib = container_of(dev_, struct pm8xxx_vib, timed_dev);
 
 	int level_mV;
-/* Bypass cause of unused function. always MAX voltage, donggyun.kim@lge.com, 03/07/2012 */
+/*                                                                                       */
 #if 0
 	int gain;
 	sscanf(buf, "%d", &gain);
@@ -295,7 +295,7 @@ static ssize_t pm8xxx_vib_lvl_store(struct device *dev, struct device_attribute 
 
 static DEVICE_ATTR(amp, S_IRUGO | S_IWUSR, pm8xxx_vib_lvl_show, pm8xxx_vib_lvl_store);
 
-#endif /* CONFIG_LGE_PMIC8XXX_VIBRATOR_VOL */
+#endif /*                                  */
 
 static int __devinit pm8xxx_vib_probe(struct platform_device *pdev)
 
@@ -357,7 +357,7 @@ static int __devinit pm8xxx_vib_probe(struct platform_device *pdev)
 	if (rc < 0)
 		goto err_read_vib;
 
-	/* no vibration during initialization, donggyun.kim@lge.com, 01/02/2012 */
+	/*                                                                      */
 	//pm8xxx_vib_enable(&vib->timed_dev, pdata->initial_vibrate_ms);
 #else
 	pm8xxx_vib_enable(&vib->timed_dev, pdata->initial_vibrate_ms);

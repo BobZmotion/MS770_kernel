@@ -1639,7 +1639,7 @@ static int pair_device(struct sock *sk, u16 index, unsigned char *data, u16 len)
 	io_cap = cp->io_cap;
 
 // *s QCT_BT_COMMON_PATCH_SBA1044
-//-s LGBT_COMMON_BUGFIX_QCT_SECURITY_PATCH, [younghyun.kwon@lge.com 120412]
+//                                                                         
     /* QCT Original
 	if (io_cap == 0x03) {
 	*/
@@ -1650,7 +1650,7 @@ static int pair_device(struct sock *sk, u16 index, unsigned char *data, u16 len)
 // *e QCT_BT_COMMON_PATCH_SBA1044
 		sec_level = BT_SECURITY_MEDIUM;
 		auth_type = HCI_AT_DEDICATED_BONDING;
-//-s LGBT_COMMON_BUGFIX_QCT_SECURITY_PATCH, [younghyun.kwon@lge.com 120412]
+//                                                                         
     /* QCT Original
 	} else {
 		sec_level = BT_SECURITY_HIGH;
@@ -2029,7 +2029,7 @@ void mgmt_inquiry_complete_evt(u16 index, u8 status)
 		err = hci_send_cmd(hdev, HCI_OP_LE_SET_SCAN_ENABLE,
 						sizeof(le_cp), &le_cp);
 		if (err >= 0) {
-// +s LGE: LGBT_COMMON_FUNCTION_SEARCH_PERFORMANCE, [sh.shin@lge.com 20120405]
+//                                                                            
 // Do not allocate too much time on BTLE scan. Use fixed 5 seconds. 
 //			mod_timer(&hdev->disco_le_timer, jiffies +
 //				msecs_to_jiffies(hdev->disco_int_phase * 1000));
@@ -2116,7 +2116,7 @@ void mgmt_disco_le_timeout(unsigned long data)
 	/* re-start BR scan */
 	if (hdev->disco_state != SCAN_IDLE) {
 		struct hci_cp_inquiry cp = {{0x33, 0x8b, 0x9e}, 4, 0};
-// +s LGE: LGBT_COMMON_FUNCTION_SEARCH_PERFORMANCE, [sh.shin@lge.com 20120405]
+//                                                                            
 //		hdev->disco_int_phase *= 2;
 //		hdev->disco_int_count = 0;
 //		cp.num_rsp = (u8) hdev->disco_int_phase;
@@ -2162,7 +2162,7 @@ static int start_discovery(struct sock *sk, u16 index)
 		struct hci_cp_le_set_scan_parameters le_cp;
 
 		/* Shorten BR scan params */
-// +s LGE: LGBT_COMMON_FUNCTION_SEARCH_PERFORMANCE, [sh.shin@lge.com 20120405]
+//                                                                            
 //		cp.num_rsp = 1;
         cp.num_rsp = 0;
 // +e
@@ -2191,14 +2191,14 @@ static int start_discovery(struct sock *sk, u16 index)
 		if (!cmd)
 			mgmt_pending_add(sk, MGMT_OP_STOP_DISCOVERY, index,
 								NULL, 0);
-// +s LGE: LGBT_COMMON_FUNCTION_SEARCH_PERFORMANCE, [sh.shin@lge.com 20120405]
+//                                                                            
 //		hdev->disco_int_phase = 1;
 //		hdev->disco_int_count = 0;
 // +e
 		hdev->disco_state = SCAN_BR;
 		del_timer(&hdev->disco_le_timer);
 		del_timer(&hdev->disco_timer);
-		// +s LGE: LGBT_COMMON_BUGFIX_INCREASE_DISCOVERY_TIME, [sh.shin@lge.com 20120330]
+		//                                                                               
 		// increase discovery time from 20 sec to 50 sec.
 		mod_timer(&hdev->disco_timer,
 			jiffies + msecs_to_jiffies(50000));
@@ -3016,7 +3016,7 @@ int mgmt_device_found(u16 index, bdaddr_t *bdaddr, u8 type, u8 le,
 			u8 *dev_class, s8 rssi, u8 eir_len, u8 *eir)
 {
 	struct mgmt_ev_device_found ev;
-// +s LGE: LGBT_COMMON_FUNCTION_SEARCH_PERFORMANCE, [sh.shin@lge.com 20120405]
+//                                                                            
 //	struct hci_dev *hdev;
 // +e
 	int err;
@@ -3041,7 +3041,7 @@ int mgmt_device_found(u16 index, bdaddr_t *bdaddr, u8 type, u8 le,
 	if (err < 0)
 		return err;
 
-// +s LGE: LGBT_COMMON_FUNCTION_SEARCH_PERFORMANCE, [sh.shin@lge.com 20120405]
+//                                                                            
 //	hdev = hci_dev_get(index);
 //
 //	if (!hdev)

@@ -70,7 +70,7 @@ enum {
 	SX150X_LIQUID,
 };
 
-/* BEGIN : jooyeong.lee@lge.com 2012-02-27 Change the charger_temp_scenario */
+/*                                                                          */
 #ifdef CONFIG_LGE_CHARGER_TEMP_SCENARIO
 enum {
 	THERM_M10,
@@ -106,7 +106,7 @@ enum {
 	CHG_BATT_STOP_CHARGING_STATE,
 };
 #endif
-/* END : jooyeong.lee@lge.com 2012-02-27 */
+/*                                       */
 #endif
 extern struct sx150x_platform_data msm8960_sx150x_data[];
 extern struct msm_camera_board_info msm8960_camera_board_info;
@@ -130,7 +130,7 @@ uint32_t msm_rpm_get_swfi_latency(void);
 #define MSM_8960_GSBI3_QUP_I2C_BUS_ID 3
 #define MSM_8960_GSBI10_QUP_I2C_BUS_ID 10
 
-/* LGE Specific */
+/*              */
 #ifndef _BOARD_D1LA_H_
 #define _BOARD_D1LA_H_
 
@@ -155,9 +155,9 @@ uint32_t msm_rpm_get_swfi_latency(void);
 #define MSM_FB_WIDTH_MM							56
 #define MSM_FB_HEIGHT_MM						99
 
-/* CONFIG_LGE_AUDIO
- * Add devide amp parameters
- * 2011-11-30, leia.shin@lge.com
+/*                 
+                            
+                                
  */
 #define AGC_COMPRESIION_RATE		0
 #define AGC_OUTPUT_LIMITER_DISABLE	1
@@ -305,9 +305,9 @@ uint32_t msm_rpm_get_swfi_latency(void);
 #define CAM2_VANA_LOAD_UA       85600
 
 #ifdef CONFIG_LGE_PM
-/* LGE_CHANGE
- * Classified the ADC value for cable detection
- * 2011-12-05, kidong0420.kim@lge.com
+/*           
+                                               
+                                     
  */
 #define ADC_CHANGE_REV	HW_REV_B
 #define IBAT_CURRENT	800

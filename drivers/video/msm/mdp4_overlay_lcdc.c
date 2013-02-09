@@ -243,10 +243,10 @@ int mdp_lcdc_on(struct platform_device *pdev)
 	MDP_OUTP(MDP_BASE + LCDC_BASE + 0x1c, active_hctl);
 	MDP_OUTP(MDP_BASE + LCDC_BASE + 0x20, active_v_start);
 	MDP_OUTP(MDP_BASE + LCDC_BASE + 0x24, active_v_end);
-	/* LGE_CHANGE
-	 * Add QCT patches for blue screen issue after 1041 patches
-	 * 2012-03-15, baryun.hwang@lge.com
-	 */
+	/*           
+                                                            
+                                    
+  */
 #ifdef OCT_PATCH
 	mdp4_overlay_reg_flush(pipe, 1);
 #endif

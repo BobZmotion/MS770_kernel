@@ -37,9 +37,9 @@
 #define BMS_SOC_INFO
 #endif
 
-/* L0/L1A, bms_soc_averaging
- * BMS the number of averaging unit
- * 2012-04-22, hyemin.cho@lge.com
+/*                          
+                                   
+                                 
  */
 #define I_MAX 30
 
@@ -63,9 +63,9 @@
 #define TEST_PROGRAM_REV	0x339
 
 
-/* L0/L1A, bms_soc_logging
- * Workaround for BMS error Debugging
- * 2012-03-30, hyemin.cho@lge.com
+/*                        
+                                     
+                                 
  */
 #ifdef BMS_SOC_INFO
 #define BMS_SOC_INFORM_TIME 10000
@@ -128,7 +128,7 @@ struct pm8921_bms_chip {
 	struct work_struct	calib_hkadc_work;
 	struct delayed_work	calib_ccadc_work;
 #ifdef BMS_SOC_INFO
-	struct delayed_work	bms_soc_work;/*2012-03-30 bms_soc_logging hyemin.cho@lge.com*/
+	struct delayed_work	bms_soc_work;/*                                             */
 #endif
 	unsigned int		calib_delay_ms;
 	unsigned int		revision;
@@ -383,9 +383,9 @@ static int usb_chg_plugged_in(void)
 	return ret.intval;
 }
 
-/* Add DC charger(TA) information in hkadc calibration.
- *  LG use "ac" as power supply name in TA. But QCT use "usb" in both TA and USB.
- *  2012-06-09, junsin.park@lge.com
+/*                                                     
+                                                                                 
+                                   
  */
 #ifdef CONFIG_LGE_PM
 static int dc_chg_plugged_in(void)
@@ -1499,9 +1499,9 @@ static int calculate_real_fcc_uah(struct pm8921_bms_chip *chip,
 	return real_fcc_uah;
 }
 
-/* L0/L1A, bms_soc_averaging
- * BMS averaging function
- * 2012-04-22, hyemin.cho@lge.com
+/*                          
+                         
+                                 
  */
 int cal_rnd_avg(int *soc_value)
 {
@@ -1637,9 +1637,9 @@ static int calculate_state_of_charge(struct pm8921_bms_chip *chip,
 	int iavg_ua;
 	int delta_time_us;
 
-/* L0/L1A, bms_soc_averaging
-* BMS averaging variable
-* 2012-04-22, hyemin.cho@lge.com
+/*                          
+                        
+                                
 */
 	static int	soc_buf[I_MAX]={0,};
 	static int	idxBuf = 0;
@@ -1647,12 +1647,12 @@ static int calculate_state_of_charge(struct pm8921_bms_chip *chip,
 	int			avgSOC = 0;
 
 
-	//2012-05-08, junsin.park@lge.com for bms test
+	//                                            
 	int ibat=0; int vbatt=0;
 	int comp_soc=0; int org_soc=0; int adj_soc=0;
 	pm8921_bms_get_battery_current(&ibat);
 	get_battery_uvolts(chip, &vbatt);
-	//2012-05-08, junsin.park@lge.com for bms test
+	//                                            
 
 	calculate_soc_params(chip, raw, batt_temp, chargecycles,
 						&fcc_uah,
@@ -1678,7 +1678,7 @@ static int calculate_state_of_charge(struct pm8921_bms_chip *chip,
 			/ (fcc_uah - unusable_charge_uah);
 	}
 
-	//2012-05-08, junsin.park@lge.com for bms test
+	//                                            
 	org_soc = soc;
 
 	if (soc > 100)
@@ -1708,15 +1708,15 @@ static int calculate_state_of_charge(struct pm8921_bms_chip *chip,
 	soc = adjust_soc(chip, soc, batt_temp, rbatt,
 					fcc_uah, unusable_charge_uah, cc_uah);
 
-	//2012-05-08, junsin.park@lge.com for bms test
+	//                                            
 	adj_soc = soc;
 
-	/* 5% Compensation of SOC Value, need to verify.
-	 * 2012-04-09, junsin.park@lge.com 
-	 */
+	/*                                              
+                                    
+  */
 	soc = (soc*100/95);
 
-	//2012-05-08, junsin.park@lge.com for bms test
+	//                                            
 	comp_soc = soc;
 
 	// average of last 30 measured comp_soc value
@@ -1770,7 +1770,7 @@ static int calculate_state_of_charge(struct pm8921_bms_chip *chip,
 
 	pr_debug("Reported SOC = %u%%\n", last_soc);
 
-	//2012-05-08, junsin.park@lge.com for bms test
+	//                                            
 	printk("[BMS] ORG_SOC=%d, ADJ_SOC=%d, COMP_SOC=%d(%d), LAST_SOC=%d, BAT_TEMP=%d, OCV=%d, RBATT=%d, FCC=%d, RC=%d, CC=%d, UUC=%d, RUC=%d, VBATT=%d, IBAT=%d \n", org_soc, adj_soc, comp_soc, avgSOC,last_soc, batt_temp, raw->last_good_ocv_uv, rbatt, fcc_uah, remaining_charge_uah, cc_uah, unusable_charge_uah, remaining_usable_charge_uah, vbatt, ibat);
 
 	return last_soc;
@@ -1855,9 +1855,9 @@ static void calibrate_ccadc_work(struct work_struct *work)
 			(chip->calib_delay_ms)));
 }
 
-/* L0/L1A, bms_soc_logging
- * Workaround for BMS error Debugging
- * 2012-03-30, hyemin.cho@lge.com
+/*                        
+                                     
+                                 
  */
 #ifdef BMS_SOC_INFO
 static int get_prop_batt_temp(struct pm8921_bms_chip *chip)
@@ -2556,9 +2556,9 @@ static int set_battery_data(struct pm8921_bms_chip *chip)
 	if (is_between(PALLADIUM_ID_MIN, PALLADIUM_ID_MAX, battery_id)) {
 		goto palladium;
 	}
-/* L0, Change Battery Profile
-*  Battery is changed from 4.20V to 4.35V after Rev.C
-*  2012-03-19, junsin.park@lge.com
+/*                           
+                                                     
+                                  
 */
 #if 0 /* Compile error on QCT1047 */
 #if defined(CONFIG_LGE_PM) && defined(CONFIG_MACH_MSM8960_L0)
@@ -2916,8 +2916,8 @@ restore_sbi_config:
 	return 0;
 }
 
-/* Add voltage sysfs node for lg power test in factory
-  * 2012-05-28, junsin.park@lge.com
+/*                                                    
+                                   
   */
 #ifdef CONFIG_LGE_PM
 ssize_t bms_show_vbatt(struct device *dev, struct device_attribute *attr, char *buf)
@@ -3009,8 +3009,8 @@ static int __devinit pm8921_bms_probe(struct platform_device *pdev)
 	the_chip = chip;
 	create_debugfs_entries(chip);
 
-/* Add voltage sysfs node for lg power test in factory
-  * 2012-05-28, junsin.park@lge.com
+/*                                                    
+                                   
   */
 #ifdef CONFIG_LGE_PM
 	rc = device_create_file(&pdev->dev, &dev_attr_vbatt);
@@ -3034,9 +3034,9 @@ static int __devinit pm8921_bms_probe(struct platform_device *pdev)
 	pm8921_bms_enable_irq(chip, PM8921_BMS_GOOD_OCV);
 	pm8921_bms_enable_irq(chip, PM8921_BMS_OCV_FOR_R);
 
-/* L0/L1A, bms_soc_logging
- * Workaround for BMS error Debugging
- * 2012-03-30, hyemin.cho@lge.com
+/*                        
+                                     
+                                 
  */
 #ifdef BMS_SOC_INFO
 	INIT_DELAYED_WORK(&chip->bms_soc_work, bms_soc_monitor_work);

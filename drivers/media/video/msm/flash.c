@@ -30,8 +30,8 @@ enum msm_cam_flash_stat{
 	MSM_CAM_FLASH_ON,
 };
 
-/* LGE_CHANGE
- * 2011-09-01, seojin.lee@lge.com
+/*           
+                                 
  */
 #ifdef CONFIG_MSM_CAMERA_FLASH_LM3559
 extern int lm3559_flash_set_led_state(int state);
@@ -613,9 +613,9 @@ int msm_flash_ctrl(struct msm_camera_sensor_info *sdata,
 	sensor_data = sdata;
 	switch (flash_info->flashtype) {
 	case LED_FLASH:
-/* LGE_CHANGE
- * Support LM3559.
- * 2011-09-01, seojin.lee@lge.com
+/*           
+                  
+                                 
  */
 #ifdef CONFIG_MSM_CAMERA_FLASH_LM3559
 		rc = lm3559_flash_set_led_state(flash_info->ctrl_data.led_state);

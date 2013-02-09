@@ -355,12 +355,12 @@ static ssize_t codec_debug_write(struct file *filp,
 		break;
 		case 2:
 		{
-		/*printk(KERN_INFO "LGE:%s() duty control 0x%x(%d)\n", __func__, (int)param[1], (int)param[1]);*/
+		/*                                                                                             */
 		/*lge_isa1200_write_reg(client, 0x35, (unsigned char)param[1]); [7:0] PWM High Duty(PWM Gen) 0-6B-D6*/
 		}
 		case 3:
 		{
-		/*printk(KERN_INFO "LGE:%s() vib on/off 0x%x(%d)\n", __func__, (int)param[1], (int)param[1]);*/
+		/*                                                                                           */
 		/*lge_isa1200_write_reg(client, 0x30, VAL_0x30+(param[1]<<7)); // [7]Haptic Drive Enable Mod*/
 		}
 		break;

@@ -469,7 +469,7 @@ static struct platform_device ion_dev = {
 	.id = 1,
 	.dev = { .platform_data = &ion_pdata },
 };
-//added subsystem platform devices for ehgrace.kim@lge.com
+//                                                        
 #endif
 
 struct platform_device fmem_device = {

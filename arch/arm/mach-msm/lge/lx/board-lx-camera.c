@@ -19,7 +19,7 @@
 #include "devices.h"
 #if !defined(CONFIG_MACH_LGE)
 #include "board-8960.h"
-#else /* for LGE Board */
+#else /*               */
 #include <mach/board_lge.h>
 #include CONFIG_BOARD_HEADER_FILE
 #endif
@@ -127,9 +127,9 @@ static struct msm_gpiomux_config msm8960_cdp_flash_configs[] = {
 };
 #endif
 #if defined(CONFIG_MACH_MSM8960_L0)
-/* LGE_CHANGE
- * Seperate REV_A and other REVs GPIO setting.
- * 2012-01-26 yt.kim@lge.com
+/*           
+                                              
+                            
  */
 
 static struct msm_gpiomux_config msm8960_cam_common_configs_a[] = {
@@ -227,7 +227,7 @@ static struct msm_gpiomux_config msm8960_cam_common_configs[] = {
 			[GPIOMUX_SUSPENDED] = &cam_settings[0],
 		},
 	},
-/* LGE_CHANGE_S driver control reset and GPIO_CAM2_PWRDOWN , 2012-02-29, yt.kim@lge.com */
+/*                                                                                      */
 	{
 		.gpio = GPIO_CAM2_PWRDOWN,/* 54 */
 		.settings = {
@@ -235,7 +235,7 @@ static struct msm_gpiomux_config msm8960_cam_common_configs[] = {
 			[GPIOMUX_SUSPENDED] = &cam_settings[0],
 		},
 	},
-/* LGE_CHANGE_E driver control reset and GPIO_CAM2_PWRDOWN , 2012-02-29, yt.kim@lge.com */
+/*                                                                                      */
 	{
 		.gpio = GPIO_CAM2_RST_N,/* 76 */
 		.settings = {
@@ -252,10 +252,10 @@ static struct msm_gpiomux_config msm8960_cam_common_configs[] = {
 	},
 };
 #elif defined(CONFIG_MACH_MSM8960_L1A)
-	/* LGE_CHANGE
-	 * Seperate L0 and L1 REV A.
-	 * 2012-02-20 yousung.kang@lge.com
-	 */
+	/*           
+                             
+                                   
+  */
 static struct msm_gpiomux_config msm8960_cam_common_configs_a[] = {
 	{
 		.gpio = GPIO_CAM_FLASH_EN, /* 1 */
@@ -542,13 +542,13 @@ static struct msm_bus_vectors cam_zsl_vectors[] = {
 		.src = MSM_BUS_MASTER_VFE,
 		.dst = MSM_BUS_SLAVE_EBI_CH0,
 		.ab  = 302071680,
-/* Start LGE_BSP_CAMERA : jongkyung.kim@lge.com 2012-02-20 Continuos Shot Preveiw& Capture Abnormal Phenomenon with ZSL, Case: 00754853 */
+/*                                                                                                                                      */
 #if 0
 		.ib  = 1208286720,
 #else
 		.ib  = 1812430080,
 #endif
-/* End LGE_BSP_CAMERA   : jongkyung.kim@lge.com 2012-02-20 Continuos Shot Preveiw& Capture Abnormal Phenomenon with ZSL, Case: 00754853 */
+/*                                                                                                                                      */
 	},
 	{
 		.src = MSM_BUS_MASTER_VPE,
@@ -560,13 +560,13 @@ static struct msm_bus_vectors cam_zsl_vectors[] = {
 		.src = MSM_BUS_MASTER_JPEG_ENC,
 		.dst = MSM_BUS_SLAVE_EBI_CH0,
 		.ab  = 540000000,
-/* Start LGE_BSP_CAMERA : jongkyung.kim@lge.com 2012-02-20 Continuos Shot Preveiw& Capture Abnormal Phenomenon with ZSL, Case: 00754853 */
+/*                                                                                                                                      */
 #if 0
 		.ib  = 1350000000,
 #else
 		.ib  = 2025000000,
 #endif
-/* End LGE_BSP_CAMERA	: jongkyung.kim@lge.com 2012-02-20 Continuos Shot Preveiw& Capture Abnormal Phenomenon with ZSL, Case: 00754853 */
+/*                                                                                                                                    */
 	},
 	{
 		.src = MSM_BUS_MASTER_JPEG_ENC,
@@ -629,7 +629,7 @@ static struct msm_camera_device_platform_data msm_camera_csi_device_data[] = {
 		.cam_bus_scale_table = &cam_bus_client_pdata,
 	},
 };
-/* LGE_CHANGE_S fix a power sequence , 2012-02-28, yt.kim@lge.com */
+/*                                                                */
 #if defined(CONFIG_MACH_MSM8960_L0)
 static struct camera_vreg_t msm_8960_back_cam_vreg[] = {
 
@@ -639,10 +639,10 @@ static struct camera_vreg_t msm_8960_back_cam_vreg[] = {
 	{"cam1_vaf", REG_LDO, 2800000, 2800000, 300000},
 };
 #elif defined(CONFIG_MACH_MSM8960_L1A)
-	/* LGE_CHANGE
-	 * Seperate L0 and L1 REV A because of L29 regulator.
-	 * 2012-03-19 yousung.kang@lge.com
-	 */
+	/*           
+                                                      
+                                   
+  */
 static struct camera_vreg_t msm_8960_back_cam_vreg[] = {
 
 //	{"cam1_vdig", REG_LDO, 1800000, 1800000, 100000},
@@ -660,21 +660,21 @@ static struct camera_vreg_t msm_8960_back_cam_vreg[] = {
 	{"cam1_vaf", REG_LDO, 2800000, 2800000, 300000},
 };
 #endif
-/* LGE_CHANGE_E fix a power sequence , 2012-02-28, yt.kim@lge.com */
+/*                                                                */
 
 #ifdef CONFIG_MT9V113
-/* LGE_CHANGE_S fix a power sequence , 2012-02-28, yt.kim@lge.com */
+/*                                                                */
 static struct camera_vreg_t msm_8960_front_cam_vreg[] = {
 
 	{"cam2_vio", REG_VS, 0, 0, 0},
 	{"cam2_vana", REG_LDO, 2800000, 2850000, 10100},
 	{"cam2_vdig", REG_LDO, 1800000, 1800000, 6400},
 };
-/* LGE_CHANGE_E fix a power sequence , 2012-02-28, yt.kim@lge.com */
+/*                                                                */
 #elif defined(CONFIG_IMX119)
-/* LGE_CHANGE
- * Seperate MT9V113 and IMX119.
- * 2012-02-21 yousung.kang@lge.com
+/*           
+                               
+                                  
  */
 static struct camera_vreg_t msm_8960_front_cam_vreg[] = {
 
@@ -702,19 +702,19 @@ static struct gpio msm8960_front_cam_gpio[] = {
 	{76, GPIOF_DIR_OUT, "CAM_RESET"},
 };
 
-/* LGE_CHANGE_S added GPIO_CAM_VCM_EN control , 2012-02-28, yt.kim@lge.com */
+/*                                                                         */
 static struct gpio msm8960_back_cam_gpio[] = {
 	{107, GPIOF_DIR_OUT, "CAM_RESET"},
 	{GPIO_CAM_VCM_EN, GPIOF_DIR_OUT, "VCM_ENABLE"},
 };
-/* LGE_CHANGE_E added GPIO_CAM_VCM_EN control , 2012-02-28, yt.kim@lge.com */
+/*                                                                         */
 
 #ifdef CONFIG_MT9V113
-/* LGE_CHANGE_S driver control reset and GPIO_CAM2_PWRDOWN , 2012-02-29, yt.kim@lge.com */
+/*                                                                                      */
 static struct msm_gpio_set_tbl msm8960_front_cam_gpio_set_tbl[] = {
 	{76, GPIOF_OUT_INIT_HIGH, 4000},
 };
-/* LGE_CHANGE_E driver control reset and GPIO_CAM2_PWRDOWN , 2012-02-29, yt.kim@lge.com */
+/*                                                                                      */
 #else
 static struct msm_gpio_set_tbl msm8960_front_cam_gpio_set_tbl[] = {
 	{76, GPIOF_OUT_INIT_LOW, 1000},
@@ -722,13 +722,13 @@ static struct msm_gpio_set_tbl msm8960_front_cam_gpio_set_tbl[] = {
 };
 #endif
 
-/* LGE_CHANGE_S added GPIO_CAM_VCM_EN control , 2012-02-28, yt.kim@lge.com */
+/*                                                                         */
 static struct msm_gpio_set_tbl msm8960_back_cam_gpio_set_tbl[] = {
 	{107, GPIOF_OUT_INIT_LOW, 1000},
 	{107, GPIOF_OUT_INIT_HIGH, 4000},
 	{GPIO_CAM_VCM_EN, GPIOF_OUT_INIT_HIGH, 1000},
 };
-/* LGE_CHANGE_E added GPIO_CAM_VCM_EN control , 2012-02-28, yt.kim@lge.com */
+/*                                                                         */
 
 static struct msm_camera_gpio_conf msm_8960_front_cam_gpio_conf = {
 	.cam_gpiomux_conf_tbl = msm8960_cam_2d_configs,
@@ -772,9 +772,9 @@ static struct msm_camera_sensor_flash_data flash_s5k4e1 = {
 	.flash_type	= MSM_CAMERA_FLASH_LED,
 
 #elif defined(CONFIG_MACH_MSM8960_L1A)
-/* LGE_CHANGE
- * not supported Flash at L1A.
- * 2012-02-21 yousung.kang@lge.com
+/*           
+                              
+                                  
  */
 static struct msm_camera_sensor_flash_data flash_s5k4e1 = {
 	.flash_type	= MSM_CAMERA_FLASH_NONE,
@@ -833,9 +833,9 @@ static struct msm_camera_sensor_info msm_camera_sensor_mt9v113_data = {
 };
 
 #elif defined(CONFIG_IMX119)
-/* LGE_CHANGE
- * Seperate MT9V113 and IMX119.
- * 2012-02-21 yousung.kang@lge.com
+/*           
+                               
+                                  
  */
 static struct msm_camera_sensor_flash_data flash_imx119 = {
 	.flash_type	= MSM_CAMERA_FLASH_NONE,
@@ -894,10 +894,10 @@ static int32_t msm_camera_8960_ext_power_ctrl(int enable)
 void __init msm8960_init_cam(void)
 {
 #if defined(CONFIG_MACH_MSM8960_L0)
-	/* LGE_CHANGE
-	 * Seperate REV_A and other REVs GPIO setting.
-	 * 2012-01-26 yt.kim@lge.com
-	 */
+	/*           
+                                               
+                             
+  */
 	if (lge_get_board_revno() < HW_REV_B)
 		msm_gpiomux_install(msm8960_cam_common_configs_a,
 				ARRAY_SIZE(msm8960_cam_common_configs_a));
@@ -905,10 +905,10 @@ void __init msm8960_init_cam(void)
 		msm_gpiomux_install(msm8960_cam_common_configs,
 				ARRAY_SIZE(msm8960_cam_common_configs));
 #elif defined(CONFIG_MACH_MSM8960_L1A)
-	/* LGE_CHANGE
-	 * Seperate L0 and L1 REV A.
-	 * 2012-02-20 yousung.kang@lge.com
-	 */
+	/*           
+                             
+                                   
+  */
 		msm_gpiomux_install(msm8960_cam_common_configs_a,
 				ARRAY_SIZE(msm8960_cam_common_configs_a));
 #else
@@ -947,9 +947,9 @@ void __init msm8960_init_cam(void)
 #ifdef CONFIG_MT9V113
 		s_info = &msm_camera_sensor_mt9v113_data;
 #elif defined(CONFIG_IMX119)
-/* LGE_CHANGE
- * Seperate MT9V113 and IMX119.
- * 2012-02-21 yousung.kang@lge.com
+/*           
+                               
+                                  
  */
 		s_info = &msm_camera_sensor_imx119_data;
 #endif
@@ -981,9 +981,9 @@ static struct i2c_board_info msm8960_camera_i2c_boardinfo[] = {
 	.platform_data = &msm_camera_sensor_mt9v113_data,
 	},
 #elif defined(CONFIG_IMX119)
-/* LGE_CHANGE
- * Seperate MT9V113 and IMX119.
- * 2012-02-21 yousung.kang@lge.com
+/*           
+                               
+                                  
  */
 	{
 	I2C_BOARD_INFO("imx119", I2C_SLAVE_ADDR_IMX119), /* 0x6E */

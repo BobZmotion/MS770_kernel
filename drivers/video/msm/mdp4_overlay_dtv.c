@@ -59,8 +59,8 @@ static struct mdp4_overlay_pipe *dtv_pipe;
 static DECLARE_COMPLETION(dtv_comp);
 
 #ifdef CONFIG_MACH_LGE
-/* LGE, Solve the HW Reset that occurs due to dtv_on/off during HDCP Auth.
- * 2012-04-13, jongyeol.yang@lge.com
+/*                                                                        
+                                    
  */
 int mdp4_dtv_start_status = 0;
 #endif
@@ -208,8 +208,8 @@ static int mdp4_dtv_start(struct msm_fb_data_type *mfd)
 	mdp_pipe_ctrl(MDP_CMD_BLOCK, MDP_BLOCK_POWER_OFF, FALSE);
 
 #ifdef CONFIG_MACH_LGE
-/* LGE, Solve the HW Reset that occurs due to dtv_on/off during HDCP Auth.
- * 2012-04-13, jongyeol.yang@lge.com
+/*                                                                        
+                                    
  */
 	mdp4_dtv_start_status = 1;
 #endif
@@ -231,8 +231,8 @@ static int mdp4_dtv_stop(struct msm_fb_data_type *mfd)
 	mdp_pipe_ctrl(MDP_OVERLAY1_BLOCK, MDP_BLOCK_POWER_OFF, FALSE);
 
 #ifdef CONFIG_MACH_LGE
-/* LGE, Solve the HW Reset that occurs due to dtv_on/off during HDCP Auth.
- * 2012-04-13, jongyeol.yang@lge.com
+/*                                                                        
+                                    
  */
 	mdp4_dtv_start_status = 0;
 #endif
@@ -329,8 +329,8 @@ static void mdp4_overlay_dtv_alloc_pipe(struct msm_fb_data_type *mfd,
 		MDP_OUTP(MDP_BASE + MDP4_OVERLAYPROC1_BASE + 0x5008,
 			(0x0 & 0xFFF));		/* 12-bit R */
 
-/* LGE : After MHL cable disconnected, the mdp clock must be removed
-  * QCT Patch*/
+/*                                                                  
+             */
 #ifdef CONFIG_MACH_LGE
 		mdp_pipe_ctrl(MDP_CMD_BLOCK, MDP_BLOCK_POWER_OFF, FALSE);
 #else
@@ -375,10 +375,10 @@ static void mdp4_overlay_dtv_alloc_pipe(struct msm_fb_data_type *mfd,
 	}
 
 	mdp4_mixer_stage_up(pipe);
-	/* LGE_CHANGE
-	 * Add QCT patches for blue screen issue after 1041 patches
-	 * 2012-03-15, baryun.hwang@lge.com
-	 */
+	/*           
+                                                            
+                                    
+  */
 #ifdef QCT_PATCH
 	mdp4_overlay_reg_flush(pipe, 1);
 #endif

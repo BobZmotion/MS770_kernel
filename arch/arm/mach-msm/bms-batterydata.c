@@ -20,9 +20,9 @@ L1 4.3V LGC_BL53QH_2000_data
 
 #if defined(CONFIG_LGE_PM)
 #if defined (CONFIG_MACH_MSM8960_L0)
-/* L0, Change Battery Profile
-*  Battery is changed from 4.20V to 4.35V after Rev.C
-*  2012-03-19, junsin.park@lge.com
+/*                           
+                                                     
+                                  
 */
 
 // for 4.35V

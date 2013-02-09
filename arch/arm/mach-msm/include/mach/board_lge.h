@@ -76,9 +76,9 @@ typedef enum {
 hw_rev_type lge_get_board_revno(void);
 
 #ifdef CONFIG_LGE_PM
-/* LGE_CHANGE
- * Classified the ADC value for cable detection
- * 2011-12-05, kidong0420.kim@lge.com
+/*           
+                                               
+                                     
  */
 typedef enum {
     NO_INIT_CABLE = 0,
@@ -179,7 +179,7 @@ struct fsa8008_platform_data {
 };
 #endif
 
-/* LGE MHL: Using for MHL Charging When USB or TA cable is connected*/
+/*                                                                  */
 #ifdef CONFIG_SII8334_MHL_TX
 int hdmi_common_cable_connected(void);
 int GetMHLConnectedStatus(void);

@@ -254,7 +254,7 @@ static struct socinfo_v1 dummy_socinfo = {
 	.build_id = "Dummy socinfo placeholder"
 };
 
-/*LGE_UPDATE_S, jongbum.kim, 20111024 -->[*/
+/*                                        */
 #ifdef CONFIG_LGE_PM
 u16 *poweron_st = 0;
 uint16_t power_on_status_info_get(void)
@@ -282,7 +282,7 @@ uint32_t battery_info_get(void)
 EXPORT_SYMBOL(battery_info_get);
 #endif
 #endif
-/*LGE_UPDATE_E,jongbum.kim <--]*/
+/*                             */
 
 uint32_t socinfo_get_id(void)
 {
@@ -300,9 +300,9 @@ char *socinfo_get_build_id(void)
 	return (socinfo) ? socinfo->v1.build_id : NULL;
 }
 
-/* LGE_CHANGE
- * implement the userspace interface for reading soc serial number
- * 2012-01-10 jaeseong.gim@lge.com
+/*           
+                                                                  
+                                  
  */
 #ifdef CONFIG_ARCH_MSM8960
 #include <linux/io.h>
@@ -417,9 +417,9 @@ socinfo_show_build_id(struct sys_device *dev,
 	return snprintf(buf, PAGE_SIZE, "%-.32s\n", socinfo_get_build_id());
 }
 
-/* LGE_CHANGE
- * implement the userspace interface for reading soc serial number
- * 2012-01-10 jaeseong.gim@lge.com
+/*           
+                                                                  
+                                  
  */
 #ifdef CONFIG_ARCH_MSM8960
 static ssize_t
@@ -562,9 +562,9 @@ static struct sysdev_attribute socinfo_v1_files[] = {
 	_SYSDEV_ATTR(id, 0444, socinfo_show_id, NULL),
 	_SYSDEV_ATTR(version, 0444, socinfo_show_version, NULL),
 	_SYSDEV_ATTR(build_id, 0444, socinfo_show_build_id, NULL),
-/* LGE_CHANGE
- * implement the userspace interface for reading soc serial number
- * 2012-01-10 jaeseong.gim@lge.com
+/*           
+                                                                  
+                                  
  */
 #ifdef CONFIG_ARCH_MSM8960
 	_SYSDEV_ATTR(serial_number, 0444, socinfo_show_serial_number, NULL),

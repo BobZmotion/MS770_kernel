@@ -137,14 +137,14 @@ struct msm_sensor_fn_t {
 	int (*sensor_get_eeprom_data) (struct msm_sensor_ctrl_t *,
 		struct sensor_cfg_data *);
 	//End :randy@qualcomm.com for calibration 2012.03.25
-/* LGE_CHANGE_S, Implementation of SoC Sensor features for v4l2 system, 2012.02.02, yongjin1.kim@lge.com */
+/*                                                                                                       */
 #ifdef CONFIG_MACH_LGE
 	int32_t (*sensor_set_wb) (struct msm_sensor_ctrl_t *, uint8_t);
 	int32_t (*sensor_set_effect) (struct msm_sensor_ctrl_t *, uint8_t);
 	int32_t (*sensor_set_brightness) (struct msm_sensor_ctrl_t *, uint8_t);
-	int32_t (*sensor_set_soc_minmax_fps) (struct msm_sensor_ctrl_t *, uint8_t, uint8_t);	/* LGE_CHANGE, Adds FPS capabilities for SoC Sensors, 2012-05-16, yongjin1.kim@lge.com */
+	int32_t (*sensor_set_soc_minmax_fps) (struct msm_sensor_ctrl_t *, uint8_t, uint8_t);	/*                                                                                     */
 #endif
-/* LGE_CHANGE_E, Implementation of SoC Sensor features for v4l2 system, 2012.02.02, yongjin1.kim@lge.com */
+/*                                                                                                       */
 };
 
 struct msm_sensor_ctrl_t {

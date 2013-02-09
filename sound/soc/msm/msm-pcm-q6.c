@@ -226,7 +226,7 @@ static int msm_pcm_playback_prepare(struct snd_pcm_substream *substream)
 	if (prtd->enabled)
 		return 0;
 	
-// dongwook.lee@lge.com add {
+//                           
 #ifdef CONFIG_LGE_COMPRESSED_PATH
        ret=0;
 	if(!compressed_open_flag)
@@ -338,7 +338,7 @@ static int msm_pcm_open(struct snd_pcm_substream *substream)
 	if (substream->stream == SNDRV_PCM_STREAM_PLAYBACK) {
 		runtime->hw = msm_pcm_hardware_playback;
 
-//dongwook.lee@lge.com add {
+//                          
 #ifdef CONFIG_LGE_COMPRESSED_PATH
 	if(!hdmi_msm_audio_is_enabled()) //keyman test
 	{

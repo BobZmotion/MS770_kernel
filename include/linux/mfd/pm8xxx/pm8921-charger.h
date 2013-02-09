@@ -47,16 +47,16 @@ enum pm8921_usb_debounce_time {
 	PM_USB_DEBOUNCE_40P5MS,
 	PM_USB_DEBOUNCE_80P5MS,
 };
-/* LGE_CHANGE
- * add the xo_thermal mitigation way 
- * 2012-04-10, hiro.kwon@lge.com
+/*           
+                                     
+                                
 */
 
 typedef enum{
 	IUSB_REDUCE_METHOD = 0,
 	IUSB_USE_FOR_ISYSTEM_METHOD,
 } xo_mitigation_way;
-/* 2012-04-10, hiro.kwon@lge.com */
+/*                               */
 /**
  * struct pm8921_charger_platform_data -
  * @safety_time:	max charging time in minutes incl. fast and trkl
@@ -142,21 +142,21 @@ struct pm8921_charger_platform_data {
 	int				vin_min;
 	int				*thermal_mitigation;
 	int				thermal_levels;
-/* BEGIN : jooyeong.lee@lge.com 2012-02-27 Change the charger_temp_scenario */
+/*                                                                          */
 #ifdef CONFIG_LGE_CHARGER_TEMP_SCENARIO
 	int				temp_level_1;
 	int				temp_level_2;
 	int				temp_level_3;
 	int				temp_level_4;
 	int				temp_level_5;
-	/* LGE_CHANGE
- * add the xo_thermal mitigation way 
- * 2012-04-10, hiro.kwon@lge.com
+	/*           
+                                     
+                                
 */
 	xo_mitigation_way thermal_mitigation_method;  
-/* 2012-04-10, hiro.kwon@lge.com */
+/*                               */
 #endif
-/* END : jooyeong.lee@lge.com 2012-02-27 */
+/*                                       */
 	enum pm8921_chg_cold_thr	cold_thr;
 	enum pm8921_chg_hot_thr		hot_thr;
 #ifdef CONFIG_MACH_LGE
@@ -176,11 +176,11 @@ enum pm8921_charger_source {
 void pm8921_charger_vbus_draw(unsigned int mA);
 int pm8921_charger_register_vbus_sn(void (*callback)(int));
 void pm8921_charger_unregister_vbus_sn(void (*callback)(int));
-/* 120521 mansu.lee@lge.com For touch ic when TA connected. */
+/*                                                          */
 #ifdef CONFIG_LGE_PM
 extern int pm8921_charger_is_ta_connected(void);
 #endif
-/* 120521 mansu.lee@lge.com */
+/*                          */
 /**
  * pm8921_charger_enable -
  *

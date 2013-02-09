@@ -43,11 +43,11 @@
 
 
 static int hcismd_set;
-//+s QCT_BT_COMMON_PATCH_WORKAROUND_SSR [younghun.nam@lge.com 20120604] fix wcnss restart error at status about bt and wi-fi on 
+//                                                                                                                              
 //static DEFINE_MUTEX(hci_smd_enable);
 static DEFINE_SEMAPHORE(hci_smd_enable);
 //+e QCT_BT_COMMON_PATCH_WORKAROUND_SSR
-//+s QCT_BT_COMMON_PATCH_WORKAROUND [younghun.nam@lge.com 20120526] fix wcnss restart error at status about bt and wi-fi on 
+//                                                                                                                          
 static int restart_in_progress;
 //+e QCT_BT_COMMON_PATCH_WORKAROUND
 
@@ -502,17 +502,17 @@ static void hci_smd_deregister_dev(struct hci_smd_data *hsmd)
 
 static void hci_dev_restart(struct work_struct *worker)
 {
-//+s QCT_BT_COMMON_PATCH_WORKAROUND_SSR [younghun.nam@lge.com 20120604] fix wcnss restart error at status about bt and wi-fi on 
+//                                                                                                                              
 	//mutex_lock(&hci_smd_enable);
 	down(&hci_smd_enable);
 //+e QCT_BT_COMMON_PATCH_WORKAROUND_SSR
 
-//+s QCT_BT_COMMON_PATCH_WORKAROUND [younghun.nam@lge.com 20120526] fix wcnss restart error at status about bt and wi-fi on 	
+//                                                                                                                           
 	restart_in_progress = 1;
 //+e QCT_BT_COMMON_PATCH_WORKAROUND 
 	hci_smd_deregister_dev(&hs);
 	hci_smd_register_smd(&hs);
-//+s QCT_BT_COMMON_PATCH_WORKAROUND_SSR [younghun.nam@lge.com 20120604] fix wcnss restart error at status about bt and wi-fi on 	
+//                                                                                                                               
 	//mutex_unlock(&hci_smd_enable);
 	up(&hci_smd_enable);
 //+e QCT_BT_COMMON_PATCH_WORKAROUND_SSR
@@ -522,22 +522,22 @@ static void hci_dev_restart(struct work_struct *worker)
 
 static void hci_dev_smd_open(struct work_struct *worker)
 {
-//+s QCT_BT_COMMON_PATCH_WORKAROUND_SSR [younghun.nam@lge.com 20120604] fix wcnss restart error at status about bt and wi-fi on 	
+//                                                                                                                               
 	down(&hci_smd_enable);
 //+e QCT_BT_COMMON_PATCH_WORKAROUND_SSR
 
-//+s QCT_BT_COMMON_PATCH_WORKAROUND [younghun.nam@lge.com 20120526] fix wcnss restart error at status about bt and wi-fi on 	
+//                                                                                                                           
 	if (restart_in_progress == 1) {
 		restart_in_progress = 0;
 		msleep(10000);
 	}
 //+e QCT_BT_COMMON_PATCH_WORKAROUND 	
-//+s QCT_BT_COMMON_PATCH_WORKAROUND_SSR [younghun.nam@lge.com 20120604] fix wcnss restart error at status about bt and wi-fi on 	
+//                                                                                                                               
 	//mutex_lock(&hci_smd_enable);
 //+e QCT_BT_COMMON_PATCH_WORKAROUND_SSR	
 	hci_smd_hci_register_dev(&hs);
 	//mutex_unlock(&hci_smd_enable);
-//+s QCT_BT_COMMON_PATCH_WORKAROUND_SSR [younghun.nam@lge.com 20120604] fix wcnss restart error at status about bt and wi-fi on 		
+//                                                                                                                                
 	up(&hci_smd_enable);
 //+e QCT_BT_COMMON_PATCH_WORKAROUND_SSR		
 	kfree(worker);
@@ -546,7 +546,7 @@ static void hci_dev_smd_open(struct work_struct *worker)
 static int hcismd_set_enable(const char *val, struct kernel_param *kp)
 {
 	int ret = 0;
-//+s QCT_BT_COMMON_PATCH_WORKAROUND_SSR [younghun.nam@lge.com 20120604] fix wcnss restart error at status about bt and wi-fi on 		
+//                                                                                                                                
 
 //	mutex_lock(&hci_smd_enable);
 	pr_err("hcismd_set_enable %d", hcismd_set);
@@ -561,7 +561,7 @@ static int hcismd_set_enable(const char *val, struct kernel_param *kp)
 	switch (hcismd_set) {
 
 	case 1:
-//+s QCT_BT_COMMON_PATCH_WORKAROUND_SSR [younghun.nam@lge.com 20120604] fix wcnss restart error at status about bt and wi-fi on 		
+//                                                                                                                                
 
 		//hci_smd_register_smd(&hs);
 		if (hs.hdev == NULL)
@@ -576,7 +576,7 @@ static int hcismd_set_enable(const char *val, struct kernel_param *kp)
 	}
 
 done:
-//+s QCT_BT_COMMON_PATCH_WORKAROUND_SSR [younghun.nam@lge.com 20120604] fix wcnss restart error at status about bt and wi-fi on 			
+//                                                                                                                                 
 	//mutex_unlock(&hci_smd_enable);
 	up(&hci_smd_enable);
 //+e QCT_BT_COMMON_PATCH_WORKAROUND_SSR 				
@@ -588,10 +588,10 @@ static int  __init hci_smd_init(void)
 			 "msm_smd_Rx");
 	wake_lock_init(&hs.wake_lock_tx, WAKE_LOCK_SUSPEND,
 			 "msm_smd_Tx");
-//+s QCT_BT_COMMON_PATCH_WORKAROUND [younghun.nam@lge.com 20120526] fix wcnss restart error at status about bt and wi-fi on 		
+//                                                                                                                            
 	restart_in_progress = 0;
 //+e QCT_BT_COMMON_PATCH_WORKAROUND 
-//+s QCT_BT_COMMON_PATCH_WORKAROUND_SSR [younghun.nam@lge.com 20120604] fix wcnss restart error at status about bt and wi-fi on 			
+//                                                                                                                                 
 	hs.hdev = NULL;
 //+e QCT_BT_COMMON_PATCH_WORKAROUND_SSR
 	return 0;

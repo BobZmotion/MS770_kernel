@@ -1375,7 +1375,7 @@ static struct platform_device mipi_dsi_hitachi_panel_device = {
 	}
 };
 
-#endif /* #ifdef CONFIG_LGE_BACKLIGHT_LM3530*/
+#endif /*                                   */
 
 
 
@@ -1857,7 +1857,7 @@ static struct backlight_platform_data lm3533_data = {
 	.default_brightness = 0xA5,
 	.factory_brightness = 0x64,
 };
-#endif /* #if defined (CONFIG_LGE_BACKLIGHT_LM3530)*/
+#endif /*                                          */
 static struct i2c_board_info msm_i2c_backlight_info[] = {
 	{
 #if defined (CONFIG_LGE_BACKLIGHT_LM3530)
