@@ -36,10 +36,11 @@ static int process_sdio_pending_irqs(struct mmc_host *host)
 
 	/*
 	 * Optimization, if there is only 1 function interrupt registered
-	 * call irq handler directly
+	 * and we know an IRQ was signaled then call irq handler directly.
+	 * Otherwise do the full probe.
 	 */
 	func = card->sdio_single_irq;
-	if (func) {
+	if (func && host->sdio_irq_pending) {
 		func->irq_handler(func);
 		return 1;
 	}
@@ -54,7 +55,7 @@ static int process_sdio_pending_irqs(struct mmc_host *host)
 	count = 0;
 	for (i = 1; i <= 7; i++) {
 		if (pending & (1 << i)) {
-			struct sdio_func *func = card->sdio_func[i - 1];
+			func = card->sdio_func[i - 1];
 			if (!func) {
 				printk(KERN_WARNING "%s: pending IRQ for "
 					"non-existent function\n",
